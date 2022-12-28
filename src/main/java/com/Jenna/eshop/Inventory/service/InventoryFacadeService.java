@@ -1,8 +1,8 @@
 package com.Jenna.eshop.Inventory.service;
 
-import com.Jenna.eshop.wms.dto.PurchaseInputOrderDTO;
-import com.Jenna.eshop.order.dto.OrderDTO;
-import com.Jenna.eshop.wms.dto.ReturnGoodsInputOrderDTO;
+import com.Jenna.eshop.wms.domain.PurchaseInputOrderDTO;
+import com.Jenna.eshop.order.domain.OrderDTO;
+import com.Jenna.eshop.wms.domain.ReturnGoodsInputOrderDTO;
 
 /**
  * 库存中心对外提供接口

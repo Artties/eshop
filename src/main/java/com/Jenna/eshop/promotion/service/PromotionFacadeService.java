@@ -1,5 +1,5 @@
 package com.Jenna.eshop.promotion.service;
-import com.Jenna.eshop.promotion.dto.PromotionActivityDTO;
+import com.Jenna.eshop.promotion.domain.PromotionActivityDTO;
 
 import java.util.List;
 

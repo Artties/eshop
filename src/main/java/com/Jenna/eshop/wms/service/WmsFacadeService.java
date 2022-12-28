@@ -1,9 +1,9 @@
 package com.Jenna.eshop.wms.service;
 
-import com.Jenna.eshop.wms.dto.PurchaseInputOrderDTO;
-import com.Jenna.eshop.wms.dto.ReturnGoodsInputOrderDTO;
-import com.Jenna.eshop.wms.dto.SaleDeliveryOrderDTO;
-import com.Jenna.eshop.order.dto.OrderDTO;
+import com.Jenna.eshop.wms.domain.PurchaseInputOrderDTO;
+import com.Jenna.eshop.wms.domain.ReturnGoodsInputOrderDTO;
+import com.Jenna.eshop.wms.domain.SaleDeliveryOrderDTO;
+import com.Jenna.eshop.order.domain.OrderDTO;
 
 /**
  * WMS中心对外提供的接口

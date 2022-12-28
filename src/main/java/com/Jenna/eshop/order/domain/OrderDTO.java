@@ -1,32 +1,29 @@
-package com.Jenna.eshop.wms.dto;
+package com.Jenna.eshop.order.domain;
 
 import java.util.Date;
 
 /**
- * 退货入库单DTO
+ * 订单DTO
  */
-public class ReturnGoodsInputOrderDTO {
+public class OrderDTO {
     /**
      * id
      */
     private Long id;
     /**
-     *用户账号ID
+     * 订单编号
+     */
+    private String orderNo;
+
+    /**
+     * 用户账号id
      */
     private Long userAccountId;
 
     /**
-     * 订单ID
+     * 订单状态
      */
-    private long orderId;
-    /**
-     * 订单编号
-     */
-    private String orderNo;
-    /**
-     * 退货入库单的状态
-     */
-    private Integer returnGoodsInputOrderStatus;
+    private Integer orderStatus;
 
     /**
      * 收货人
@@ -87,30 +84,14 @@ public class ReturnGoodsInputOrderDTO {
     private String orderComment;
 
     /**
-     * 退货原因
-     */
-    private String returnGoodsReason;
-    /**
-     * 退货备注
-     */
-    private String returnGoodsComment;
-
-    /**
-     * 退货实际到货时间
-     */
-    private Date arrivalTime;
-
-    /**
-     * 退货出库单的创建时间
+     * 销售出库单的创建时间
      */
     private Date gmtCreate;
 
     /**
-     * 退货出库单的修改时间
+     * 销售出库单的修改时间
      */
     private Date gmtModified;
-
-
 
     public Long getId() {
         return id;
@@ -118,22 +99,6 @@ public class ReturnGoodsInputOrderDTO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getUserAccountId() {
-        return userAccountId;
-    }
-
-    public void setUserAccountId(Long userAccountId) {
-        this.userAccountId = userAccountId;
-    }
-
-    public long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(long orderId) {
-        this.orderId = orderId;
     }
 
     public String getOrderNo() {
@@ -144,12 +109,20 @@ public class ReturnGoodsInputOrderDTO {
         this.orderNo = orderNo;
     }
 
-    public Integer getReturnGoodsInputOrderStatus() {
-        return returnGoodsInputOrderStatus;
+    public Long getUserAccountId() {
+        return userAccountId;
     }
 
-    public void setReturnGoodsInputOrderStatus(Integer returnGoodsInputOrderStatus) {
-        this.returnGoodsInputOrderStatus = returnGoodsInputOrderStatus;
+    public void setUserAccountId(Long userAccountId) {
+        this.userAccountId = userAccountId;
+    }
+
+    public Integer getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public String getConsignee() {
@@ -246,30 +219,6 @@ public class ReturnGoodsInputOrderDTO {
 
     public void setOrderComment(String orderComment) {
         this.orderComment = orderComment;
-    }
-
-    public String getReturnGoodsReason() {
-        return returnGoodsReason;
-    }
-
-    public void setReturnGoodsReason(String returnGoodsReason) {
-        this.returnGoodsReason = returnGoodsReason;
-    }
-
-    public String getReturnGoodsComment() {
-        return returnGoodsComment;
-    }
-
-    public void setReturnGoodsComment(String returnGoodsComment) {
-        this.returnGoodsComment = returnGoodsComment;
-    }
-
-    public Date getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public void setArrivalTime(Date arrivalTime) {
-        this.arrivalTime = arrivalTime;
     }
 
     public Date getGmtCreate() {

@@ -1,4 +1,4 @@
-package com.Jenna.eshop.promotion.dto;
+package com.Jenna.eshop.promotion.domain;
 
 import javax.xml.crypto.Data;
 
