@@ -1,8 +1,8 @@
 package com.Jenna.eshop.finance.service;
 
-import com.Jenna.eshop.wms.dto.PurchaseInputOrderDTO;
-import com.Jenna.eshop.wms.dto.ReturnGoodsInputOrderDTO;
-import com.Jenna.eshop.wms.dto.SaleDeliveryOrderDTO;
+import com.Jenna.eshop.wms.domain.PurchaseInputOrderDTO;
+import com.Jenna.eshop.wms.domain.ReturnGoodsInputOrderDTO;
+import com.Jenna.eshop.wms.domain.SaleDeliveryOrderDTO;
 
 /**
  * 财务中心对外提供的接口
