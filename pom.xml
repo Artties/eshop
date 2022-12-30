@@ -151,7 +151,7 @@
 	        <plugin>
 	            <groupId>org.springframework.boot</groupId>
 	            <artifactId>spring-boot-maven-plugin</artifactId>
-	            <!-- 默认情况下，打包之后，是直接将devtools排除在歪的 -->
+	            <!-- 默认情况下，打包之后，是直接将devtools排除在外的 -->
 	            <!-- 但是加了这个东东之后，就会将devtools给打到jar包里去，部署到服务器上之后，devtools生效的 -->
 	            <!--  
 	            <configuration>

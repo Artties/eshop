@@ -122,7 +122,7 @@ public class PriorityDO {
     public <T> T clone(Class<T> clazz){
         T target = null;
         try{
-            clazz.getDeclaredConstructor().newInstance();
+            target = clazz.getDeclaredConstructor().newInstance();
         }catch (Exception e){
             logger.error("PriorityDO中克隆对象的时候出错",e);
         }

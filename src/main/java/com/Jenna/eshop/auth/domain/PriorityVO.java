@@ -1,5 +1,8 @@
 package com.Jenna.eshop.auth.domain;
 
+import com.Jenna.eshop.common.util.BeanCopierUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.*;
 
 /**
@@ -7,6 +10,7 @@ import java.util.*;
  */
 
 public class PriorityVO {
+    private static final Logger logger = LoggerFactory.getLogger(PriorityVO.class);
     /**
      * id
      */
@@ -102,5 +106,23 @@ public class PriorityVO {
 
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    /**
+     * 克隆方法
+     * @param clazz 目标class对象
+     * @return 克隆后的对象
+     * @param <T> 泛型 T
+     */
+    public <T> T clone(Class<T> clazz){
+        T target = null;
+        try{
+            target = clazz.getDeclaredConstructor().newInstance();
+        }catch (Exception e){
+            logger.error("PriorityDTO中克隆对象的时候出错",e);
+        }
+
+        BeanCopierUtils.copyProperties(this,target);
+        return target;
     }
 }
