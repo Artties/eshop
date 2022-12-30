@@ -1,15 +1,21 @@
 package com.Jenna.eshop.auth.domain;
 
+import com.Jenna.eshop.common.util.BeanCopierUtils;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 
 import java.lang.reflect.Method;
 import java.util.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *权限的DO类
  */
 
 public class PriorityDO {
+    private static final Logger logger = LoggerFactory.getLogger(PriorityDO.class);
+
     /**
      * id
      */
@@ -114,23 +120,14 @@ public class PriorityDO {
      * @param <T> 泛型 T
      */
     public <T> T clone(Class<T> clazz){
-        //比如clazz是PriorityDTO.class
-
         T target = null;
         try{
-            target = clazz.getDeclaredConstructor().newInstance();
-
-            Method setIdMethod = clazz.getMethod("setId",Long.class);
-            setIdMethod.invoke(target,id);
-
-            Method setCodeMethod = clazz.getMethod("setCode",Long.class);
-            setIdMethod.invoke(target,code);
-
-            BeanUtils.copyProperties(this,clazz.getDeclaredConstructor().newInstance());
-
-        } catch (Exception e){
-            e.printStackTrace();
+            clazz.getDeclaredConstructor().newInstance();
+        }catch (Exception e){
+            logger.error("PriorityDO中克隆对象的时候出错",e);
         }
+
+        BeanCopierUtils.copyProperties(this,target);
         return target;
     }
 }
