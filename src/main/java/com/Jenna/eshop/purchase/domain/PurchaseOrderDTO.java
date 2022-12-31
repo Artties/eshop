@@ -1,29 +1,23 @@
-package com.Jenna.eshop.wms.dto;
+package com.Jenna.eshop.purchase.domain;
 
 import java.util.*;
+
 /**
- * 采购入库单DTO
+ * 采购单DTO
  */
-public class PurchaseInputOrderDTO {
+public class PurchaseOrderDTO {
     /**
      * id
      */
     private Long id;
-
     /**
      * 供应商id
      */
-    private long supplierId;
+    private Long supplierId;
     /**
-     * 预期到达时间
+     * 预期到货时间
      */
     private Date expectArrivalTime;
-
-    /**
-     * 事假到达时间
-     */
-    private Date arrivalTime;
-
     /**
      * 采购联系人
      */
@@ -46,19 +40,18 @@ public class PurchaseInputOrderDTO {
     private String purchaser;
 
     /**
-     * 采购入库单状态
+     * 采购单状态
      */
-    private Integer purchaseInputOrderStatus;
+    private Integer purchaseOrderStatus;
 
     /**
-     * 采购入库单的创建时间
+     * 采购单的创建时间
      */
     private Date gmtCreate;
     /**
-     * 采购入库单的修改时间
+     * 采购单的修改时间
      */
     private Date gmtModified;
-
 
     public Long getId() {
         return id;
@@ -68,11 +61,11 @@ public class PurchaseInputOrderDTO {
         this.id = id;
     }
 
-    public long getSupplierId() {
+    public Long getSupplierId() {
         return supplierId;
     }
 
-    public void setSupplierId(long supplierId) {
+    public void setSupplierId(Long supplierId) {
         this.supplierId = supplierId;
     }
 
@@ -82,14 +75,6 @@ public class PurchaseInputOrderDTO {
 
     public void setExpectArrivalTime(Date expectArrivalTime) {
         this.expectArrivalTime = expectArrivalTime;
-    }
-
-    public Date getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public void setArrivalTime(Date arrivalTime) {
-        this.arrivalTime = arrivalTime;
     }
 
     public String getPurchaseContactor() {
@@ -132,12 +117,12 @@ public class PurchaseInputOrderDTO {
         this.purchaser = purchaser;
     }
 
-    public Integer getPurchaseInputOrderStatus() {
-        return purchaseInputOrderStatus;
+    public Integer getPurchaseOrderStatus() {
+        return purchaseOrderStatus;
     }
 
-    public void setPurchaseInputOrderStatus(Integer purchaseInputOrderStatus) {
-        this.purchaseInputOrderStatus = purchaseInputOrderStatus;
+    public void setPurchaseOrderStatus(Integer purchaseOrderStatus) {
+        this.purchaseOrderStatus = purchaseOrderStatus;
     }
 
     public Date getGmtCreate() {
