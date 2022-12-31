@@ -4,6 +4,7 @@ package com.Jenna.eshop.auth.service.impl;
 
 import com.Jenna.eshop.auth.domain.PriorityDTO;
 
+
 import java.util.List;
 
 public interface PriorityService {
@@ -38,4 +39,11 @@ public interface PriorityService {
      * @param priorityDTO 权限DO对象
      */
     Boolean updatePriority(PriorityDTO priorityDTO);
+
+    /**
+     * 删除权限
+     * @param id 权限id
+     * @return 处理结果
+     */
+    Boolean removePriority(Long id);
 }

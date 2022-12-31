@@ -127,4 +127,16 @@ public class PriorityController {
         }
         return true;
     }
+    /**
+     * 删除权限
+     */
+    @DeleteMapping("/{id}")
+    public Boolean removePriority(@PathVariable("id") Long id){
+        try {
+            return priorityService.removePriority(id);
+        }catch (Exception e){
+            logger.error("error",e);
+        }
+        return false;
+    }
 }

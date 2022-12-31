@@ -1,12 +1,20 @@
 package com.Jenna.eshop.auth.service.impl;
 
+import com.Jenna.eshop.auth.composite.PriorityNode;
+import com.Jenna.eshop.auth.dao.AccountPriorityRelationshipDAO;
 import com.Jenna.eshop.auth.dao.PriorityDAO;
+import com.Jenna.eshop.auth.dao.RolePriorityRelationshipDAO;
 import com.Jenna.eshop.auth.domain.PriorityDTO;
 import com.Jenna.eshop.auth.domain.PriorityDO;
+import com.Jenna.eshop.auth.visitor.PriorityNodeRelateCheckVisitor;
+import com.Jenna.eshop.auth.visitor.PriorityNodeRemoveVisitor;
+import com.Jenna.eshop.auth.visitor.PriorityNodeVisitor;
+import org.apache.ibatis.annotations.Mapper;
 import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -25,6 +33,20 @@ public class PriorityServiceImpl implements PriorityService {
      */
     @Autowired
     private PriorityDAO priorityDAO;
+
+    /**
+     * 角色和权限关系管理模块的DAO组件
+     */
+    @Autowired
+    private RolePriorityRelationshipDAO rolePriorityRelationshipDAO;
+
+    /**
+     *
+     * 账号和权限关系管理模块的DAO组件
+     */
+    @Autowired
+    private AccountPriorityRelationshipDAO accountPriorityRelationshipDAO;
+
 
     /**
      * 查询根权限
@@ -113,4 +135,34 @@ public class PriorityServiceImpl implements PriorityService {
         }
         return true;
     }
+
+    /**
+     * 删除权限
+     * @param id 权限id
+     * @return 处理结果
+     */
+    public Boolean removePriority(Long id){
+        try {
+            //根据id查询权限
+            PriorityDO priorityDO = priorityDAO.getPriorityById(id);
+            PriorityNode priorityNode = priorityDO.clone(PriorityNode.class);
+
+            //检查这个权限以及其下任何一个子权限，是否被角色或者账号给关联着
+            PriorityNodeRelateCheckVisitor relateCheckVisitor = new PriorityNodeRelateCheckVisitor(priorityDAO,rolePriorityRelationshipDAO,accountPriorityRelationshipDAO);
+
+            relateCheckVisitor.visit(priorityNode);
+            Boolean relateCheckResult = relateCheckVisitor.getRelateCheckResult();
+
+            //递归删除当前权限以及其下所有的子权限
+            if (relateCheckResult){
+                return false;
+            }
+            PriorityNodeRemoveVisitor removeVisitor = new PriorityNodeRemoveVisitor(priorityDAO);
+            removeVisitor.visit(priorityNode);
+        }catch (Exception e){
+            logger.error("error",e);
+        }
+        return true;
+    }
+
 }

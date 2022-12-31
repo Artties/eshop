@@ -140,4 +140,11 @@ public interface PriorityMapper {
                 + "gmt_modified=#{gmtModified}"
             +"WHERE id=#{id}")
     void updatePriority(PriorityDO priorityDO);
+
+    /**
+     * 删除权限
+     * @param id 权限id
+     */
+    @Delete("DELETE FROM auth_priority WHERE id=#{id}")
+    void removePriority(@Param("id") Long id);
 }

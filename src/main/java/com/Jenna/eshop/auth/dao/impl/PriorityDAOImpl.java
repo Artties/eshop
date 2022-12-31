@@ -93,4 +93,19 @@ public class PriorityDAOImpl implements PriorityDAO {
         }
         return true;
     }
+
+
+    /**
+     * 删除权限
+     * @param id 权限id
+     */
+    public Boolean removePriority(Long id){
+        try {
+            priorityMapper.removePriority(id);
+        }catch (Exception e){
+            logger.error("error",e);
+            return false;
+        }
+        return true;
+    }
 }

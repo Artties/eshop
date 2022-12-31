@@ -43,4 +43,11 @@ public interface PriorityDAO {
      */
     Boolean updatePriority(PriorityDO priorityDO);
 
+
+    /**
+     * 删除权限
+     * @param id 权限id
+     */
+    Boolean removePriority(Long id);
+
 }
