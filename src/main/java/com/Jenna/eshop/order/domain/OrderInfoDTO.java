@@ -3,9 +3,9 @@ package com.Jenna.eshop.order.domain;
 import java.util.Date;
 
 /**
- * 订单DTO
+ * 订单信息DTO
  */
-public class OrderDTO {
+public class OrderInfoDTO {
     /**
      * id
      */
@@ -82,7 +82,14 @@ public class OrderDTO {
      * 订单备注
      */
     private String orderComment;
-
+    /**
+     * 是否发表了评论 Java Bean中是不加is的
+     */
+    private Integer publishedComment;
+    /**
+     * 确认收货时间
+     */
+    private Date confirmReceiptTime;
     /**
      * 销售出库单的创建时间
      */
@@ -219,6 +226,22 @@ public class OrderDTO {
 
     public void setOrderComment(String orderComment) {
         this.orderComment = orderComment;
+    }
+
+    public Integer getPublishedComment() {
+        return publishedComment;
+    }
+
+    public void setPublishedComment(Integer publishedComment) {
+        this.publishedComment = publishedComment;
+    }
+
+    public Date getConfirmReceiptTime() {
+        return confirmReceiptTime;
+    }
+
+    public void setConfirmReceiptTime(Date confirmReceiptTime) {
+        this.confirmReceiptTime = confirmReceiptTime;
     }
 
     public Date getGmtCreate() {
