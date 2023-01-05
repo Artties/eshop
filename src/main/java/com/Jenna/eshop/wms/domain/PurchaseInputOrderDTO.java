@@ -3,6 +3,7 @@ package com.Jenna.eshop.wms.domain;
 import java.util.*;
 /**
  * 采购入库单DTO
+ * @author Artties
  */
 public class PurchaseInputOrderDTO {
     /**
@@ -13,7 +14,7 @@ public class PurchaseInputOrderDTO {
     /**
      * 供应商id
      */
-    private long supplierId;
+    private Long supplierId;
     /**
      * 预期到达时间
      */

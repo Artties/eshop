@@ -3,6 +3,7 @@ package com.Jenna.eshop.customer.domain;
 import java.util.*;
 /**
  * 退货工单DTO
+ * @author Artties
  */
 public class ReturnGoodsWorksheetDTO {
     /**

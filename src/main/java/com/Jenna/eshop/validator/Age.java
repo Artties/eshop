@@ -9,6 +9,9 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
+/**
+ * @author Artties
+ */
 @Constraint(validatedBy = {AgeValidator.class})
 @Documented
 @Target({ElementType.ANNOTATION_TYPE, ElementType.METHOD, ElementType.FIELD})

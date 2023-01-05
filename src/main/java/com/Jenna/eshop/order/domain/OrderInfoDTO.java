@@ -4,6 +4,7 @@ import java.util.Date;
 
 /**
  * 订单信息DTO
+ * @author Artties
  */
 public class OrderInfoDTO {
     /**

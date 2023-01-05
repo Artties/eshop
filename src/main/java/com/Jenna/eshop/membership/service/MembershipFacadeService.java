@@ -2,6 +2,7 @@ package com.Jenna.eshop.membership.service;
 
 /**
  * 会员中心对外提供接口
+ * @author Artties
  */
 
 public interface MembershipFacadeService {

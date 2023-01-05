@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * 采购单DTO
+ * @author Artties
  */
 public class PurchaseOrderDTO {
     /**

@@ -5,7 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
-/*
+/**
+ * @author Artties
+ */ /*
  * 
  * 尽量不要用xml来配置
  * 如果一定要有一些配置的话，优先是用application.properties，application.yml
@@ -79,7 +81,7 @@ import org.springframework.context.annotation.Import;
  * 
  */
 @SpringBootApplication
-/*
+/**
  * 将数据源bean的配置类，导入进来，就相当于你以前搞多个xml的时候，将多个xml导入一个总的xml中
  */
 @Import(DruidDataSourceConfig.class)

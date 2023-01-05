@@ -4,6 +4,7 @@ import javax.xml.crypto.Data;
 
 /**
  * 促销活动DTO
+ * @author Artties
  */
 public class PromotionActivityDTO {
     /**

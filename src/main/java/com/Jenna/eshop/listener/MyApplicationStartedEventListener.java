@@ -3,6 +3,9 @@ package com.Jenna.eshop.listener;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
 
+/**
+ * @author Artties
+ */
 @SuppressWarnings("deprecation")
 public class MyApplicationStartedEventListener implements ApplicationListener<ApplicationStartedEvent> {
 

@@ -1,10 +1,11 @@
 package com.Jenna.eshop.promotion.service;
-import com.Jenna.eshop.promotion.dto.PromotionActivityDTO;
+import com.Jenna.eshop.promotion.domain.PromotionActivityDTO;
 
 import java.util.List;
 
 /**
  * 促销中心对外提供的接口
+ * @author Artties
  */
 public interface PromotionFacadeService {
     /**

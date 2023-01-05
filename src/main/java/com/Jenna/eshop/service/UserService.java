@@ -6,7 +6,7 @@ import com.Jenna.eshop.domain.User;
 
 /**
  * 用户管理模块的service组件接口
- * @author zhonghuashishan
+ * @author Artties
  *
  */
 public interface UserService {

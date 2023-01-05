@@ -11,7 +11,7 @@ import com.Jenna.eshop.mapper.UserMapper;
 
 /**
  * 用户管理模块的DAO组件实现类
- * @author zhonghuashishan
+ * @author Artties
  *
  */
 @Repository

@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * 订单条目的DTO类
+ * @author Artties
  */
 public class OrderItemDTO {
     /**

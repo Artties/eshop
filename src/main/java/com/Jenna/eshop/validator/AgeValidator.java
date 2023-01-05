@@ -3,6 +3,9 @@ package com.Jenna.eshop.validator;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+/**
+ * @author Artties
+ */
 public class AgeValidator implements ConstraintValidator<Age, Integer> {
 
     private Integer max;

@@ -24,13 +24,13 @@ import com.alibaba.druid.pool.DruidDataSource;
  * 其实@Configuration就代表了说，这个类是一个类似于以前的xml配置文件的一个配置类
  * 在这个类中可以将外部的application.properties中的需要的配置加载进来，使用@Value注解即可加载外部配置
  * 
- * @author zhonghuashishan
+ * @author Artties
  *
  */
 @Configuration  
 public class DruidDataSourceConfig {  
    
-	/*
+	/**
 	 * 看下面所有的配置，都是创建一个数据源需要的一些配置项
 	 * 直接通过@Value的注解，将需要的配置项的值，从外部的application.properties文件中加载进来
 	 */

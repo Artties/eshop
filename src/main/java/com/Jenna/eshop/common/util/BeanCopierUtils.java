@@ -7,12 +7,13 @@ import java.util.Map;
 
 /**
  * BeanCopier工具类
+ * @author Artties
  */
 public class BeanCopierUtils {
     /**
      * BeanCopier缓存
      */
-    public static Map<String, BeanCopier> beanCopierCacheMap = new HashMap<String,BeanCopier>();
+    public static Map<String,BeanCopier> beanCopierCacheMap = new HashMap<String,BeanCopier>();
 
     /**
      * 将source对象的属性拷贝到target对象中去

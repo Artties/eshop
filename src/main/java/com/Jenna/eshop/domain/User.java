@@ -8,7 +8,7 @@ import com.Jenna.eshop.validator.Age;
 
 /**
  * 一个领域模型类
- * @author zhonghuashishan
+ * @author Artties
  *
  */
 public class User {
@@ -21,7 +21,9 @@ public class User {
     private Long id;
 	@Size(min = 2, max = 20, groups = {Save.class, Update.class}) 
     private String name;
-//	@Range(min = 18, max = 70, groups = {Save.class, Update.class})
+
+/**	@Range(min = 18, max = 70, groups = {Save.class, Update.class})
+    */
 	@Age(min = 18, max = 70, groups = {Save.class, Update.class})
     private Integer age;
     

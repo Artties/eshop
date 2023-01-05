@@ -3,16 +3,17 @@ package com.Jenna.eshop.goods.domain;
 import java.util.*;
 /**
  * 商品sku DTO
+ * @author Artties
  */
 public class GoodsSkuDTO {
     /**
      * id
      */
-    private long id;
+    private Long id;
     /**
      * 商品id
      */
-    private long goodsId;
+    private Long goodsId;
 
     /**
      *商品sku编号

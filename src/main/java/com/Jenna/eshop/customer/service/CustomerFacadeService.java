@@ -2,6 +2,8 @@ package com.Jenna.eshop.customer.service;
 
 /**
  * 客服中心对外提供的接口
+ *
+ * @author Artties
  */
 public interface CustomerFacadeService {
     /**

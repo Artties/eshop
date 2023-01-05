@@ -12,7 +12,7 @@ import com.Jenna.eshop.service.UserService;
 
 /**
  * 用户管理模块的service组件实现类
- * @author zhonghuashishan
+ * @author Artties
  *
  */
 @Service

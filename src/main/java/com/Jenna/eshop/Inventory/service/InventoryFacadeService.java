@@ -1,11 +1,12 @@
 package com.Jenna.eshop.Inventory.service;
 
-import com.Jenna.eshop.wms.dto.PurchaseInputOrderDTO;
-import com.Jenna.eshop.order.dto.OrderDTO;
-import com.Jenna.eshop.wms.dto.ReturnGoodsInputOrderDTO;
+import com.Jenna.eshop.wms.domain.PurchaseInputOrderDTO;
+import com.Jenna.eshop.order.domain.OrderInfoDTO;
+import com.Jenna.eshop.wms.domain.ReturnGoodsInputOrderDTO;
 
 /**
  * 库存中心对外提供接口
+ * @author Artties
  */
 public interface InventoryFacadeService {
     /**
@@ -20,21 +21,21 @@ public interface InventoryFacadeService {
      * @param orderDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informSubmitOrderEvent(OrderDTO orderDTO);
+    Boolean informSubmitOrderEvent(OrderInfoDTO orderDTO);
 
     /**
      * 通知库存中心，"支付订单"事件发生了
      * @param orderDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informPayOrderEvent(OrderDTO orderDTO);
+    Boolean informPayOrderEvent(OrderInfoDTO orderDTO);
 
     /**
      * 通知库存中心，"取消订单"事件发生了
      * @param orderDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informCancelOrderEvent(OrderDTO orderDTO);
+    Boolean informCancelOrderEvent(OrderInfoDTO orderDTO);
 
     /**
      * 通知库存中心，"完成退货入库"事件发生了

@@ -1,5 +1,8 @@
 package com.Jenna.eshop.web;
 
+/**
+ * @author Artties
+ */
 public class ErrorInfo<T> {
 
     public static final Integer OK = 0;
