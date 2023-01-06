@@ -3,7 +3,7 @@ package com.Jenna.eshop.goods.domain;
 import java.util.*;
 /**
  * 商品sku DTO
- * @author Artties
+ * @author Jenna C He
  */
 public class GoodsSkuDTO {
     /**

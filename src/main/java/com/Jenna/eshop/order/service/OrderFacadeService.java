@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * 订单中心对外提供接口
- * @author Artties
+ * @author Jenna C He
  */
 public interface OrderFacadeService {
     /**

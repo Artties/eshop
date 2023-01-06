@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 退货入库单DTO
- * @author Artties
+ * @author Jenna C He
  */
 public class ReturnGoodsInputOrderDTO {
     /**

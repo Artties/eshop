@@ -3,7 +3,7 @@ package com.Jenna.eshop.logistics.service;
 import com.Jenna.eshop.goods.domain.GoodsSkuDTO;
 /**
  * 物流中心对外提供接口
- * @author Artties
+ * @author Jenna C He
  */
 public interface LogisticsFacadeService {
     /**

@@ -4,7 +4,7 @@ import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
 
 /**
- * @author Artties
+ * @author Jenna C He
  */
 @SuppressWarnings("deprecation")
 public class MyApplicationStartedEventListener implements ApplicationListener<ApplicationStartedEvent> {

@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 评论晒图
- * @author Artties
+ * @author Jenna C He
  */
 public class CommentPicture {
     /**

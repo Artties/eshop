@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * 评论聚合统计信息
- * @author Artties
+ * @author Jenna C He
  */
 public class CommentAggregate {
     /**
@@ -49,4 +49,83 @@ public class CommentAggregate {
      */
     private Date gmtModified;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(Long goodsId) {
+        this.goodsId = goodsId;
+    }
+
+    public Long getTotalCommentCount() {
+        return totalCommentCount;
+    }
+
+    public void setTotalCommentCount(Long totalCommentCount) {
+        this.totalCommentCount = totalCommentCount;
+    }
+
+    public Long getGoodCommentCount() {
+        return goodCommentCount;
+    }
+
+    public void setGoodCommentCount(Long goodCommentCount) {
+        this.goodCommentCount = goodCommentCount;
+    }
+
+    public Double getGoodCommentRate() {
+        return goodCommentRate;
+    }
+
+    public void setGoodCommentRate(Double goodCommentRate) {
+        this.goodCommentRate = goodCommentRate;
+    }
+
+    public Long getShowPicturesComment() {
+        return showPicturesComment;
+    }
+
+    public void setShowPicturesComment(Long showPicturesComment) {
+        this.showPicturesComment = showPicturesComment;
+    }
+
+    public Long getMediumCommentCount() {
+        return mediumCommentCount;
+    }
+
+    public void setMediumCommentCount(Long mediumCommentCount) {
+        this.mediumCommentCount = mediumCommentCount;
+    }
+
+    public Long getBadCommentCount() {
+        return badCommentCount;
+    }
+
+    public void setBadCommentCount(Long badCommentCount) {
+        this.badCommentCount = badCommentCount;
+    }
+
+    public Date getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public Date getGmtModified() {
+        return gmtModified;
+    }
+
+    public void setGmtModified(Date gmtModified) {
+        this.gmtModified = gmtModified;
+    }
 }

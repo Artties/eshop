@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * 促销中心对外提供的接口
- * @author Artties
+ * @author Jenna C He
  */
 public interface PromotionFacadeService {
     /**

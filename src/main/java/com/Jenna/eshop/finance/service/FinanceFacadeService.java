@@ -6,7 +6,7 @@ import com.Jenna.eshop.wms.domain.SaleDeliveryOrderDTO;
 
 /**
  * 财务中心对外提供的接口
- * @author Artties
+ * @author Jenna C He
  */
 public interface FinanceFacadeService {
     /**

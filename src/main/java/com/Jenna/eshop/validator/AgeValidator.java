@@ -4,7 +4,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
- * @author Artties
+ * @author Jenna C He
  */
 public class AgeValidator implements ConstraintValidator<Age, Integer> {
 

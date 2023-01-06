@@ -1,7 +1,7 @@
 package com.Jenna.eshop.web;
 
 /**
- * @author Artties
+ * @author Jenna C He
  */
 public class ErrorInfo<T> {
 

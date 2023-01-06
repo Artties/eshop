@@ -6,7 +6,7 @@ import com.Jenna.eshop.wms.domain.ReturnGoodsInputOrderDTO;
 
 /**
  * 库存中心对外提供接口
- * @author Artties
+ * @author Jenna C He
  */
 public interface InventoryFacadeService {
     /**

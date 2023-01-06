@@ -7,7 +7,7 @@ import com.Jenna.eshop.wms.domain.ReturnGoodsInputOrderDTO;
 
 /**
  * 调度中心对外提供的接口
- * @author Artties
+ * @author Jenna C He
  */
 public interface ScheduleFacadeService {
     /**

@@ -15,7 +15,7 @@ import org.apache.ibatis.annotations.Update;
 
 /**
  * 用户管理模块的Mapper组件
- * @author Artties
+ * @author Jenna C He
  *
  */
 @Mapper

@@ -3,7 +3,7 @@ package com.Jenna.eshop.wms.domain;
 import java.util.*;
 /**
  * 采购入库单DTO
- * @author Artties
+ * @author Jenna C He
  */
 public class PurchaseInputOrderDTO {
     /**

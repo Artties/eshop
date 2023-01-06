@@ -10,7 +10,7 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 /**
- * @author Artties
+ * @author Jenna C He
  */
 @Constraint(validatedBy = {AgeValidator.class})
 @Documented

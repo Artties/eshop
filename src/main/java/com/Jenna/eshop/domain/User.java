@@ -8,7 +8,7 @@ import com.Jenna.eshop.validator.Age;
 
 /**
  * 一个领域模型类
- * @author Artties
+ * @author Jenna C He
  *
  */
 public class User {

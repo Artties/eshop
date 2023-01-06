@@ -4,9 +4,10 @@ import java.util.Date;
 
 /**
  * 评论信息
- * @author Artties
+ * @author Jenna C He
+ * @date 2023/1/6 11:24
  */
-public class CommentInfo {
+public class CommentInfoDTO {
     /**
      * id
      */

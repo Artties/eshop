@@ -7,7 +7,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * @author Artties
+ * @author Jenna C He
  */
 public class UserLoginInterceptor implements HandlerInterceptor {
     

@@ -6,7 +6,7 @@ import com.Jenna.eshop.domain.User;
 
 /**
  * 用户管理模块的DAO组件接口
- * @author Artties
+ * @author Jenna C He
  *
  */
 public interface UserDAO {

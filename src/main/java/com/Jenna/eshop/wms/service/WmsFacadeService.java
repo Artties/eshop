@@ -7,7 +7,7 @@ import com.Jenna.eshop.order.domain.OrderInfoDTO;
 
 /**
  * WMS中心对外提供的接口
- * @author Artties
+ * @author Jenna C He
  */
 public interface WmsFacadeService {
 

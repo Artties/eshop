@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 /**
  * 
  * 它就是一个spring mvc的注解
- * @author Artties
+ * @author Jenna C He
  * @RestController就表明说，这个是一个spring mvc的controller
  * @RestController的意思是说，就仅仅提供RESTful接口，返回结果给浏览器，不会走传统读渲染模板视图页面
  * 我们这里是一个demo，所以说简化了一下，就将spring mvc的controller和入口类合并到一起了

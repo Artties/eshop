@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * BeanCopier工具类
- * @author Artties
+ * @author Jenna C He
  */
 public class BeanCopierUtils {
     /**
