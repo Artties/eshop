@@ -3,9 +3,11 @@ package com.Jenna.eshop.order.domain;
 import java.util.Date;
 import java.util.List;
 
+
 /**
  * 订单条目的DTO类
  * @author Jenna C He
+ * @date 2023/1/6 13:55
  */
 public class OrderItemDTO {
     /**

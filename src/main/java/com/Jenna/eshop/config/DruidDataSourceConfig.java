@@ -12,6 +12,11 @@ import org.springframework.context.annotation.Primary;
 import com.alibaba.druid.pool.DruidDataSource;
 
 /**
+ * @author Jenna C He
+ * @date 2023/1/6 13:51
+ */
+
+/**
  * 
  * 非常经典的@Configuration的用法
  * 我们现在要配置一个数据源，基于一个开源的数据库连接池的组件来配置即可，c3p0，dbcp，druid
@@ -23,8 +28,7 @@ import com.alibaba.druid.pool.DruidDataSource;
  * 同时xml中配置bean的方式，全部改成在java代码中，采用注解的方式来配置bean
  * 其实@Configuration就代表了说，这个类是一个类似于以前的xml配置文件的一个配置类
  * 在这个类中可以将外部的application.properties中的需要的配置加载进来，使用@Value注解即可加载外部配置
- * 
- * @author Jenna C He
+ *
  *
  */
 @Configuration  

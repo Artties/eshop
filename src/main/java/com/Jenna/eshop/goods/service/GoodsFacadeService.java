@@ -5,6 +5,7 @@ import com.Jenna.eshop.goods.domain.GoodsSkuDTO;
 /**
  * 采购中心对外提供接口
  * @author Jenna C He
+ * @date 2023/1/6 13:53
  */
 
 public interface GoodsFacadeService {

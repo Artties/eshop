@@ -7,7 +7,10 @@ import org.springframework.context.annotation.Import;
 
 /**
  * @author Jenna C He
- */ /*
+ * @date 2023/1/6 13:59
+ */
+
+/*
  * 
  * 尽量不要用xml来配置
  * 如果一定要有一些配置的话，优先是用application.properties，application.yml

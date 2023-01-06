@@ -6,7 +6,9 @@ import java.util.Date;
 /**
  * 评论聚合统计信息
  * @author Jenna C He
+ * @date 2023/1/6 13:49
  */
+
 public class CommentAggregate {
     /**
      * id

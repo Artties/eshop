@@ -12,7 +12,7 @@ import com.Jenna.eshop.mapper.UserMapper;
 /**
  * 用户管理模块的DAO组件实现类
  * @author Jenna C He
- *
+ * @date 2023/1/6 13:52
  */
 @Repository
 public class UserDAOImpl implements UserDAO {

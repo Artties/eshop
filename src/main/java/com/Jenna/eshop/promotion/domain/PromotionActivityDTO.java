@@ -5,6 +5,7 @@ import javax.xml.crypto.Data;
 /**
  * 促销活动DTO
  * @author Jenna C He
+ * @date 2023/1/6 13:56
  */
 public class PromotionActivityDTO {
     /**

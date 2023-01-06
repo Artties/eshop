@@ -2,6 +2,7 @@ package com.Jenna.eshop.web;
 
 /**
  * @author Jenna C He
+ * @date 2023/1/6 13:58
  */
 public class ErrorInfo<T> {
 

@@ -5,6 +5,7 @@ import java.util.Date;
 /**
  * 评论晒图
  * @author Jenna C He
+ * @date 2023/1/6 13:50
  */
 public class CommentPicture {
     /**

@@ -8,6 +8,7 @@ import java.util.Map;
 /**
  * BeanCopier工具类
  * @author Jenna C He
+ * @date 2023/1/6 13:51
  */
 public class BeanCopierUtils {
     /**

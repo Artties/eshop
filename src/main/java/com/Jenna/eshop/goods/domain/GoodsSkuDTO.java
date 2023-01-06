@@ -1,9 +1,11 @@
 package com.Jenna.eshop.goods.domain;
 
 import java.util.*;
+
 /**
  * 商品sku DTO
  * @author Jenna C He
+ * @date 2023/1/6 13:53
  */
 public class GoodsSkuDTO {
     /**

@@ -6,10 +6,11 @@ import javax.validation.constraints.Size;
 
 import com.Jenna.eshop.validator.Age;
 
+
 /**
  * 一个领域模型类
  * @author Jenna C He
- *
+ * @date 2023/1/6 13:52
  */
 public class User {
     
