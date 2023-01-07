@@ -1,6 +1,10 @@
 package com.Jenna.eshop.comment.domain;
 
+import com.Jenna.eshop.common.util.BeanCopierUtils;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import java.util.Date;
+
 
 /**
  * 评论信息
@@ -8,6 +12,7 @@ import java.util.Date;
  * @date 2023/1/6 11:24
  */
 public class CommentInfoDTO {
+    private static final Logger logger = LoggerFactory.getLogger(CommentInfoDTO.class);
     /**
      * id
      */
@@ -235,5 +240,24 @@ public class CommentInfoDTO {
 
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    /**
+     * 将自己的数据克隆到指定类型的对象中
+     * @param clazz 指定类型
+     * @return 指定类型的对象
+     * @param <T> 泛型
+     */
+    public <T> T clone(Class<T> clazz){
+        T target = null;
+        try {
+            target = clazz.getConstructor().newInstance();
+            BeanCopierUtils.copyProperties(this,target);
+
+        }catch (Exception e) {
+            logger.error("error",e);
+            return null;
+        }
+        return target;
     }
 }

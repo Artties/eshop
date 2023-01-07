@@ -5,6 +5,7 @@ import com.Jenna.eshop.comment.domain.CommentInfoDO;
 import com.Jenna.eshop.comment.mapper.CommentInfoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
@@ -19,6 +20,7 @@ public class CommentInfoDAOImpl implements CommentInfoDAO {
     /**
      * 评论信息管理模块的mapper组件
      */
+    @Autowired
     private CommentInfoMapper commentInfoMapper;
 
     /**
