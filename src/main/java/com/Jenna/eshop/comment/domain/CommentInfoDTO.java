@@ -46,7 +46,7 @@ public class CommentInfoDTO {
      */
     private Long goodsSkuSaleProperties;
     /**
-     * 总评分
+     * 总评分:商品评分+客服评分 + 物流评分/3
      */
     private Integer totalScore;
     /**
@@ -56,7 +56,7 @@ public class CommentInfoDTO {
     /**
      * 客服评分
      */
-    private Integer customerService;
+    private Integer customerServiceScore;
     /**
      *物流评分
      */
@@ -170,12 +170,12 @@ public class CommentInfoDTO {
         this.goodsScore = goodsScore;
     }
 
-    public Integer getCustomerService() {
-        return customerService;
+    public Integer getCustomerServiceScore() {
+        return customerServiceScore;
     }
 
-    public void setCustomerService(Integer customerService) {
-        this.customerService = customerService;
+    public void setCustomerServiceScore(Integer customerService) {
+        this.customerServiceScore = customerService;
     }
 
     public Integer getLogisticsScore() {
