@@ -1,5 +1,6 @@
 package com.Jenna.eshop.comment.controller;
 
+import com.Jenna.eshop.comment.constant.ShowPictures;
 import com.Jenna.eshop.comment.domain.CommentInfoDTO;
 import com.Jenna.eshop.comment.domain.CommentInfoVO;
 import com.Jenna.eshop.comment.service.CommentInfoService;
@@ -35,6 +36,20 @@ public class CommentController {
     @PostMapping("/")
     public Boolean publishComment(CommentInfoVO commentInfoVO, MultipartFile[] files){
         try {
+            //为评论设置是否晒图
+            Integer showPictures = ShowPictures.NO;
+
+            if(files !=null && files.length > 0){
+                for (MultipartFile file:files) {
+                    if (file != null) {
+                        showPictures = ShowPictures.YES;
+                        break;
+                    }
+                }
+            }
+
+            commentInfoVO.setShowPictures(showPictures);
+
             //保存评论信息
             CommentInfoDTO commentInfoDTO = commentInfoVO.clone(CommentInfoDTO.class);
             commentInfoService.saveCommentInfo(commentInfoDTO);

@@ -7,7 +7,7 @@ import java.util.Date;
  * @author Jenna C He
  * @date 2023/1/6 13:50
  */
-public class CommentPicture {
+public class CommentPictureDO {
     /**
      * id
      */
