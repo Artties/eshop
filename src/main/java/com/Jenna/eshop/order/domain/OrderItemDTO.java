@@ -15,6 +15,11 @@ public class OrderItemDTO {
      * 订单id
      */
     private Long orderInfoId;
+
+    /**
+     * 商品id
+     */
+    private Long goodsId;
     /**
      * 商品sku id
      */
@@ -88,6 +93,14 @@ public class OrderItemDTO {
 
     public void setOrderInfoId(Long orderInfoId) {
         this.orderInfoId = orderInfoId;
+    }
+
+    public Long getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(Long goodsId) {
+        this.goodsId = goodsId;
     }
 
     public Long getGoodsSkuId() {
