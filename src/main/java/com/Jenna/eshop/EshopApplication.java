@@ -4,6 +4,7 @@ import com.Jenna.eshop.config.DruidDataSourceConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author Jenna C He
@@ -84,6 +85,7 @@ import org.springframework.context.annotation.Import;
  * 
  */
 @SpringBootApplication
+@EnableScheduling
 /**
  *
  * 将数据源bean的配置类，导入进来，就相当于你以前搞多个xml的时候，将多个xml导入一个总的xml中

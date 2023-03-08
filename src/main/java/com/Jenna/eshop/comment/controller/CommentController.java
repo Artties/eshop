@@ -30,7 +30,7 @@ import static org.slf4j.LoggerFactory.*;
 @Controller
 @RequestMapping("/comment")
 public class CommentController {
-    private  static final Logger logger = LoggerFactory.getLogger(CommentController.class);
+    private static final Logger logger = LoggerFactory.getLogger(CommentController.class);
     /**
      * 评论信息管理模块的service组件
      */
