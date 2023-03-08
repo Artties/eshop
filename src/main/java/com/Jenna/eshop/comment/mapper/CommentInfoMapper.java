@@ -4,6 +4,7 @@ import com.Jenna.eshop.comment.domain.CommentInfoDO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
+import org.springframework.stereotype.Repository;
 
 /**
  * 评论信息管理模块的mapper组件
@@ -11,6 +12,7 @@ import org.apache.ibatis.annotations.Options;
  * @date 2023/1/6 11:14
  */
 @Mapper
+@Repository
 public interface CommentInfoMapper {
     /**
      * 新增评论信息

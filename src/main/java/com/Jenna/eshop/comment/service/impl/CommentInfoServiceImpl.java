@@ -74,6 +74,9 @@ public class CommentInfoServiceImpl implements CommentInfoService {
             //评论信息保存到数据库中
             CommentInfoDO commentInfoDO = commentInfoDTO.clone(CommentInfoDO.class);
             commentInfoDAO.saveCommentInfo(commentInfoDO);
+
+            //设置评论信息的id
+            commentInfoDTO.setId(commentInfoDO.getId());
         }catch (Exception e) {
             logger.error("error",e);
             return false;

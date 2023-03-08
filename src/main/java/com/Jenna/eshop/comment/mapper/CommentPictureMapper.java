@@ -3,6 +3,7 @@ package com.Jenna.eshop.comment.mapper;
 import com.Jenna.eshop.comment.domain.CommentPictureDO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * 评论晒图管理模块的Mapper组件
@@ -10,6 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2023/1/10 14:49
  */
 @Mapper
+@Repository
 public interface CommentPictureMapper {
     /**
      * 新增评论晒图
