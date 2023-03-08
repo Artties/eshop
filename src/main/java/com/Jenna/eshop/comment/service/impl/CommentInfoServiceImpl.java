@@ -3,6 +3,7 @@ package com.Jenna.eshop.comment.service.impl;
 import com.Jenna.eshop.comment.constant.CommentStatus;
 import com.Jenna.eshop.comment.constant.CommentType;
 import com.Jenna.eshop.comment.constant.DefaultComment;
+import com.Jenna.eshop.comment.constant.ShowPictures;
 import com.Jenna.eshop.comment.dao.CommentInfoDAO;
 import com.Jenna.eshop.comment.domain.CommentInfoDTO;
 import com.Jenna.eshop.comment.domain.CommentInfoDO;
@@ -36,7 +37,7 @@ public class CommentInfoServiceImpl implements CommentInfoService {
      * @param commentInfoDTO 评论信息DTO对象
      * @return 是否保存评论信息
      */
-    public Boolean saveCommentInfo(CommentInfoDTO commentInfoDTO){
+    public Boolean saveManualPublishedCommentInfo(CommentInfoDTO commentInfoDTO){
         try {
             //计算评论的总分数
 
@@ -60,7 +61,7 @@ public class CommentInfoServiceImpl implements CommentInfoService {
                 commentType = CommentType.GOOD_COMMENT;
             } else if (totalScore == 3) {
                 commentType = CommentType.MEDIUM_COMMENT;
-            } else if (totalScore >0 && totalScore <= 2) {
+            } else if (totalScore > 0 && totalScore <= 2) {
                 commentType = CommentType.BAD_COMMENT;
             }
 
@@ -83,6 +84,44 @@ public class CommentInfoServiceImpl implements CommentInfoService {
         }
         return true;
     }
+    /**
+     * 新增自动发表评论信息
+     * @param commentInfoDTO 评论信息DTO对象
+     * @return 是否保存评论信息
+     */
+    public Boolean saveAutoPublishedCommentInfo(CommentInfoDTO commentInfoDTO){
+        try {
+            //计算评论的总分数
+            commentInfoDTO.setTotalScore(5);
 
+            //设置是否为默认评论
+            commentInfoDTO.setDefaultComment(DefaultComment.YES);
+
+            //设置是否晒图
+            commentInfoDTO.setShowPictures(ShowPictures.NO);
+
+            //设置评论的状态
+            commentInfoDTO.setCommentStatus(CommentStatus.APPROVED);
+
+            //设置评论类型
+            commentInfoDTO.setCommentType(CommentType.GOOD_COMMENT);
+
+            //设置创建时间和修改时间
+            commentInfoDTO.setGmtCreate(new Date());
+            commentInfoDTO.setGmtModified(new Date());
+
+
+            //评论信息保存到数据库中
+            CommentInfoDO commentInfoDO = commentInfoDTO.clone(CommentInfoDO.class);
+            commentInfoDAO.saveCommentInfo(commentInfoDO);
+
+            //设置评论信息的id
+            commentInfoDTO.setId(commentInfoDO.getId());
+        }catch (Exception e) {
+            logger.error("error",e);
+            return false;
+        }
+        return true;
+    }
 
 }

@@ -8,11 +8,18 @@ import com.Jenna.eshop.comment.domain.CommentInfoDTO;
  * @date 2023/1/6 13:09
  */
 public interface CommentInfoService {
+
     /**
-     * 新增评论信息
+     * 新增手动发表评论信息
      * @param commentInfoDTO 评论信息DTO对象
      * @return 是否保存评论信息
      */
-    Boolean saveCommentInfo(CommentInfoDTO commentInfoDTO);
+    Boolean saveManualPublishedCommentInfo(CommentInfoDTO commentInfoDTO);
 
+    /**
+     * 新增自动发表评论信息
+     * @param commentInfoDTO 评论信息DTO对象
+     * @return 是否保存评论信息
+     */
+    Boolean saveAutoPublishedCommentInfo(CommentInfoDTO commentInfoDTO);
 }
