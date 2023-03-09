@@ -23,6 +23,10 @@ public class OrderInfoDTO {
      * 用户账号id
      */
     private Long userAccountId;
+    /**
+     * 用户名
+     */
+    private String username;
 
     /**
      * 订单状态
@@ -130,6 +134,14 @@ public class OrderInfoDTO {
 
     public void setUserAccountId(Long userAccountId) {
         this.userAccountId = userAccountId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Integer getOrderStatus() {
