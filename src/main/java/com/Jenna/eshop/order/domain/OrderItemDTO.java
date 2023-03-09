@@ -3,11 +3,8 @@ package com.Jenna.eshop.order.domain;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * 订单条目的DTO类
- * @author Jenna C He
- * @date 2023/1/6 13:55
  */
 public class OrderItemDTO {
     /**
@@ -18,6 +15,11 @@ public class OrderItemDTO {
      * 订单id
      */
     private Long orderInfoId;
+
+    /**
+     * 商品id
+     */
+    private Long goodsId;
     /**
      * 商品sku id
      */
@@ -85,12 +87,20 @@ public class OrderItemDTO {
         this.id = id;
     }
 
-    public Long getorderInfoId() {
+    public Long getOrderInfoId() {
         return orderInfoId;
     }
 
-    public void setorderInfoId(Long orderInfoId) {
+    public void setOrderInfoId(Long orderInfoId) {
         this.orderInfoId = orderInfoId;
+    }
+
+    public Long getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(Long goodsId) {
+        this.goodsId = goodsId;
     }
 
     public Long getGoodsSkuId() {
