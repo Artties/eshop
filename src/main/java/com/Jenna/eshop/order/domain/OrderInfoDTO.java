@@ -1,6 +1,7 @@
 package com.Jenna.eshop.order.domain;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -102,6 +103,10 @@ public class OrderInfoDTO {
      * 销售出库单的修改时间
      */
     private Date gmtModified;
+    /**
+     * 订单包含的订单条目
+     */
+    private static List<OrderItemDTO> orderItems;
 
     public Long getId() {
         return id;
@@ -261,5 +266,13 @@ public class OrderInfoDTO {
 
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    public static List<OrderItemDTO> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItemDTO> orderItems) {
+        OrderInfoDTO.orderItems = orderItems;
     }
 }

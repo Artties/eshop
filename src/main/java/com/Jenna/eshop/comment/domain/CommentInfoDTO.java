@@ -44,7 +44,7 @@ public class CommentInfoDTO {
     /**
      * 商品Sku销售属性
      */
-    private Long goodsSkuSaleProperties;
+    private String goodsSkuSaleProperties;
     /**
      * 总评分:商品评分+客服评分 + 物流评分/3
      */
@@ -146,11 +146,11 @@ public class CommentInfoDTO {
         this.goodsSkuId = goodsSkuId;
     }
 
-    public Long getGoodsSkuSaleProperties() {
+    public String getGoodsSkuSaleProperties() {
         return goodsSkuSaleProperties;
     }
 
-    public void setGoodsSkuSaleProperties(Long goodsSkuSaleProperties) {
+    public void setGoodsSkuSaleProperties(String goodsSkuSaleProperties) {
         this.goodsSkuSaleProperties = goodsSkuSaleProperties;
     }
 
