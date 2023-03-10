@@ -1,6 +1,6 @@
 package com.Jenna.eshop.logistics.service;
 
-import com.Jenna.eshop.goods.dto.GoodsSkuDTO;
+import com.Jenna.eshop.goods.domain.GoodsSkuDTO;
 /**
  * 物流中心对外提供接口
  */

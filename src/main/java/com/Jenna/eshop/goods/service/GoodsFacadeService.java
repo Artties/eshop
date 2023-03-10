@@ -1,6 +1,6 @@
 package com.Jenna.eshop.goods.service;
 
-import com.Jenna.eshop.goods.dto.GoodsSkuDTO;
+import com.Jenna.eshop.goods.domain.GoodsSkuDTO;
 
 /**
  * 根据id查询商品sku
