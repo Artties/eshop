@@ -1,4 +1,4 @@
-package com.Jenna.eshop.customer.dto;
+package com.Jenna.eshop.customer.domain;
 
 import java.util.*;
 /**
