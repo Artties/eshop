@@ -37,6 +37,7 @@ public class ShoppingCartDAOTest {
      */
     @Test
     public void testSaveShoppingCart() throws Exception {
+
         Long userAccountId = 1L;
         Date currentTime = new Date();
         ShoppingCartDO shoppingCartDO = new ShoppingCartDO();
@@ -48,6 +49,7 @@ public class ShoppingCartDAOTest {
 
         assertNotNull(shoppingCartId);
         assertThat(shoppingCartId,greaterThan(0L));
+
     }
 
     /**
@@ -56,6 +58,20 @@ public class ShoppingCartDAOTest {
      */
     public void testGetShoppingCartByUserAccountId() throws Exception{
         //构造一个已有的购物车数据
+        Long userAccountId = 1L;
+        Date currentTime = new Date();
+        ShoppingCartDO shoppingCartDO = new ShoppingCartDO();
+        shoppingCartDO.setUserAccountId(userAccountId);
+        shoppingCartDO.setGmtCreate(new Date());
+        shoppingCartDO.setGmtModified(new Date());
+
+        Long shoppingCartId= shoppingCartDAO.saveShoppingCart(shoppingCartDO);
+
+        //根据用户账号id查询购物车
+        ShoppingCartDO resultShoppingCartDO = shoppingCartDAO
+                .getShoppingCartByUserAccountId(userAccountId);
+
+
 
     }
 

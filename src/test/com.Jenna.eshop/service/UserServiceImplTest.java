@@ -1,10 +1,12 @@
 package service;
 
+import com.Jenna.eshop.dao.UserDAO;
 import com.Jenna.eshop.domain.User;
 import com.Jenna.eshop.service.UserService;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -29,4 +31,10 @@ public class UserServiceImplTest {
 
     @Autowired
     private UserService userService;
+
+    /**
+     *
+     */
+    @MockBean
+    private UserDAO userDAO;
 }
