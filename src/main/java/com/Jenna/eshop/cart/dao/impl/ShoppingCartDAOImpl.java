@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 /**
  * 购物车管理模块的DAO组件
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Repository;
  * @date 2023/3/14 15:47
  */
 @Repository
+@Service
 public class ShoppingCartDAOImpl implements ShoppingCartDAO {
     private static final Logger logger = LoggerFactory.getLogger(ShoppingCartDAOImpl.class);
     /**

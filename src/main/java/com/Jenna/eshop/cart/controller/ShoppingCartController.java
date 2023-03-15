@@ -4,6 +4,7 @@ import com.Jenna.eshop.cart.service.ShoppingCartService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @author Jenna C He
  * @date 2023/03/14/ 20:47
  */
+@Controller
 public class ShoppingCartController {
     private static final Logger logger = LoggerFactory.getLogger(ShoppingCartController.class);
     /**
