@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 /**
  * 购物车管理模块的controller组件
  * @author Jenna C He
- * @date 2023年03月14日 20:47
+ * @date 2023/03/14/ 20:47
  */
 public class ShoppingCartController {
     private static final Logger logger = LoggerFactory.getLogger(ShoppingCartController.class);

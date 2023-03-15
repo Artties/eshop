@@ -45,12 +45,14 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                     .getShoppingCartByUserAccountId(userAccountId);
 
             //如果购物车不存在则新增一个购物车
-            shoppingCartDO = new ShoppingCartDO();
-            shoppingCartDO.setUserAccountId(userAccountId);
-            shoppingCartDO.setGmtCreate(new Date());
-            shoppingCartDO.setGmtModified(new Date());
+            if(shoppingCartDO == null) {
+                shoppingCartDO = new ShoppingCartDO();
+                shoppingCartDO.setUserAccountId(userAccountId);
+                shoppingCartDO.setGmtCreate(new Date());
+                shoppingCartDO.setGmtModified(new Date());
 
-            shoppingCartDAO.saveShoppingCart(shoppingCartDO);
+                shoppingCartDAO.saveShoppingCart(shoppingCartDO);
+            }
 
             //查询一下购物车中是否存在这个商品sku对应的条目
             ShoppingCartItemDO shoppingCartItemDO = shoppingCartItemDAO

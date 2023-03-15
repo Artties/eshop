@@ -41,18 +41,18 @@ public class ShoppingCartDAOImpl implements ShoppingCartDAO {
 
     /**
      * 新增购物车
-     *
      * @param shoppingCartDO 购物车DO对象
+     * @return 返回id
      */
     @Override
-    public Boolean saveShoppingCart(ShoppingCartDO shoppingCartDO) {
+    public Long saveShoppingCart(ShoppingCartDO shoppingCartDO) {
 
         try {
             shoppingCartMapper.saveShoppingCart(shoppingCartDO);
         } catch (Exception e) {
             logger.error("error",e);
-            return false;
+            return null;
         }
-        return true;
+        return shoppingCartDO.getId();
     }
 }
