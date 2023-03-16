@@ -1,9 +1,9 @@
 package com.Jenna.eshop.wms.service;
 
-import com.Jenna.eshop.wms.dto.PurchaseInputOrderDTO;
-import com.Jenna.eshop.wms.dto.ReturnGoodsInputOrderDTO;
-import com.Jenna.eshop.wms.dto.SaleDeliveryOrderDTO;
-import com.Jenna.eshop.order.dto.OrderDTO;
+import com.Jenna.eshop.wms.domain.PurchaseInputOrderDTO;
+import com.Jenna.eshop.wms.domain.ReturnGoodsInputOrderDTO;
+import com.Jenna.eshop.wms.domain.SaleDeliveryOrderDTO;
+import com.Jenna.eshop.order.domain.OrderInfoDTO;
 
 /**
  * WMS中心对外提供的接口
@@ -33,23 +33,23 @@ public interface WmsFacadeService {
 
     /**
      * 通知WMS中心，"提交订单"事件发生了
-     * @param orderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informSubmitOrderEvent(OrderDTO orderDTO);
+    Boolean informSubmitOrderEvent(OrderInfoDTO orderInfoDTO);
 
     /**
      * 通知WMS中心，"支付订单"事件发生了
-     * @param orderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informPayOrderEvent(OrderDTO orderDTO);
+    Boolean informPayOrderEvent(OrderInfoDTO orderInfoDTO);
 
     /**
      * 通知WMS中心，"取消订单"事件发生了
-     * @param orderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informCancelOrderEvent(OrderDTO orderDTO);
+    Boolean informCancelOrderEvent(OrderInfoDTO orderInfoDTO);
 
 }
