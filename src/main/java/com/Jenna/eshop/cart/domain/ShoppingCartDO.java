@@ -94,9 +94,13 @@ public class ShoppingCartDO {
                     return true;
     }
 
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "ShoppingCartDO{" +
+                "id=" + id +
+                ", userAccountId=" + userAccountId +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                '}';
+    }
 }

@@ -29,15 +29,15 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
      * @param shoppingCartItemDO 购物车条目的DO对象
      */
     @Override
-    public Boolean saveShoppingCartItem(ShoppingCartItemDO shoppingCartItemDO) {
+    public Long saveShoppingCartItem(ShoppingCartItemDO shoppingCartItemDO) {
 
         try {
-            shoppingItemMapper.saveShoppingCartItem(shoppingCartItemDO);
+             shoppingItemMapper.saveShoppingCartItem(shoppingCartItemDO);
         } catch (Exception e) {
             logger.error("error",e);
-         return false;
+            return null;
         }
-        return true;
+        return shoppingCartItemDO.getId();
     }
 
     /**
