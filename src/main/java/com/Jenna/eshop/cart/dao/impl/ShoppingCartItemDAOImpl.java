@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 购物车管理模块的DAO组件
  * @author Jenna C He
@@ -32,7 +34,7 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
     public Long saveShoppingCartItem(ShoppingCartItemDO shoppingCartItemDO) {
 
         try {
-             shoppingItemMapper.saveShoppingCartItem(shoppingCartItemDO);
+            shoppingItemMapper.saveShoppingCartItem(shoppingCartItemDO);
         } catch (Exception e) {
             logger.error("error",e);
             return null;
@@ -73,5 +75,24 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
             return false;
         }
         return true;
+    }
+
+    /**
+     * @param shoppingCartId 购物车id
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<ShoppingCartItemDO> listShoppingCartItemByCartId(Long shoppingCartId) throws Exception {
+        return null;
+    }
+
+    /**
+     * @param id 购物车条目id
+     * @throws Exception
+     */
+    @Override
+    public void remove(Long id) throws Exception {
+
     }
 }

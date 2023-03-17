@@ -36,7 +36,7 @@ public class ShoppingCartDAOImpl implements ShoppingCartDAO {
         try {
             return shoppingCartMapper.getShoppingCartByUserAccountId(userAccountId);
         } catch (Exception e) {
-         logger.error("error",e);
+            logger.error("error",e);
         }
         return null;
     }
