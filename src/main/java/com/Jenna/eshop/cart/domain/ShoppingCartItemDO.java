@@ -1,6 +1,7 @@
 package com.Jenna.eshop.cart.domain;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * 购物车条目DO类
@@ -13,12 +14,27 @@ public class ShoppingCartItemDO {
      */
     private Long id;
     /**
+     * 用户id
+     */
+    private Long userAccountId;
+    /**
      * 购物车id
      */
     private Long shoppingCartId;
+
+    public Long getUserAccountId() {
+        return userAccountId;
+    }
+
+    public void setUserAccountId(Long userAccountId) {
+        this.userAccountId = userAccountId;
+    }
+
     /**
      * 商品sku id
      */
+
+
     private Long goodsSkuId;
     /**
      * 购买数量
@@ -79,5 +95,22 @@ public class ShoppingCartItemDO {
 
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof ShoppingCartItemDO)) {
+            return false;
+        }
+        ShoppingCartItemDO that = (ShoppingCartItemDO) o;
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getUserAccountId(), that.getUserAccountId()) && Objects.equals(getShoppingCartId(), that.getShoppingCartId()) && Objects.equals(getGoodsSkuId(), that.getGoodsSkuId()) && Objects.equals(getPurchaseQuantity(), that.getPurchaseQuantity()) && Objects.equals(getGmtCreate(), that.getGmtCreate()) && Objects.equals(getGmtModified(), that.getGmtModified());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getUserAccountId(), getShoppingCartId(), getGoodsSkuId(), getPurchaseQuantity(), getGmtCreate(), getGmtModified());
     }
 }

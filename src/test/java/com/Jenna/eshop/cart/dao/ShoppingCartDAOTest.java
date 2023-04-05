@@ -42,19 +42,9 @@ public class ShoppingCartDAOTest {
      */
     @Test
     public void testSaveShoppingCart() throws Exception {
-
         Long userAccountId = 1L;
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date currentTime = formatter.parse(formatter.format(new Date()));
-
-
-        ShoppingCartDO shoppingCartDO = new ShoppingCartDO();
-        shoppingCartDO.setUserAccountId(userAccountId);
-        shoppingCartDO.setGmtCreate(new Date());
-        shoppingCartDO.setGmtModified(new Date());
-
-        Long shoppingCartId= shoppingCartDAO.saveShoppingCart(shoppingCartDO);
+        ShoppingCartDO shoppingCartDO = createShoppingCart(userAccountId);
+        Long shoppingCartId = shoppingCartDO.getId();
 
         assertNotNull(shoppingCartId);
         assertThat(shoppingCartId,greaterThan(0L));
@@ -67,24 +57,34 @@ public class ShoppingCartDAOTest {
      */
     @Test
     public void testGetShoppingCartByUserAccountId() throws Exception{
-
-        //构造一个已有的购物车数据
         Long userAccountId = 1L;
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date currentTime = formatter.parse(formatter.format(new Date()));
-        ShoppingCartDO shoppingCartDO = new ShoppingCartDO();
-        shoppingCartDO.setUserAccountId(userAccountId);
-        shoppingCartDO.setGmtCreate(new Date());
-        shoppingCartDO.setGmtModified(new Date());
-
-        Long shoppingCartId= shoppingCartDAO.saveShoppingCart(shoppingCartDO);
-
+        ShoppingCartDO shoppingCartDO = createShoppingCart(userAccountId);
         //根据用户账号id查询购物车
         ShoppingCartDO resultShoppingCartDO = shoppingCartDAO
                 .getShoppingCartByUserAccountId(userAccountId);
         //断言结果
         assertEquals(shoppingCartDO,resultShoppingCartDO);
 
+    }
+
+    /**
+     * 创建一个购物车
+     * @return 购物车id
+     */
+    private ShoppingCartDO createShoppingCart(Long userAccountId) throws Exception{
+        //新增一个购物车
+
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date currentTime = formatter.parse(formatter.format(new Date()));
+
+
+        ShoppingCartDO shoppingCartDO = new ShoppingCartDO();
+        shoppingCartDO.setUserAccountId(userAccountId);
+        shoppingCartDO.setGmtCreate(currentTime);
+        shoppingCartDO.setGmtModified(currentTime);
+
+         shoppingCartDAO.saveShoppingCart(shoppingCartDO);
+         return shoppingCartDO;
     }
 }

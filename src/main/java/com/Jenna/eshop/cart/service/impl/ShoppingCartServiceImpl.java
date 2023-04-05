@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -42,6 +43,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public Boolean addShoppingCartItem(Long userAccountId, Long goodsSkuId) {
         try {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date currentTime = formatter.parse(formatter.format(new Date()));
+
+
             //先查询一些用户的购物车
             ShoppingCartDO shoppingCartDO = shoppingCartDAO
                     .getShoppingCartByUserAccountId(userAccountId);
@@ -66,15 +71,15 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 shoppingCartItemDO.setShoppingCartId(shoppingCartDO.getId());
                 shoppingCartItemDO.setGoodsSkuId(goodsSkuId);
                 shoppingCartItemDO.setPurchaseQuantity(1L);
-                shoppingCartItemDO.setGmtCreate(new Date());
-                shoppingCartItemDO.setGmtModified(new Date());
+                shoppingCartItemDO.setGmtCreate(currentTime);
+                shoppingCartItemDO.setGmtModified(currentTime);
 
                 shoppingCartItemDAO.saveShoppingCartItem(shoppingCartItemDO);
                 //如果购物车中已经存在这个商品条目了，则对已有的商品条目购买数量累加1
             }else {
                 shoppingCartItemDO.setPurchaseQuantity(
                         shoppingCartItemDO.getPurchaseQuantity() + 1L);
-                shoppingCartItemDO.setGmtModified(new Date());
+                shoppingCartItemDO.setGmtModified(currentTime);
                 shoppingCartItemDAO.updateShoppingCartItem(shoppingCartItemDO);
 
             }

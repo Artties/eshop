@@ -15,6 +15,13 @@ public interface ShoppingCartDAO {
      * @return 购物车
      */
     ShoppingCartDO getShoppingCartByUserAccountId(Long userAccountId);
+
+    /**
+     * 根据商品id查询购物车
+     * @param goodsSkuId 商品id
+     * @return 购物车
+     */
+    ShoppingCartDO getShoppingCartItemByGoodsSkuId(Long goodsSkuId);
     /**
      * 新增购物车
      * @param shoppingCartDO 购物车DO对象
