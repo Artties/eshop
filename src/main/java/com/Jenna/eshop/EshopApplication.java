@@ -1,9 +1,12 @@
 package com.Jenna.eshop;
 
-import com.Jenna.eshop.config.DruidDataSourceConfig;
+//import com.Jenna.eshop.config.DruidDataSourceConfig;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+//import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Import;
+//import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+//import org.springframework.context.annotation.Import;
 
 /*
  * 
@@ -78,11 +81,13 @@ import org.springframework.context.annotation.Import;
  * 一般开发中，就是直接用一个@SpringBootApplication这个注解就可以了
  * 
  */
+//@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @SpringBootApplication
 /*
  * 将数据源bean的配置类，导入进来，就相当于你以前搞多个xml的时候，将多个xml导入一个总的xml中
  */
-@Import(DruidDataSourceConfig.class)
+//@Import(DruidDataSourceConfig.class)
+//@MapperScan(basePackages = {"com.Jenna.eshop.cart.mapper.ShoppingCartMapper"})
 public class EshopApplication {
 	
 	public static void main(String[] args) {
