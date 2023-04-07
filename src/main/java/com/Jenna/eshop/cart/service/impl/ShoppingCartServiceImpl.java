@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -41,10 +40,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
      * @return 处理结果
      */
     @Override
-    public Boolean addShoppingCartItem(Long userAccountId, Long goodsSkuId) {
+    public Boolean addShoppingCartItem(Long userAccountId, Long goodsSkuId)  {
         try {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date currentTime = formatter.parse(formatter.format(new Date()));
+
+            Date currentTime = DateUtils.getCurrentTime();
+            
 
 
             //先查询一些用户的购物车
