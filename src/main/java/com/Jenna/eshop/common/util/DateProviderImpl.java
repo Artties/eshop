@@ -1,3 +1,4 @@
+
 package com.Jenna.eshop.common.util;
 
 import org.springframework.stereotype.Component;
@@ -17,10 +18,8 @@ public class DateProviderImpl implements DateProvider {
      * @return
      */
     public Date getCreateTime() throws Exception{
-
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return dateFormatter.parse(dateFormatter.format(new Date()));
     }
-
 }
 
