@@ -1,7 +1,7 @@
 package com.Jenna.eshop.cart.dao;
 
-import com.Jenna.eshop.cart.dao.ShoppingCartDAO;
 import com.Jenna.eshop.cart.domain.ShoppingCartDO;
+import com.Jenna.eshop.common.util.DateProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.junit.Assert.assertNotNull;
@@ -35,6 +34,11 @@ public class ShoppingCartDAOTest {
      */
     @Autowired
     private ShoppingCartDAO shoppingCartDAO;
+    /**
+     * 日期辅助组件
+     */
+    @Autowired
+    private DateProvider dateProvider;
 
     /**
      * 测试新增购物车
@@ -73,11 +77,7 @@ public class ShoppingCartDAOTest {
      */
     private ShoppingCartDO createShoppingCart(Long userAccountId) throws Exception{
         //新增一个购物车
-
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date currentTime = formatter.parse(formatter.format(new Date()));
-
+        Date currentTime = DateProvider.getCurrentTime();
 
         ShoppingCartDO shoppingCartDO = new ShoppingCartDO();
         shoppingCartDO.setUserAccountId(userAccountId);

@@ -6,6 +6,7 @@ import com.Jenna.eshop.cart.dao.ShoppingCartItemDAO;
 import com.Jenna.eshop.cart.domain.ShoppingCartDO;
 import com.Jenna.eshop.cart.domain.ShoppingCartItemDO;
 import com.Jenna.eshop.cart.service.ShoppingCartService;
+import com.Jenna.eshop.common.util.DateProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
      */
     @Autowired
     private ShoppingCartItemDAO shoppingCartItemDAO;
+    /**
+     * 日期辅助组件
+     */
+    @Autowired
+    private DateProvider dateProvider;
+
 
     /**
      * 添加购物车商品条目
@@ -43,7 +50,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public Boolean addShoppingCartItem(Long userAccountId, Long goodsSkuId)  {
         try {
 
-            Date currentTime = DateUtils.getCurrentTime();
+            Date currentTime = DateProvider.getCurrentTime();
             
 
 

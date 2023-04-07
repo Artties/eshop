@@ -6,6 +6,7 @@ import com.Jenna.eshop.cart.dao.ShoppingCartDAO;
 import com.Jenna.eshop.cart.dao.ShoppingCartItemDAO;
 import com.Jenna.eshop.cart.domain.ShoppingCartDO;
 import com.Jenna.eshop.cart.domain.ShoppingCartItemDO;
+import com.Jenna.eshop.common.util.DateProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,7 @@ public class ShoppingCartServiceTest {
      */
     @MockBean
     private ShoppingCartItemDAO shoppingCartItemDAO;
+    
 
     /**
      * 测试添加购物车商品条目

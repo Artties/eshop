@@ -1,6 +1,7 @@
 package com.Jenna.eshop.cart.dao;
 
 import com.Jenna.eshop.cart.domain.ShoppingCartItemDO;
+import com.Jenna.eshop.common.util.DateProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import static org.hamcrest.Matchers.*;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -28,12 +28,16 @@ import java.util.Date;
 @Rollback(true)
 public class ShoppingCartItemDAOTest {
 
-
     /**
      * 购物车条目管理模块的DAO组件
      */
     @Autowired
     private ShoppingCartItemDAO shoppingCartItemDAO;
+    /**
+     * 日期辅助组件
+     */
+    @Autowired
+    private DateProvider dateProvider;
 
     /**
      * 测试新增购物车条目
@@ -90,8 +94,7 @@ public class ShoppingCartItemDAOTest {
         Long newPurchaseQuantity = purchaseQuantity + 1L;
 
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date newGmtModified = formatter.parse(formatter.format(new Date()));
+        Date newGmtModified = dateProvider.getCurrentTime();
 
         shoppingCartItemDO.setPurchaseQuantity(newPurchaseQuantity);
         shoppingCartItemDO.setGmtModified(newGmtModified);
@@ -117,8 +120,7 @@ public class ShoppingCartItemDAOTest {
     private ShoppingCartItemDO createShoppingCartItem(Long shoppingCartId, Long goodsSkuId,
                                                       Long purchaseQuantity)  throws Exception {
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date currentTime = formatter.parse(formatter.format(new Date()));
+        Date currentTime = dateProvider.getCurrentTime();
 
         ShoppingCartItemDO shoppingCartItemDO = new ShoppingCartItemDO();
 
