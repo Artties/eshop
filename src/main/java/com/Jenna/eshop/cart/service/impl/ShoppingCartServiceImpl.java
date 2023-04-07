@@ -50,7 +50,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public Boolean addShoppingCartItem(Long userAccountId, Long goodsSkuId)  {
         try {
 
-            Date currentTime = DateProvider.getCurrentTime();
+            Date currentTime = DateProviderImpl.getCurrentTime();
             
 
 

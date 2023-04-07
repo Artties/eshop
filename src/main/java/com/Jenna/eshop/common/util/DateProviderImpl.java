@@ -1,3 +1,4 @@
+
 package com.Jenna.eshop.common.util;
 
 import org.springframework.stereotype.Component;
@@ -12,14 +13,15 @@ import java.util.Date;
  */
 @Component
 public class DateProviderImpl implements DateProvider {
-
     /**
-     * 以线程安全的方式获取DateFormat
-     * @return
+     * 获取当前时间
+     *
+     * @return 当前时间
+     * @throws Exception 抛出异常
      */
-    public Date getCreateTime() throws Exception{
+    public Date getCurrentTime() throws Exception {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return dateFormatter.parse(dateFormatter.format(new Date()));
     }
-
 }
+
