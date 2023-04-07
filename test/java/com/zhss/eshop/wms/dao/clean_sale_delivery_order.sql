@@ -1,1 +1,0 @@
-DELETE FROM wms_sale_delivery_order

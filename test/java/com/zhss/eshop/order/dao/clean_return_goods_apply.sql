@@ -1,1 +1,0 @@
-DELETE FROM order_return_goods_apply

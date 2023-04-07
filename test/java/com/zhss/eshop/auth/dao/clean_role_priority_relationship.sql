@@ -1,1 +1,0 @@
-DELETE FROM auth_role_priority_relationship
