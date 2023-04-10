@@ -1,8 +1,14 @@
 package com.Jenna.eshop.Inventory.command;
 
+import com.Jenna.eshop.Inventory.constant.StockStatus;
 import com.Jenna.eshop.Inventory.dao.GoodsStockDAO;
 import com.Jenna.eshop.Inventory.domain.GoodsStockDO;
 import com.Jenna.eshop.common.util.DateProvider;
+import com.Jenna.eshop.wms.domain.PurchaseInputOrderDTO;
+import com.Jenna.eshop.wms.domain.PurchaseInputOrderItemDTO;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 采购入库库存更新命令
@@ -11,18 +17,26 @@ import com.Jenna.eshop.common.util.DateProvider;
  */
 public class PurchaseInputStockUpdateCommand extends AbstractGoodsStockUpdateCommand{
 
+    /**
+     * 采购入库单条目DTO集合
+     */
+    private Map<Long, PurchaseInputOrderItemDTO> purchaseInputOrderItemDTOMap;
 
     /**
      * 构造函数
      *
-     * @param goodsStockDO  商品库存DO对象
+     * @param goodsStockDOs  商品库存DO对象
      * @param goodsStockDAO 商品库存管理模块的DAO组件
      * @param dateProvider  日期辅助组件
      */
-    public PurchaseInputStockUpdateCommand(GoodsStockDO goodsStockDO,
-                                           GoodsStockDAO goodsStockDAO,
-                                           DateProvider dateProvider) {
-        super(goodsStockDO, goodsStockDAO, dateProvider);
+    public PurchaseInputStockUpdateCommand(
+            List<GoodsStockDO> goodsStockDOs,
+            GoodsStockDAO goodsStockDAO,
+            DateProvider dateProvider,
+            PurchaseInputOrderDTO purchaseInputOrderDTO,
+            Map<Long, PurchaseInputOrderItemDTO> purchaseInputOrderItemDTO) {
+        super(goodsStockDOs, goodsStockDAO, dateProvider);
+        this.purchaseInputOrderItemDTOMap = purchaseInputOrderItemDTOMap;
     }
 
     /**
@@ -30,7 +44,12 @@ public class PurchaseInputStockUpdateCommand extends AbstractGoodsStockUpdateCom
      */
     @Override
     protected void updateSaleStockQuantity() throws Exception {
-
+        for(GoodsStockDO goodsStockDO:goodsStockDOs){
+            PurchaseInputOrderItemDTO purchaseInputOrderItemDTO =
+                    purchaseInputOrderItemDTOMap.get(goodsStockDO.getId());
+            goodsStockDO.setSaledStockQuantity(goodsStockDO.getSaleStockQuantity()
+                    + purchaseInputOrderItemDTO.getArrivalCount());
+        }
     }
 
     /**
@@ -54,6 +73,11 @@ public class PurchaseInputStockUpdateCommand extends AbstractGoodsStockUpdateCom
      */
     @Override
     protected void updateStockStatus() throws Exception {
+        for(GoodsStockDO goodsStockDO:goodsStockDOs){
+            if (goodsStockDO.getSaledStockQuantity() > 0L) {
+                goodsStockDO.setStockStatus(StockStatus.IN_STOCK);
 
+            }
+        }
     }
 }

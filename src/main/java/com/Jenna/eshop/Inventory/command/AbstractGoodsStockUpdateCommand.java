@@ -6,6 +6,8 @@ import com.Jenna.eshop.common.util.DateProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 /**
  * 商品库存更新命令的抽象基类
  * @author Jenna C He
@@ -17,7 +19,7 @@ public abstract class AbstractGoodsStockUpdateCommand implements GoodsStockUpdat
     /**
      * 商品库存DO对象
      */
-    protected GoodsStockDO goodsStockDO;
+    protected List<GoodsStockDO> goodsStockDOs;
     /**
      * 商品库存管理模块的DAO组件
      */
@@ -29,15 +31,15 @@ public abstract class AbstractGoodsStockUpdateCommand implements GoodsStockUpdat
 
     /**
      * 构造函数
-     * @param goodsStockDO 商品库存DO对象
+     * @param goodsStockDOs 商品库存DO对象
      * @param goodsStockDAO 商品库存管理模块的DAO组件
      * @param dateProvider 日期辅助组件
      */
     public AbstractGoodsStockUpdateCommand(
-            GoodsStockDO goodsStockDO,
+            List<GoodsStockDO> goodsStockDOs,
             GoodsStockDAO goodsStockDAO,
             DateProvider dateProvider) {
-        this.goodsStockDO = goodsStockDO;
+        this.goodsStockDOs = goodsStockDOs;
         this.goodsStockDAO = goodsStockDAO;
         this.dateProvider = dateProvider;
     }
@@ -90,7 +92,9 @@ public abstract class AbstractGoodsStockUpdateCommand implements GoodsStockUpdat
      * @throws Exception 抛出异常
      */
     private void updateGmtModified() throws Exception {
-        goodsStockDO.setGmtModified(dateProvider.getCurrentTime());
+        for(GoodsStockDO goodsStockDO: goodsStockDOs){
+            goodsStockDO.setGmtModified(dateProvider.getCurrentTime());
+        }
 
     }
 
@@ -99,6 +103,8 @@ public abstract class AbstractGoodsStockUpdateCommand implements GoodsStockUpdat
      * @throws Exception 抛出异常
      */
     private void executeUpdateGoodsStock() throws Exception {
-        goodsStockDAO.updateGoodsStock(goodsStockDO);
+        for(GoodsStockDO goodsStockDO:goodsStockDOs){
+            goodsStockDAO.updateGoodsStock(goodsStockDO);
+        }
     }
 }
