@@ -13,6 +13,7 @@ import java.util.Date;
  */
 @Component
 public class DateProviderImpl implements DateProvider {
+
     /**
      * 获取当前时间
      *
@@ -24,4 +25,3 @@ public class DateProviderImpl implements DateProvider {
         return dateFormatter.parse(dateFormatter.format(new Date()));
     }
 }
-
