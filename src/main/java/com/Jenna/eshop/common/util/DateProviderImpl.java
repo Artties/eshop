@@ -25,4 +25,3 @@ public class DateProviderImpl implements DateProvider {
         return dateFormatter.parse(dateFormatter.format(new Date()));
     }
 }
-

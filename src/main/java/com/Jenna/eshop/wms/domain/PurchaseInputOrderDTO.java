@@ -58,6 +58,15 @@ public class PurchaseInputOrderDTO {
      * 采购入库单的修改时间
      */
     private Date gmtModified;
+    /**
+     * 采购入库单条目集合
+     */
+    private List<PurchaseInputOrderItemDTO> purchaseInputOrderItemDTOs;
+    /**
+     * 采购入库单商品上架条目集合
+     */
+    private List<PurchaseInputOrderPutOnItemDTO> purchaseInputPutOnItemDTOs;
+
 
 
     public Long getId() {
@@ -154,5 +163,21 @@ public class PurchaseInputOrderDTO {
 
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    public List<PurchaseInputOrderItemDTO> getPurchaseInputOrderItemDTOs() {
+        return purchaseInputOrderItemDTOs;
+    }
+
+    public void setPurchaseInputOrderItemDTOs(List<PurchaseInputOrderItemDTO> purchaseInputOrderItemDTOs) {
+        this.purchaseInputOrderItemDTOs = purchaseInputOrderItemDTOs;
+    }
+
+    public List<PurchaseInputOrderPutOnItemDTO> getPurchaseInputPutOnItemDTOs() {
+        return purchaseInputPutOnItemDTOs;
+    }
+
+    public void setPurchaseInputPutOnItemDTOs(List<PurchaseInputOrderPutOnItemDTO> purchaseInputPutOnItemDTOs) {
+        this.purchaseInputPutOnItemDTOs = purchaseInputPutOnItemDTOs;
     }
 }
