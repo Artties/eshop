@@ -1,6 +1,7 @@
 package com.Jenna.eshop.cart.service;
 import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.*;
 
 import com.Jenna.eshop.cart.dao.ShoppingCartDAO;
 import com.Jenna.eshop.cart.dao.ShoppingCartItemDAO;
@@ -13,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-
+import com.Jenna.eshop.common.util.DateProvider;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,7 +43,11 @@ public class ShoppingCartServiceTest {
      */
     @MockBean
     private ShoppingCartItemDAO shoppingCartItemDAO;
-    
+    /**
+     * 日期辅助组件
+     */
+    @MockBean
+    private DateProvider dateProvider;
 
     /**
      * 测试添加购物车商品条目
@@ -59,8 +64,11 @@ public class ShoppingCartServiceTest {
                 shoppingCartDO.getId(),goodsSkuId);
 
 
-
         //模仿一下两个DAO的行为
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date currentTime = formatter.parse(formatter.format(new Date()));
+
+        when(dateProvider.getCurrentTime()).thenReturn(currentTime);
 
         when(shoppingCartDAO.getShoppingCartByUserAccountId(userAccountId))
                 .thenReturn(shoppingCartDO);
@@ -70,8 +78,20 @@ public class ShoppingCartServiceTest {
 
         when(shoppingCartItemDAO.updateShoppingCartItem(shoppingCartItemDO));
 
+        shoppingCartItemDO.setPurchaseQuantity(shoppingCartItemDO.getPurchaseQuantity() + 1L);
+        when(shoppingCartItemDAO.updateShoppingCartItem(shoppingCartItemDO)).thenReturn(true);
 
         //执行service方法
+        Boolean addShoppingCartItemResult = shoppingCartService
+                .addShoppingCartItem(userAccountId,goodsSkuId);
+        //执行断言
+        assertTrue(addShoppingCartItemResult);
+        verify(shoppingCartDAO,times(1)).getShoppingCartByUserAccountId(userAccountId);
+        verify(shoppingCartItemDAO,times(1)).getShoppingCartItemByGoodsSkuId(
+                shoppingCartDO.getId(),goodsSkuId);
+        verify(shoppingCartItemDAO,times(1)).updateShoppingCartItem(shoppingCartItemDO);
+
+
     }
 
     /**
@@ -83,10 +103,7 @@ public class ShoppingCartServiceTest {
     private ShoppingCartDO createShoppingCartDO(Long userAccountId) throws Exception {
         Long id = 1L;
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date currentTime = formatter.parse(formatter.format(new Date()));
-
-
+        Date currentTime = dateProvider.getCurrentTime();
 
         ShoppingCartDO shoppingCartDO = new ShoppingCartDO();
         shoppingCartDO.setId(id);
@@ -110,8 +127,7 @@ public class ShoppingCartServiceTest {
         Long id = 1L;
         Long purchaseQuantity = 1L;
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date currentTime = formatter.parse(formatter.format(new Date()));
+        Date currentTime = dateProvider.getCurrentTime();
 
         ShoppingCartItemDO shoppingCartItemDO = new ShoppingCartItemDO();
         shoppingCartItemDO.setId(id);

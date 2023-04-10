@@ -1,11 +1,13 @@
 package com.Jenna.eshop.cart.controller;
 
+import com.Jenna.eshop.cart.domain.AddShoppingCartItemQuery;
 import com.Jenna.eshop.cart.service.ShoppingCartService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * 购物车管理模块的controller组件
@@ -28,9 +30,10 @@ public class ShoppingCartController {
      * @return 处理结果
      */
     @PostMapping("item/add")
-    public Boolean addShoppingCartItem(Long userAccountId,Long goodsId){
+    public Boolean addShoppingCartItem(@RequestBody AddShoppingCartItemQuery query){
         try {
-            return shoppingCartService.addShoppingCartItem(userAccountId, goodsId);
+            return shoppingCartService.addShoppingCartItem(
+                    query.getUserAccountId(), query.getGoodsSkuId());
         }catch (Exception e) {
             logger.error("error",e);
             return false;
