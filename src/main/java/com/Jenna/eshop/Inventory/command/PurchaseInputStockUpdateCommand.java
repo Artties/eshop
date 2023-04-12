@@ -3,7 +3,6 @@ package com.Jenna.eshop.Inventory.command;
 import com.Jenna.eshop.Inventory.dao.GoodsStockDAO;
 import com.Jenna.eshop.Inventory.domain.GoodsStockDO;
 import com.Jenna.eshop.common.util.DateProvider;
-import com.Jenna.eshop.wms.domain.PurchaseInputOrderDTO;
 import com.Jenna.eshop.wms.domain.PurchaseInputOrderItemDTO;
 
 import java.util.List;
@@ -24,7 +23,7 @@ public class PurchaseInputStockUpdateCommand extends AbstractGoodsStockUpdateCom
     /**
      * 构造函数
      *
-     * @param goodsStockDOs  商品库存DO对象
+     * @param goodsStockDOs 商品库存DO对象
      * @param goodsStockDAO 商品库存管理模块的DAO组件
      * @param dateProvider  日期辅助组件
      */
@@ -32,7 +31,6 @@ public class PurchaseInputStockUpdateCommand extends AbstractGoodsStockUpdateCom
             List<GoodsStockDO> goodsStockDOs,
             GoodsStockDAO goodsStockDAO,
             DateProvider dateProvider,
-            PurchaseInputOrderDTO purchaseInputOrderDTO,
             Map<Long, PurchaseInputOrderItemDTO> purchaseInputOrderItemDTO) {
         super(goodsStockDOs, goodsStockDAO, dateProvider);
         this.purchaseInputOrderItemDTOMap = purchaseInputOrderItemDTOMap;
