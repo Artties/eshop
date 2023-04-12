@@ -1,5 +1,6 @@
 package com.Jenna.eshop.Inventory.command;
 
+import com.Jenna.eshop.Inventory.constant.StockStatus;
 import com.Jenna.eshop.Inventory.dao.GoodsStockDAO;
 import com.Jenna.eshop.Inventory.domain.GoodsStockDO;
 import com.Jenna.eshop.common.util.DateProvider;
@@ -85,7 +86,15 @@ public abstract class AbstractGoodsStockUpdateCommand implements GoodsStockUpdat
     /**
      * 更新商品的库存状态
      */
-    protected abstract void updateStockStatus() throws Exception;
+    public void updateStockStatus() throws Exception{
+        for(GoodsStockDO goodsStockDO:goodsStockDOs){
+            if (goodsStockDO.getSaledStockQuantity(0L) > 0L) {
+                goodsStockDO.setStockStatus(StockStatus.IN_STOCK);
+            }else{
+                goodsStockDO.setStockStatus(StockStatus.NOT_IN_STOCK);
+            }
+        }
+    }
 
     /**
      * 更新商品库存的修改时间
