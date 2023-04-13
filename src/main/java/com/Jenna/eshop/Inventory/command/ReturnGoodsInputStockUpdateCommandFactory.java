@@ -4,6 +4,7 @@ import com.Jenna.eshop.Inventory.dao.GoodsStockDAO;
 import com.Jenna.eshop.Inventory.domain.GoodsStockDO;
 import com.Jenna.eshop.common.util.DateProvider;
 import com.Jenna.eshop.wms.domain.ReturnGoodsInputOrderDTO;
+import com.Jenna.eshop.wms.domain.ReturnGoodsInputOrderItemDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -43,16 +44,18 @@ public class ReturnGoodsInputStockUpdateCommandFactory<T>
      */
     @Override
     protected List<Long> getGoodsSkuIds(T parameter) throws Exception {
-        ReturnGoodsInputOrderDTO ReturnGoodsInputOrderDTO = (ReturnGoodsInputOrderDTO) parameter;
-        List<ReturnGoodsInputOrderDTO> ReturnGoodsInputOrderDTOs =
-                ReturnGoodsInputOrderDTO.getReturnGoodsInputOrderDTOs();
-        if(ReturnGoodsInputOrderDTOs == null || ReturnGoodsInputOrderDTOs.size() == 0){
-            return new ArrayList<>();
-        }
-        List<Long> goodsSkuIds = new ArrayList<Long>(ReturnGoodsInputOrderDTOs.size());
+        ReturnGoodsInputOrderDTO returnGoodsInputOrderDTO = (ReturnGoodsInputOrderDTO) parameter;
+        List<ReturnGoodsInputOrderItemDTO> returnGoodsInputOrderItemDTOs =
+                returnGoodsInputOrderDTO.getReturnGoodsInputOrderItemDTOs();
 
-        for (ReturnGoodsInputOrderDTO ReturnGoodsInputOrderDTO : ReturnGoodsInputOrderDTOs) {
-            goodsSkuIds.add(ReturnGoodsInputOrderDTO.getGoodsSkuId());
+        if(returnGoodsInputOrderItemDTOs == null || returnGoodsInputOrderItemDTOs.size() == 0){
+            return new ArrayList<Long>();
+        }
+
+        List<Long> goodsSkuIds = new ArrayList<Long>(returnGoodsInputOrderItemDTOs.size());
+
+        for (ReturnGoodsInputOrderItemDTO returnGoodsInputOrderItemDTO : returnGoodsInputOrderItemDTOs) {
+            goodsSkuIds.add(ReturnGoodsInputOrderItemDTO.getGoodsSkuId());
 
 }
 
@@ -72,23 +75,23 @@ public class ReturnGoodsInputStockUpdateCommandFactory<T>
             List<GoodsStockDO> goodsStockDOs,
             T parameter) throws Exception {
         //解析采购入库单，获取一个采购入库单条目Map
-        ReturnGoodsInputOrderDTO ReturnGoodsInputOrderDTO = (ReturnGoodsInputOrderDTO) parameter;
-        List<ReturnGoodsInputOrderDTO> ReturnGoodsInputOrderDTOs =
-                ReturnGoodsInputOrderDTO.getReturnGoodsInputOrderDTOs();
+        ReturnGoodsInputOrderDTO returnGoodsInputOrderDTO = (ReturnGoodsInputOrderDTO) parameter;
+        List<ReturnGoodsInputOrderItemDTO> returnGoodsInputOrderItemDTOs =
+                returnGoodsInputOrderDTO.getReturnGoodsInputOrderItemDTOs();
 
-        Map<Long,ReturnGoodsInputOrderDTO> ReturnGoodsInputOrderDTOMap =
-                new HashMap<Long,ReturnGoodsInputOrderDTO>();
+        Map<Long, ReturnGoodsInputOrderItemDTO> returnGoodsInputOrderItemMap =
+                new HashMap<>();
 
-        if(ReturnGoodsInputOrderDTOs != null && ReturnGoodsInputOrderDTOs.size() > 0){
-            for(ReturnGoodsInputOrderDTO ReturnGoodsInputOrderDTO:ReturnGoodsInputOrderDTOs){
-                ReturnGoodsInputOrderDTOMap.put(ReturnGoodsInputOrderDTO.getGoodsSkuId(),
-                        ReturnGoodsInputOrderDTO);
+        if(returnGoodsInputOrderItemDTOs != null && returnGoodsInputOrderItemDTOs.size() > 0){
+            for(ReturnGoodsInputOrderItemDTO returnGoodsInputOrderItemDTO:returnGoodsInputOrderItemDTOs){
+                returnGoodsInputOrderItemMap.put(ReturnGoodsInputOrderItemDTO.getGoodsSkuId(),
+                        returnGoodsInputOrderItemDTO);
             }
 
         }
         //创建库存更新命令
-        return new PurchaseInputStockUpdateCommand(goodsStockDOs,goodsStockDAO,
-                dateProvider,ReturnGoodsInputOrderDTOMap);
+        return new ReturnGoodsInputStockUpdateCommand(goodsStockDOs,goodsStockDAO,
+                dateProvider,returnGoodsInputOrderItemMap);
     }
 
 

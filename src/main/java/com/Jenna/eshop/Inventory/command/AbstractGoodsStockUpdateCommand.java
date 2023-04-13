@@ -60,8 +60,6 @@ public abstract class AbstractGoodsStockUpdateCommand implements GoodsStockUpdat
             updateStockStatus();
             updateGmtModified();
             executeUpdateGoodsStock();
-
-
         }catch (Exception e) {
             logger.error("error",e);
         }

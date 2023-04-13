@@ -84,7 +84,7 @@ public abstract class AbstractGoodsStockUpdateCommandFactory<T>
      * @return 商品库存DO对象集合
      */
 
-    protected List<GoodsStockDO> createGoodsStockDOs(List<Long> goodsSkuIds) throws Exception {
+    private List<GoodsStockDO> createGoodsStockDOs(List<Long> goodsSkuIds) throws Exception {
         List<GoodsStockDO> goodsStockDOs = new ArrayList<GoodsStockDO>(goodsSkuIds.size());
         for(Long goodsSkuId:goodsSkuIds){
             GoodsStockDO goodsStockDO = goodsStockDAO.getGoodsStockBySkuId(goodsSkuId);
