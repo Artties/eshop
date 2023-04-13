@@ -67,8 +67,6 @@ public class PurchaseInputOrderDTO {
      */
     private List<PurchaseInputOrderPutOnItemDTO> purchaseInputOrderPutOnItemDTOs;
 
-
-
     public Long getId() {
         return id;
     }
@@ -164,7 +162,6 @@ public class PurchaseInputOrderDTO {
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }
-
     public List<PurchaseInputOrderItemDTO> getPurchaseInputOrderItemDTOs() {
         return purchaseInputOrderItemDTOs;
     }
