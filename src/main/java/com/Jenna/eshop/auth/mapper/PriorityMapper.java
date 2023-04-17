@@ -9,6 +9,7 @@ import org.hibernate.annotations.Parent;
 
 /**
  * 权限管理模块的mapper组件
+ * @author Artties
  */
 @Mapper
 public interface PriorityMapper {
@@ -123,7 +124,7 @@ public interface PriorityMapper {
                 + "#{gmtCreate},"
                 + "#{gmtModified})"
     )
-    @Options(useGeneratedKeys = true,keyProperty = "id")
+    @Options(keyColumn = "id",keyProperty = "id", useGeneratedKeys=true)
     void savePriority(PriorityDO priorityDO);
 
     /**
