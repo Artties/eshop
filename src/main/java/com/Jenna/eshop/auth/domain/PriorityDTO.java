@@ -126,4 +126,17 @@ public class PriorityDTO {
         BeanCopierUtils.copyProperties(this,target);
         return target;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PriorityDTO)) return false;
+        PriorityDTO that = (PriorityDTO) o;
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getCode(), that.getCode()) && Objects.equals(getUrl(), that.getUrl()) && Objects.equals(getPriorityComment(), that.getPriorityComment()) && Objects.equals(getPriorityType(), that.getPriorityType()) && Objects.equals(getParentId(), that.getParentId()) && Objects.equals(getGmtCreate(), that.getGmtCreate()) && Objects.equals(getGmtModified(), that.getGmtModified());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getCode(), getUrl(), getPriorityComment(), getPriorityType(), getParentId(), getGmtCreate(), getGmtModified());
+    }
 }
