@@ -27,4 +27,12 @@ public interface DateProvider {
      */
     String formatDatetime(Date date) throws Exception;
 
+    /**
+     * 将日期字符串转换为Date对象
+     * @param datetime 日期字符串
+     * @return date对象
+     * @throws Exception 抛出异常
+     */
+    Date parseDatetime(String datetime) throws Exception;
+
 }
