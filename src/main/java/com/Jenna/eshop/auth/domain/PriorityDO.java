@@ -2,12 +2,9 @@ package com.Jenna.eshop.auth.domain;
 
 import com.Jenna.eshop.common.util.BeanCopierUtils;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 
-import java.lang.reflect.Method;
 import java.util.*;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *权限的DO类
@@ -39,7 +36,7 @@ public class PriorityDO {
     /**
      * 父权限id
      */
-    private Integer parentId;
+    private Long parentId;
     /**
      * 权限的创建时间
      */
@@ -89,11 +86,11 @@ public class PriorityDO {
         this.priorityType = priorityType;
     }
 
-    public Integer getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(Integer parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 

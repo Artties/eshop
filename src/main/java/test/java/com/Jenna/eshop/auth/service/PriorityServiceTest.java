@@ -1,4 +1,4 @@
-package test.java.com.Jenna.eshop.service;
+package test.java.com.Jenna.eshop.auth.service;
 
 import com.Jenna.eshop.auth.constant.PriorityType;
 import com.Jenna.eshop.auth.dao.AccountPriorityRelationshipDAO;
@@ -64,7 +64,7 @@ public class PriorityServiceTest {
     public void testListRootPriorities() throws Exception {
         Long parentId = null;
 
-        List<PriorityDO> rootPriorityDOs = new ArrayList<PriorityDO>();
+        List<PriorityDO> rootPriorityDOs = createMockPriorityDOs(parentId);
 
         when(priorityDAO.listRootPriorities()).thenReturn(rootPriorityDOs);
         Map<Long,PriorityDTO> rootPriorityDTOMap = convertPriorityDOs2Map(rootPriorityDOs);
@@ -182,11 +182,19 @@ public class PriorityServiceTest {
         when(priorityDAO.removePriority(id)).thenReturn(true);
 
         //实际执行service方法
-        priorityService.removePriority(id);
+        Boolean removePriorityResult = priorityService.removePriority(id);
 
         //执行断言
         verify(priorityDAO, times(1)).getPriorityById(id);
-        verify(priorityDAO, times(2)).list
+        verify(priorityDAO, times(2)).listChildPriorities(id);
+        verify(priorityDAO, times(2)).listChildPriorities(childId);
+        verify(rolePriorityRelationshipDAO,times(1)).countByPriorityId(id);
+        verify(accountPriorityRelationshipDAO,times(1)).countByPriorityId(id);
+        verify(accountPriorityRelationshipDAO,times(1)).countByPriorityId(childId);
+        verify(priorityDAO,times(1)).removePriority(id);
+        verify(priorityDAO,times(1)).removePriority(childId);
+
+        assertTrue(removePriorityResult);
     }
 
 

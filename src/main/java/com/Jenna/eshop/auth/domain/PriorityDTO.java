@@ -35,7 +35,7 @@ public class PriorityDTO {
     /**
      * 父权限id
      */
-    private Integer parentId;
+    private Long parentId;
     /**
      * 权限的创建时间
      */
@@ -85,11 +85,11 @@ public class PriorityDTO {
         this.priorityType = priorityType;
     }
 
-    public Integer getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(Integer parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 
