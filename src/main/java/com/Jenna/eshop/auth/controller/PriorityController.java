@@ -4,6 +4,7 @@ import com.Jenna.eshop.auth.domain.PriorityDO;
 import com.Jenna.eshop.auth.domain.PriorityDTO;
 import com.Jenna.eshop.auth.domain.PriorityVO;
 import com.Jenna.eshop.auth.service.impl.PriorityService;
+import com.Jenna.eshop.common.util.DateProvider;
 import org.apache.ibatis.annotations.Update;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +29,11 @@ public class PriorityController {
      */
     @Autowired
     private PriorityService priorityService;
+    /**
+     * 日期辅助组件
+     */
+    @Autowired
+    private DateProvider dateProvider;
 
     /**
      * 查询根权限
@@ -42,8 +48,7 @@ public class PriorityController {
             }
             List<PriorityVO> priorityVOs = new ArrayList<PriorityVO>(priorityDTOs.size());
             for(PriorityDTO priorityDTO:priorityDTOs){
-                priorityDTO.clone(PriorityVO.class);
-                priorityVOs.add(priorityDTO);
+                priorityVOs.add(convertPriorityDTO2VO(priorityDTO));
             }
 
             return priorityVOs;
@@ -69,7 +74,7 @@ public class PriorityController {
             List<PriorityVO> priorityVOs = new ArrayList<PriorityVO>(priorityDTOs.size());
 
             for(PriorityDTO priorityDTO:priorityDTOs){
-                priorityVOs.add(priorityDTO.clone(PriorityVO.class));
+                priorityVOs.add(convertPriorityDTO2VO(priorityDTO));
             }
 
             return priorityVOs;
@@ -90,7 +95,7 @@ public class PriorityController {
             if (priorityDTO == null){
                 priorityDTO = new PriorityDTO();
             }
-            return priorityDTO.clone(PriorityVO.class);
+            return convertPriorityDTO2VO(priorityDTO);
         }catch (Exception e){
             logger.error("error",e);
         }
@@ -140,4 +145,29 @@ public class PriorityController {
         }
         return false;
     }
+
+    /**
+     * 将权限的DTO对象转换为VO对象
+     * @param priorityDTO 权限的DTO对象
+     * @return 权限的VO对象
+     * @throws Exception 抛出异常
+     */
+    private PriorityVO convertPriorityDTO2VO(PriorityDTO priorityDTO) throws Exception {
+        PriorityVO priorityVO = priorityDTO.clone(PriorityVO.class);
+        priorityVO.setGmtCreate(dateProvider.formatDatetime(priorityDTO.getGmtCreate()));
+        priorityVO.setGmtModified(dateProvider.formatDatetime(priorityDTO.getGmtModified()));
+
+        return priorityVO;
+    }
+
+    /**
+     * 将权限VO对象转换为DTO对象
+     * @param priorityVO 权限的VO对象
+     * @return 权限的DTO对象
+     * @throws Exception 抛出异常
+     */
+    private PriorityDTO convertPriorityVO2DTO(PriorityVO priorityVO) throws Exception{
+        return null;
+    }
+
 }
