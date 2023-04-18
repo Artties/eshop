@@ -34,15 +34,15 @@ public class PriorityVO {
     /**
      * 父权限id
      */
-    private Integer parentId;
+    private Long parentId;
     /**
      * 权限的创建时间
      */
-    private Date gmtCreate;
+    private String gmtCreate;
     /**
      * 权限的修改时间
      */
-    private Date gmtModified;
+    private String gmtModified;
 
     public Long getId() {
         return id;
@@ -84,27 +84,27 @@ public class PriorityVO {
         this.priorityType = priorityType;
     }
 
-    public Integer getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(Integer parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 
-    public Date getGmtCreate() {
+    public String getGmtCreate() {
         return gmtCreate;
     }
 
-    public void setGmtCreate(Date gmtCreate) {
+    public void setGmtCreate(String gmtCreate) {
         this.gmtCreate = gmtCreate;
     }
 
-    public Date getGmtModified() {
+    public String getGmtModified() {
         return gmtModified;
     }
 
-    public void setGmtModified(Date gmtModified) {
+    public void setGmtModified(String gmtModified) {
         this.gmtModified = gmtModified;
     }
 

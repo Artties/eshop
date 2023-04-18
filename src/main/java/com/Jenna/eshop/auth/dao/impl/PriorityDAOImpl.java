@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * 权限管理模块的DAO组件
+ * @author Artties
  */
 public class PriorityDAOImpl implements PriorityDAO {
     private static final Logger logger = LoggerFactory.getLogger(PriorityDAO.class);
@@ -70,14 +71,14 @@ public class PriorityDAOImpl implements PriorityDAO {
      * 新增权限
      * @param priorityDO 权限DO对象
      */
-    public Boolean savePriority(PriorityDO priorityDO){
+    public Long savePriority(PriorityDO priorityDO){
         try{
             priorityMapper.savePriority(priorityDO);
         }catch (Exception e){
             logger.error("error",e);
-            return false;
+            return null;
         }
-        return true;
+        return priorityDO.getId();
     }
 
     /**

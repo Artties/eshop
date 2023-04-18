@@ -2,12 +2,9 @@ package com.Jenna.eshop.auth.domain;
 
 import com.Jenna.eshop.common.util.BeanCopierUtils;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 
-import java.lang.reflect.Method;
 import java.util.*;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *权限的DO类
@@ -39,7 +36,7 @@ public class PriorityDO {
     /**
      * 父权限id
      */
-    private Integer parentId;
+    private Long parentId;
     /**
      * 权限的创建时间
      */
@@ -89,11 +86,11 @@ public class PriorityDO {
         this.priorityType = priorityType;
     }
 
-    public Integer getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(Integer parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 
@@ -129,5 +126,22 @@ public class PriorityDO {
 
         BeanCopierUtils.copyProperties(this,target);
         return target;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof PriorityDO)) {
+            return false;
+        }
+        PriorityDO that = (PriorityDO) o;
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getCode(), that.getCode()) && Objects.equals(getUrl(), that.getUrl()) && Objects.equals(getPriorityComment(), that.getPriorityComment()) && Objects.equals(getPriorityType(), that.getPriorityType()) && Objects.equals(getParentId(), that.getParentId()) && Objects.equals(getGmtCreate(), that.getGmtCreate()) && Objects.equals(getGmtModified(), that.getGmtModified());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getCode(), getUrl(), getPriorityComment(), getPriorityType(), getParentId(), getGmtCreate(), getGmtModified());
     }
 }

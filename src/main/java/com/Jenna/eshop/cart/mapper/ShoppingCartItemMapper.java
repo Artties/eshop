@@ -15,7 +15,6 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 
-
 /**
  * 购物车条目管理模块的mapper组件
  * @author Jenna C He

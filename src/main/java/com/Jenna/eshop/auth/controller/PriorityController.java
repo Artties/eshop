@@ -42,7 +42,8 @@ public class PriorityController {
             }
             List<PriorityVO> priorityVOs = new ArrayList<PriorityVO>(priorityDTOs.size());
             for(PriorityDTO priorityDTO:priorityDTOs){
-                priorityVOs.add(priorityDTO.clone(PriorityVO.class));
+                priorityDTO.clone(PriorityVO.class);
+                priorityVOs.add(priorityDTO);
             }
 
             return priorityVOs;
