@@ -109,8 +109,7 @@ public class PriorityController {
     @PostMapping("/")
     public Boolean savePriority(@RequestBody PriorityVO priorityVO){
         try {
-            PriorityDTO priorityDTO = priorityVO.clone(PriorityDTO.class);
-            priorityService.savePriority(priorityDTO);
+           priorityService.savePriority(convertPriorityVO2DTO(priorityVO));
         }catch (Exception e){
             logger.error("error",e);
             return false;
@@ -125,8 +124,7 @@ public class PriorityController {
    @PutMapping("/{id}")
     public Boolean updatePriority(@RequestBody PriorityVO priorityVO){
         try {
-            PriorityDTO priorityDTO = priorityVO.clone(PriorityDTO.class);
-            priorityService.updatePriority(priorityDTO);
+            priorityService.updatePriority(convertPriorityVO2DTO(priorityVO));
         }catch (Exception e){
             logger.error("error",e);
             return false;
@@ -167,7 +165,15 @@ public class PriorityController {
      * @throws Exception 抛出异常
      */
     private PriorityDTO convertPriorityVO2DTO(PriorityVO priorityVO) throws Exception{
-        return null;
+        PriorityDTO priorityDTO = priorityVO.clone(PriorityDTO.class);
+        if(priorityVO.getGmtCreate() != null){
+            priorityDTO.setGmtCreate(dateProvider.parseDatetime(priorityVO.getGmtCreate()));
+
+        }
+        if (priorityVO.getGmtModified() != null) {
+            priorityDTO.setGmtModified(dateProvider.parseDatetime(priorityVO.getGmtModified()));
+        }
+        return priorityDTO;
     }
 
 }

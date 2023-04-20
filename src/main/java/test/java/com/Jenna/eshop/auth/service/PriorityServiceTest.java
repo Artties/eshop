@@ -8,6 +8,7 @@ import com.Jenna.eshop.auth.domain.PriorityDO;
 import com.Jenna.eshop.auth.domain.PriorityDTO;
 import com.Jenna.eshop.auth.service.impl.PriorityService;
 import com.Jenna.eshop.common.util.DateProvider;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -53,8 +55,20 @@ public class PriorityServiceTest {
     /**
      * 日期辅助组件
      */
-    @Autowired
+    @MockBean
     private DateProvider dateProvider;
+
+    /**
+     * 初始化
+     * @throws Exception 抛出异常
+     */
+    @Before
+    public void setUp() throws Exception {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date currentTime = dateFormatter.parse(dateFormatter.format(new Date()));
+
+        when(dateProvider.getCurrentTime()).thenReturn(currentTime);
+    }
 
     /**
      * 测试查询根权限

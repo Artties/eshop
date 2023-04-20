@@ -8,6 +8,7 @@ import com.Jenna.eshop.auth.domain.PriorityVO;
 import com.Jenna.eshop.auth.service.impl.PriorityService;
 import com.Jenna.eshop.common.util.DateProvider;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,8 +21,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 /**
@@ -57,6 +59,9 @@ public class PriorityControllerTest {
         Date currentTime = dateFormatter.parse(dateFormatter.format(new Date()));
 
         when(dateProvider.getCurrentTime()).thenReturn(currentTime);
+        when(dateProvider.formatDatetime(currentTime)).thenReturn(dateFormatter.format(currentTime));
+        when(dateProvider.parseDatetime(dateFormatter.format(currentTime))).thenReturn(currentTime);
+
     }
 
 
@@ -73,6 +78,76 @@ public class PriorityControllerTest {
 
         mvc.perform(get("/auth/priority/root"))
                 .andExpect(content().json(JSONArray.toJSONString(rootPriorityDTOs)));
+    }
+
+
+
+    /**
+     * 测试根据父权限id查询子权限
+     * @throws Exception 抛出异常
+     */
+    @Test
+    public void testListChildPriorities() throws Exception {
+        //mock dao的行为
+        Long parentId = 1L;
+        List<PriorityDTO> childPriorityDTOs = createMockPriorityDTOs(parentId);
+        when(priorityService.listChildPriorities(parentId)).thenReturn(childPriorityDTOs);
+        List<PriorityVO> rootPriorityVOs = convertPriorityDTOs2VOs(childPriorityDTOs);
+
+        mvc.perform(get("/auth/priority/child/{parentId}",parentId))
+                .andExpect(content().json(JSONArray.toJSONString(rootPriorityVOs)));
+    }
+
+    /**
+     * 测试根据id查询权限
+     * @throws Exception 抛出异常
+     */
+    @Test
+    public void testGetPriorityById() throws Exception {
+        Long id = 2L;
+        Long parentId = 1L;
+        PriorityDTO priorityDTO = createMockPriorityDTO(id,parentId);
+        PriorityVO priorityVO = convertPriorityDTO2VO(priorityDTO);
+
+        when(priorityService.getPriorityById(id)).thenReturn(priorityDTO);
+
+        mvc.perform(get("/auth/priority/{id}",id))
+                .andExpect(content().json(JSONObject.toJSONString(priorityVO)));
+    }
+
+    /**
+     * 测试修改权限
+     * @throws Exception 抛出异常
+     */
+    @Test
+    public void testUpdatePriority() throws Exception {
+        Long id = 2L;
+        Long parentId = 1L;
+
+        PriorityDTO priorityDTO = createMockPriorityDTO(id,parentId);
+        PriorityVO priorityVO = convertPriorityDTO2VO(priorityDTO);
+
+        when(priorityService.updatePriority(priorityDTO)).thenReturn(true);
+
+        mvc.perform(put("/auth/priority/{id}",id).contentType("application/json").content(JSONObject.toJSONString(priorityVO)))
+                .andExpect(content().string("true"));
+
+    }
+
+
+    /**
+     * 测试删除权限
+     * @throws Exception 抛出异常
+     */
+    @Test
+    public void testRemovePriority() throws Exception {
+        Long id = 2L;
+
+        when(priorityService.removePriority(id)).thenReturn(true);
+
+        mvc.perform(delete("/auth/priority/{id}",id))
+                .andExpect(content().string("true"));
+
     }
 
 
@@ -125,8 +200,8 @@ public class PriorityControllerTest {
     private PriorityVO convertPriorityDTO2VO(PriorityDTO priorityDTO) throws Exception {
         PriorityVO priorityVO = new PriorityVO();
         priorityVO.setCode(priorityDTO.getCode());
-        priorityVO.setGmtCreate(priorityDTO.getGmtCreate());
-        priorityVO.setGmtModified(priorityDTO.getGmtModified());
+        priorityVO.setGmtCreate(dateProvider.formatDatetime(priorityDTO.getGmtCreate()));
+        priorityVO.setGmtModified(dateProvider.formatDatetime(priorityDTO.getGmtModified()));
         priorityVO.setId(priorityDTO.getId());
         priorityVO.setParentId(priorityDTO.getParentId());
         priorityVO.setPriorityComment(priorityDTO.getPriorityComment());
@@ -138,11 +213,11 @@ public class PriorityControllerTest {
 
     /**
      * 将权限的VO集合转换为权限的DTO集合
-     * @param priorityDTOs 权限的DTO集合
+     * @param priorityDTOs
      * @return 权限DTO集合
+     * @throws Exception 抛出异常
      */
-    private List<PriorityVO> convertPriorityDTOs2VOs(
-            List<PriorityDTO> priorityDTOs) throws Exception {
+    private List<PriorityVO> convertPriorityDTOs2VOs(List<PriorityDTO> priorityDTOs) throws Exception {
         List<PriorityVO> priorityVOs = new ArrayList<PriorityVO>(priorityDTOs.size());
         for(PriorityDTO priorityDTO : priorityDTOs){
             priorityVOs.add(convertPriorityDTO2VO(priorityDTO));
