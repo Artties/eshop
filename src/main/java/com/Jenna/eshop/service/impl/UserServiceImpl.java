@@ -12,8 +12,8 @@ import com.Jenna.eshop.service.UserService;
 
 /**
  * 用户管理模块的service组件实现类
- * @author zhonghuashishan
- *
+ * @author Jenna C He
+ * @date 2023/1/6 13:57
  */
 @Service
 @Transactional

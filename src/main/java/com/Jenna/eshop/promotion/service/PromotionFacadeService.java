@@ -3,8 +3,11 @@ import com.Jenna.eshop.promotion.domain.PromotionActivityDTO;
 
 import java.util.List;
 
+
 /**
  * 促销中心对外提供的接口
+ * @author Jenna C He
+ * @date 2023/1/6 13:56
  */
 public interface PromotionFacadeService {
     /**
