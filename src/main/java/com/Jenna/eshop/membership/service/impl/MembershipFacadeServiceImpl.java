@@ -4,6 +4,7 @@ import com.Jenna.eshop.membership.service.MembershipFacadeService;
 import org.springframework.stereotype.Service;
 
 /**
+ * 会员中心对外接口service组件
  * @author Jenna C He
  * @date 2023/3/8 12:21
  */
@@ -18,7 +19,7 @@ public class MembershipFacadeServiceImpl implements MembershipFacadeService {
      */
     @Override
     public Boolean informFirstLoginDailyEvent(Long userAccountId) {
-        return null;
+        return true;
     }
 
     /**
@@ -30,7 +31,7 @@ public class MembershipFacadeServiceImpl implements MembershipFacadeService {
      */
     @Override
     public Boolean informPayOrderEvent(Long userAccountId, Long totalOrderAmount) {
-        return null;
+        return true;
     }
 
     /**
@@ -42,7 +43,7 @@ public class MembershipFacadeServiceImpl implements MembershipFacadeService {
      */
     @Override
     public Boolean informFinishReturnGoodsEvent(Long userAccountId, Long totalOrderAmount) {
-        return null;
+        return true;
     }
 
     /**
@@ -54,7 +55,7 @@ public class MembershipFacadeServiceImpl implements MembershipFacadeService {
      */
     @Override
     public Boolean informPublishCommentEvent(Long userAccountId, Boolean showPictures) {
-        return null;
+        return true;
     }
 
     /**
@@ -66,6 +67,6 @@ public class MembershipFacadeServiceImpl implements MembershipFacadeService {
      */
     @Override
     public Boolean informRemoveCommentEvent(Long userAccountId, Boolean showPictures) {
-        return null;
+        return true;
     }
 }
