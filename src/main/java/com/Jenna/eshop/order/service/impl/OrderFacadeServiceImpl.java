@@ -4,10 +4,12 @@ import com.Jenna.eshop.order.domain.OrderInfoDTO;
 import com.Jenna.eshop.order.service.OrderFacadeService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 /**
+ * 订单中心对外接口service组件
  * @author Jenna C He
  * @date 2023/3/8 12:15
  */
@@ -21,7 +23,7 @@ public class OrderFacadeServiceImpl implements OrderFacadeService {
      */
     @Override
     public Boolean informGoodsDeliveryFinishedEvent(Long orderId) {
-        return null;
+        return true;
     }
 
     /**
@@ -32,7 +34,7 @@ public class OrderFacadeServiceImpl implements OrderFacadeService {
      */
     @Override
     public Boolean informReturnGoodsWorksheetRejectedEvent(Long orderId) {
-        return null;
+        return true;
     }
 
     /**
@@ -43,7 +45,7 @@ public class OrderFacadeServiceImpl implements OrderFacadeService {
      */
     @Override
     public Boolean informReturnGoodsWorksheetApprovedEvent(Long orderId) {
-        return null;
+        return true;
     }
 
     /**
@@ -54,7 +56,7 @@ public class OrderFacadeServiceImpl implements OrderFacadeService {
      */
     @Override
     public Boolean informReturnGoodsReceivedEvent(Long orderId) {
-        return null;
+        return true;
     }
 
     /**
@@ -65,7 +67,7 @@ public class OrderFacadeServiceImpl implements OrderFacadeService {
      */
     @Override
     public Boolean informReturnGoodsInputOrderApprovedEvent(Long orderId) {
-        return null;
+        return true;
     }
 
     /**
@@ -76,7 +78,7 @@ public class OrderFacadeServiceImpl implements OrderFacadeService {
      */
     @Override
     public Boolean informRefundFinishedEvent(Long orderId) {
-        return null;
+        return true;
     }
 
     /**
@@ -87,7 +89,7 @@ public class OrderFacadeServiceImpl implements OrderFacadeService {
      */
     @Override
     public Boolean informPublishCommentEvent(Long orderId) {
-        return null;
+        return true;
     }
 
     /**
@@ -97,7 +99,7 @@ public class OrderFacadeServiceImpl implements OrderFacadeService {
      */
     @Override
     public List<OrderInfoDTO> listNotPublishedCommentOrders() {
-        return null;
+        return new ArrayList<OrderInfoDTO>();
     }
 
     /**
@@ -108,6 +110,6 @@ public class OrderFacadeServiceImpl implements OrderFacadeService {
      */
     @Override
     public Boolean informBatchPublishCommentEvent(List<Long> orderIds) {
-        return null;
+        return true;
     }
 }
