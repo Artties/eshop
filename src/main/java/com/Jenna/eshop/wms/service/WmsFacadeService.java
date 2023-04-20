@@ -5,9 +5,9 @@ import com.Jenna.eshop.wms.domain.ReturnGoodsInputOrderDTO;
 import com.Jenna.eshop.wms.domain.SaleDeliveryOrderDTO;
 import com.Jenna.eshop.order.domain.OrderInfoDTO;
 
+
 /**
  * WMS中心对外提供的接口
- * @author Jenna C He
  */
 public interface WmsFacadeService {
 
@@ -34,23 +34,23 @@ public interface WmsFacadeService {
 
     /**
      * 通知WMS中心，"提交订单"事件发生了
-     * @param orderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informSubmitOrderEvent(OrderInfoDTO orderDTO);
+    Boolean informSubmitOrderEvent(OrderInfoDTO orderInfoDTO);
 
     /**
      * 通知WMS中心，"支付订单"事件发生了
-     * @param orderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informPayOrderEvent(OrderInfoDTO orderDTO);
+    Boolean informPayOrderEvent(OrderInfoDTO orderInfoDTO);
 
     /**
      * 通知WMS中心，"取消订单"事件发生了
-     * @param orderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informCancelOrderEvent(OrderInfoDTO orderDTO);
+    Boolean informCancelOrderEvent(OrderInfoDTO orderInfoDTO);
 
 }

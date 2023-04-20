@@ -7,8 +7,6 @@ import com.Jenna.eshop.wms.domain.ReturnGoodsInputOrderDTO;
 
 /**
  * 调度中心对外提供的接口
- * @author Jenna C He
- * @date 2023/1/6 13:57
  */
 public interface ScheduleFacadeService {
     /**
@@ -20,24 +18,24 @@ public interface ScheduleFacadeService {
 
     /**
      * 通知库存中心，"提交订单"事件发生了
-     * @param orderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informSubmitOrderEvent(OrderInfoDTO orderDTO);
+    Boolean informSubmitOrderEvent(OrderInfoDTO orderInfoDTO);
 
     /**
      * 通知库存中心，"支付订单"事件发生了
-     * @param orderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informPayOrderEvent(OrderInfoDTO orderDTO);
+    Boolean informPayOrderEvent(OrderInfoDTO orderInfoDTO);
 
     /**
      * 通知库存中心，"取消订单"事件发生了
-     * @param orderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informCancelOrderEvent(OrderInfoDTO orderDTO);
+    Boolean informCancelOrderEvent(OrderInfoDTO orderInfoDTO);
 
     /**
      * 通知库存中心，"完成退货入库"事件发生了
@@ -55,17 +53,17 @@ public interface ScheduleFacadeService {
 
     /**
      * 调度销售出库
-     * @param orderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
-    Boolean scheduleSaleDelivery(OrderInfoDTO orderDTO);
+    Boolean scheduleSaleDelivery(OrderInfoDTO orderInfoDTO);
 
     /**
      * 调度退货入库
-     * @param orderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @param returnGoodsWorksheetDTO 退货工单DTO
      * @return 处理结果
      */
-    Boolean scheduleReturnGoodsInput(OrderInfoDTO orderDTO, ReturnGoodsWorksheetDTO returnGoodsWorksheetDTO);
+    Boolean scheduleReturnGoodsInput(OrderInfoDTO orderInfoDTO, ReturnGoodsWorksheetDTO returnGoodsWorksheetDTO);
 
 }

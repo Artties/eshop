@@ -17,19 +17,19 @@
 	</properties>
 
 
-<!--		<profile>-->
-<!--		<id>jdk-13</id>-->
-<!--		<activation>-->
-<!--			<activeByDefault>true</activeByDefault>-->
-<!--			<jdk>13</jdk>-->
-<!--		</activation>-->
-<!--		<properties>-->
-<!--			<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
-<!--			<maven.compiler.source>13</maven.compiler.source>-->
-<!--			<maven.compiler.target>13</maven.compiler.target>-->
-<!--			<maven.compiler.compilerVersion>13</maven.compiler.compilerVersion>-->
-<!--		</properties>-->
-<!--	</profile>-->
+	<!--		<profile>-->
+	<!--		<id>jdk-13</id>-->
+	<!--		<activation>-->
+	<!--			<activeByDefault>true</activeByDefault>-->
+	<!--			<jdk>13</jdk>-->
+	<!--		</activation>-->
+	<!--		<properties>-->
+	<!--			<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+	<!--			<maven.compiler.source>13</maven.compiler.source>-->
+	<!--			<maven.compiler.target>13</maven.compiler.target>-->
+	<!--			<maven.compiler.compilerVersion>13</maven.compiler.compilerVersion>-->
+	<!--		</properties>-->
+	<!--	</profile>-->
 
 	<!-- 继承spring boot的parent工程 -->
 	<parent>
