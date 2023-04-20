@@ -16,10 +16,27 @@ public class CommentInfoDO {
      * 用户账号id
      */
     private Long userAccountId;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Integer getCustomerServiceScore() {
+        return customerServiceScore;
+    }
+
+    public void setCustomerServiceScore(Integer customerServiceScore) {
+        this.customerServiceScore = customerServiceScore;
+    }
+
     /**
      * 用户名
      */
-    private String Name;
+    private String username;
     /**
      *订单信息id
      */
@@ -39,7 +56,7 @@ public class CommentInfoDO {
     /**
      * 商品Sku销售属性
      */
-    private Long goodsSkuSaleProperties;
+    private String goodsSkuSaleProperties;
     /**
      * 总评分
      */
@@ -51,7 +68,7 @@ public class CommentInfoDO {
     /**
      * 客服评分
      */
-    private Integer customerService;
+    private Integer customerServiceScore;
     /**
      *物流评分
      */
@@ -101,13 +118,7 @@ public class CommentInfoDO {
         this.userAccountId = userAccountId;
     }
 
-    public String getName() {
-        return Name;
-    }
 
-    public void setName(String name) {
-        Name = name;
-    }
 
     public Long getOrderInfoId() {
         return orderInfoId;
@@ -141,11 +152,11 @@ public class CommentInfoDO {
         this.goodsSkuId = goodsSkuId;
     }
 
-    public Long getGoodsSkuSaleProperties() {
+    public String getGoodsSkuSaleProperties() {
         return goodsSkuSaleProperties;
     }
 
-    public void setGoodsSkuSaleProperties(Long goodsSkuSaleProperties) {
+    public void setGoodsSkuSaleProperties(String goodsSkuSaleProperties) {
         this.goodsSkuSaleProperties = goodsSkuSaleProperties;
     }
 
@@ -166,11 +177,11 @@ public class CommentInfoDO {
     }
 
     public Integer getCustomerService() {
-        return customerService;
+        return customerServiceScore;
     }
 
-    public void setCustomerService(Integer customerService) {
-        this.customerService = customerService;
+    public void setCustomerService(Integer customerServiceScore) {
+        this.customerServiceScore = customerServiceScore;
     }
 
     public Integer getLogisticsScore() {

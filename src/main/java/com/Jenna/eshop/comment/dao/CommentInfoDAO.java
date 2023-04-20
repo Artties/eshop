@@ -13,5 +13,5 @@ public interface CommentInfoDAO {
      * @param commentInfoDO 评论信息DO对象
      * @return 是否保存评论信息
      */
-    Boolean saveCommentInfo(CommentInfoDO commentInfoDO);
+    Long saveCommentInfo(CommentInfoDO commentInfoDO);
 }

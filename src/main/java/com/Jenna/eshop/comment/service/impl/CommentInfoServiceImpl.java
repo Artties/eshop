@@ -5,6 +5,7 @@ import com.Jenna.eshop.comment.dao.CommentInfoDAO;
 import com.Jenna.eshop.comment.domain.CommentInfoDTO;
 import com.Jenna.eshop.comment.domain.CommentInfoDO;
 import com.Jenna.eshop.comment.service.CommentInfoService;
+import com.Jenna.eshop.common.util.DateProvider;
 import com.Jenna.eshop.order.domain.OrderInfoDTO;
 import com.Jenna.eshop.order.domain.OrderItemDTO;
 import org.slf4j.Logger;
@@ -25,21 +26,25 @@ public class CommentInfoServiceImpl implements CommentInfoService {
 
     private static final Logger logger = LoggerFactory.getLogger(CommentInfoServiceImpl.class);
 
-
     /**
      * 评论信息管理模块的DAO组件
      */
     @Autowired
     private CommentInfoDAO commentInfoDAO;
     /**
-     * 新增评论信息
+     * 时间日期辅助组件
+     */
+    @Autowired
+    private DateProvider dateProvider;
+
+    /**
+     * 新增手动发表评论信息
      * @param commentInfoDTO 评论信息DTO对象
      * @return 是否保存评论信息
      */
     public Boolean saveManualPublishedCommentInfo(CommentInfoDTO commentInfoDTO){
         try {
             //计算评论的总分数
-
             Integer totalScore = Math.round((commentInfoDTO.getCustomerServiceScore()
                     + commentInfoDTO.getGoodsScore()
                     + commentInfoDTO.getLogisticsScore())/3);
@@ -67,9 +72,8 @@ public class CommentInfoServiceImpl implements CommentInfoService {
             commentInfoDTO.setCommentType(commentType);
 
             //设置创建时间和修改时间
-            commentInfoDTO.setGmtCreate(new Date());
-            commentInfoDTO.setGmtModified(new Date());
-
+            commentInfoDTO.setGmtCreate(dateProvider.getCurrentTime());
+            commentInfoDTO.setGmtModified(dateProvider.getCurrentTime());
 
             //评论信息保存到数据库中
             CommentInfoDO commentInfoDO = commentInfoDTO.clone(CommentInfoDO.class);

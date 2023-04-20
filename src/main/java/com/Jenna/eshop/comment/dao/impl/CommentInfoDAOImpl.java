@@ -3,6 +3,7 @@ package com.Jenna.eshop.comment.dao.impl;
 import com.Jenna.eshop.comment.dao.CommentInfoDAO;
 import com.Jenna.eshop.comment.domain.CommentInfoDO;
 import com.Jenna.eshop.comment.mapper.CommentInfoMapper;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,13 @@ public class CommentInfoDAOImpl implements CommentInfoDAO {
      * 新增评论信息
      * @param commentInfoDO 评论信息DO对象
      */
-    public Boolean saveCommentInfo(CommentInfoDO commentInfoDO){
+    public Long saveCommentInfo(CommentInfoDO commentInfoDO){
         try {
-            commentInfoMapper.saveCommentInfo(commentInfoDO);
+             commentInfoMapper.saveCommentInfo(commentInfoDO);
         }catch (Exception e) {
             logger.error("error",e);
-            return false;
+            return null;
         }
-        return true;
+        return commentInfoDO.getId();
     }
 }
