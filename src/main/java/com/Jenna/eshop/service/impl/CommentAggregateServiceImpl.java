@@ -74,7 +74,7 @@ public class CommentAggregateServiceImpl implements CommentAggregateService {
         }else if (commentInfoDTO.getCommentType().equals(CommentType.MEDIUM_COMMENT)){
             commentAggregateDO.setMediumCommentCount(commentAggregateDO.getMediumCommentCount() + 1L);
         }else if (commentInfoDTO.getCommentType().equals(CommentType.BAD_COMMENT)){
-            commentAggregateDO.setBadCommentCount(commentAggregateDO.getBadCommentCount() + 1L);
+            commentAggregateDO.setBadCommentCount(commentAggregateDO.getBadCommentCount(1L) + 1L);
         }
         Double goodCommentRate = Double.valueOf(new DecimalFormat("#.00").format(
                 commentAggregateDO.getGoodCommentCount()/commentAggregateDO.getTotalCommentCount()));

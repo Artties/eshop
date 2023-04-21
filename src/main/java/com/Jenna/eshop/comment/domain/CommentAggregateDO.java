@@ -100,7 +100,7 @@ public class CommentAggregateDO {
         this.mediumCommentCount = mediumCommentCount;
     }
 
-    public Long getBadCommentCount() {
+    public Long getBadCommentCount(long l) {
         return badCommentCount;
     }
 

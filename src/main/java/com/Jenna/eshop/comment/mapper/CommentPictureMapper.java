@@ -3,6 +3,7 @@ package com.Jenna.eshop.comment.mapper;
 import com.Jenna.eshop.comment.domain.CommentPictureDO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -29,6 +30,7 @@ public interface CommentPictureMapper {
                 +"#{gmtCreate},"
                 +"#{gmtModified}"
                 +")")
+    @Options(keyColumn = "id",keyProperty = "id",useGeneratedKeys = true)
     void saveCommentPicture(CommentPictureDO commentPictureDO);
 
 }
