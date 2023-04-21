@@ -1,6 +1,7 @@
 package com.Jenna.eshop.comment.domain;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class CommentAggregateDO {
     /**
@@ -122,5 +123,22 @@ public class CommentAggregateDO {
 
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof CommentAggregateDO)) {
+            return false;
+        }
+        CommentAggregateDO that = (CommentAggregateDO) o;
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getGoodsId(), that.getGoodsId()) && Objects.equals(getTotalCommentCount(), that.getTotalCommentCount()) && Objects.equals(getGoodCommentCount(), that.getGoodCommentCount()) && Objects.equals(getGoodCommentRate(), that.getGoodCommentRate()) && Objects.equals(getShowPicturesCommentCount(), that.getShowPicturesCommentCount()) && Objects.equals(getMediumCommentCount(), that.getMediumCommentCount()) && Objects.equals(badCommentCount, that.badCommentCount) && Objects.equals(getGmtCreate(), that.getGmtCreate()) && Objects.equals(getGmtModified(), that.getGmtModified());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getGoodsId(), getTotalCommentCount(), getGoodCommentCount(), getGoodCommentRate(), getShowPicturesCommentCount(), getMediumCommentCount(), badCommentCount, getGmtCreate(), getGmtModified());
     }
 }

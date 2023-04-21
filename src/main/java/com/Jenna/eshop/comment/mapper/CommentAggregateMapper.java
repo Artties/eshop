@@ -27,7 +27,7 @@ public interface CommentAggregateMapper {
             +"medium_comment_count,"
             +"bad_comment_count,"
             +"gmt_create,"
-            +"gmt_modified"
+            +"gmt_modified "
     +"FROM comment_aggregate"
     +"WHERE goods_id = #{goodsId}")
     @Results(

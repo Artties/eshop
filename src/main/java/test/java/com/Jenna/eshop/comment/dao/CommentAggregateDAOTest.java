@@ -58,8 +58,28 @@ public class CommentAggregateDAOTest {
     public void testGetCommentAggregateByGoodsId() throws Exception {
         Long goodsId = 1L;
         CommentAggregateDO commentAggregateDO = createCommentAggregateDO(goodsId);
-        CommentAggregateDO resultCommentAggregate = commentAggregateDAO
+        CommentAggregateDO resultCommentAggregateDO = commentAggregateDAO
                 .getCommentAggregateByGoodsId(goodsId);
+
+        assertEquals(commentAggregateDO, resultCommentAggregateDO);
+    }
+
+    /**
+     * 测试更新评论统计信息
+     * @throws Exception 抛出异常
+     */
+    @Test
+    public void testUpdateCommentAggregate() throws Exception {
+        Long goodsId = 1L;
+        CommentAggregateDO commentAggregateDO = createCommentAggregateDO(goodsId);
+
+        commentAggregateDO.setGoodCommentCount(1L);
+        commentAggregateDAO.updateCommentAggregate(commentAggregateDO);
+
+        CommentAggregateDO resultCommentAggregateDO = commentAggregateDAO
+                .getCommentAggregateByGoodsId(goodsId);
+
+        assertEquals(commentAggregateDO, resultCommentAggregateDO);
     }
 
     /**

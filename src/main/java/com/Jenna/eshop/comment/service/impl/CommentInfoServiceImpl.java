@@ -99,7 +99,7 @@ public class CommentInfoServiceImpl implements CommentInfoService {
         CommentInfoDTO commentInfoDTO = null;
         try {
             //创建评论信息DTO对象
-            commentInfoDTO = createCommentInfoDTO(orderInfoDTO,orderItemDTO);
+            commentInfoDTO = createAutoPublishedCommentInfoDTO(orderInfoDTO,orderItemDTO);
 
             //评论信息保存到数据库中
             CommentInfoDO commentInfoDO = commentInfoDTO.clone(CommentInfoDO.class);
@@ -120,7 +120,7 @@ public class CommentInfoServiceImpl implements CommentInfoService {
      * @param orderItemDTO 订单条目DTO对象
      * @return 评论信息DTO对象
      */
-    private CommentInfoDTO createCommentInfoDTO(OrderInfoDTO orderInfoDTO, OrderItemDTO orderItemDTO){
+    private CommentInfoDTO createAutoPublishedCommentInfoDTO(OrderInfoDTO orderInfoDTO, OrderItemDTO orderItemDTO) throws Exception {
         //创建评论信息DTO对象
         CommentInfoDTO commentInfoDTO = new CommentInfoDTO();
 
@@ -140,8 +140,8 @@ public class CommentInfoServiceImpl implements CommentInfoService {
         commentInfoDTO.setShowPictures(ShowPictures.NO);
         commentInfoDTO.setCommentStatus(CommentStatus.APPROVED);
         commentInfoDTO.setCommentType(CommentType.GOOD_COMMENT);
-        commentInfoDTO.setGmtCreate(new Date());
-        commentInfoDTO.setGmtModified(new Date());
+        commentInfoDTO.setGmtCreate(dateProvider.getCurrentTime());
+        commentInfoDTO.setGmtModified(dateProvider.getCurrentTime());
 
         return commentInfoDTO;
     }

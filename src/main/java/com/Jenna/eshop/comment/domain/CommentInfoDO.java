@@ -1,6 +1,7 @@
 package com.Jenna.eshop.comment.domain;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * 评论信息
@@ -246,5 +247,22 @@ public class CommentInfoDO {
 
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof CommentInfoDO)) {
+            return false;
+        }
+        CommentInfoDO that = (CommentInfoDO) o;
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getUserAccountId(), that.getUserAccountId()) && Objects.equals(getUsername(), that.getUsername()) && Objects.equals(getOrderInfoId(), that.getOrderInfoId()) && Objects.equals(getOrderItemId(), that.getOrderItemId()) && Objects.equals(getGoodsId(), that.getGoodsId()) && Objects.equals(getGoodsSkuId(), that.getGoodsSkuId()) && Objects.equals(getGoodsSkuSaleProperties(), that.getGoodsSkuSaleProperties()) && Objects.equals(getTotalScore(), that.getTotalScore()) && Objects.equals(getGoodsScore(), that.getGoodsScore()) && Objects.equals(getCustomerServiceScore(), that.getCustomerServiceScore()) && Objects.equals(getLogisticsScore(), that.getLogisticsScore()) && Objects.equals(getCommentContent(), that.getCommentContent()) && Objects.equals(getShowPictures(), that.getShowPictures()) && Objects.equals(getDefaultComment(), that.getDefaultComment()) && Objects.equals(getCommentStatus(), that.getCommentStatus()) && Objects.equals(getCommentType(), that.getCommentType()) && Objects.equals(getGmtCreate(), that.getGmtCreate()) && Objects.equals(getGmtModified(), that.getGmtModified());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getUserAccountId(), getUsername(), getOrderInfoId(), getOrderItemId(), getGoodsId(), getGoodsSkuId(), getGoodsSkuSaleProperties(), getTotalScore(), getGoodsScore(), getCustomerServiceScore(), getLogisticsScore(), getCommentContent(), getShowPictures(), getDefaultComment(), getCommentStatus(), getCommentType(), getGmtCreate(), getGmtModified());
     }
 }

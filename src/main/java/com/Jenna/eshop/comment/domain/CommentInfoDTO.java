@@ -24,7 +24,7 @@ public class CommentInfoDTO {
     /**
      * 用户名
      */
-    private String Name;
+    private String username;
     /**
      *订单信息id
      */
@@ -106,12 +106,12 @@ public class CommentInfoDTO {
         this.userAccountId = userAccountId;
     }
 
-    public String getName() {
-        return Name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Long getOrderInfoId() {
