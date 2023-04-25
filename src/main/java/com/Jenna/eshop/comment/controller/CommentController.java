@@ -87,7 +87,7 @@ public class CommentController {
             String appBasePath = request.getSession().getServletContext().getRealPath("/");
             commentPictureService.saveCommentPictures(appBasePath,commentInfoDTO.getId(),files);
             //更新评论统计信息
-            commentAggregateService.updateCommentAggregate(commentInfoDTO);
+            commentAggregateService.refreshCommentAggregate(commentInfoDTO);
             //通知订单中心，订单已经达标了评论
             orderFacadeService.informPublishCommentEvent(commentInfoDTO.getOrderInfoId());
 

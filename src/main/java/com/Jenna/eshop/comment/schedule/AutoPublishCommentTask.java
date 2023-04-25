@@ -54,9 +54,10 @@ public class AutoPublishCommentTask {
                     //遍历订单中的订单项
                     for (OrderItemDTO orderItemDTO: OrderInfoDTO.getOrderItems()){
                         //先保存自动发表的评论信息
-                        CommentInfoDTO commentInfoDTO = commentInfoService.saveAutoPublishedCommentInfo(orderInfoDTO,orderItemDTO);
+                        CommentInfoDTO commentInfoDTO = commentInfoService
+                                .saveAutoPublishedCommentInfo(orderInfoDTO,orderItemDTO);
                         //更新统计信息
-                        commentAggregateService.updateCommentAggregate(commentInfoDTO);
+                        commentAggregateService.refreshCommentAggregate(commentInfoDTO);
 
                     }
                 }

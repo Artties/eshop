@@ -19,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
@@ -31,12 +32,12 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 public class CommentInfoServiceTest {
     /**
-     * 评论信息管理模块的service组件
+     * 评论信息管理模块service组件
      */
     @Autowired
     private CommentInfoService commentInfoService;
     /**
-     * 评论信息管理模块的DAO组件
+     * 评论信息管理模块DAO组件
      */
     @MockBean
     private CommentInfoDAO commentInfoDAO;
@@ -48,21 +49,21 @@ public class CommentInfoServiceTest {
 
     /**
      * 初始化
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     @Before
-    public void setUp() throws Exception {
+    public void setup() throws Exception {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date currentTime = dateFormatter.parse(dateFormatter.format(new Date()));
         when(dateProvider.getCurrentTime()).thenReturn(currentTime);
     }
 
     /**
-     * 测试新增手动发表评论信息
-     * @throws Exception
+     * 测试新增手动发表的评论信息
+     * @throws Exception 抛出异常
      */
     @Test
-    public void testSaveAutoPublishedCommentInfo() throws Exception {
+    public void testSaveManualPublishedCommentInfo() throws Exception {
         Long commentInfoId = 1L;
         CommentInfoDTO partialCommentInfoDTO = createPartialCommentInfoDTO();
         CommentInfoDTO commentInfoDTO = createFullCommentInfoDTO(partialCommentInfoDTO);
@@ -70,32 +71,42 @@ public class CommentInfoServiceTest {
 
         when(commentInfoDAO.saveCommentInfo(commentInfoDO)).thenReturn(commentInfoId);
 
-        Boolean result = commentInfoService.saveManualPublishedCommentInfo(partialCommentInfoDTO);
+        commentInfoService.saveManualPublishedCommentInfo(partialCommentInfoDTO);
 
-        verify(commentInfoDAO,times(1)).saveCommentInfo(commentInfoDO);
-        assertTrue(result);
+        verify(commentInfoDAO, times(1)).saveCommentInfo(commentInfoDO);
     }
 
     /**
-     *
-     * @throws Exception
+     * 测试新增自动发表的评论信息
+     * @throws Exception 抛出异常
      */
     @Test
     public void testSaveAutoPublishedCommentInfo() throws Exception {
-        OrderInfoDTO orderInfoDTO =
-    }
+        OrderInfoDTO orderInfoDTO = createOrderInfoDTO();
+        OrderItemDTO orderItemDTO = createOrderItemDTO();
+        CommentInfoDTO commentInfoDTO = createAutoPublishedCommentInfoDTO(
+                orderInfoDTO, orderItemDTO);
+        CommentInfoDO commentInfoDO = convertCommentInfoDTO2DO(commentInfoDTO);
 
+        when(commentInfoDAO.saveCommentInfo(commentInfoDO)).thenReturn(1L);
+
+        CommentInfoDTO resultCommentInfoDTO = commentInfoService.saveAutoPublishedCommentInfo(
+                orderInfoDTO, orderItemDTO);
+
+        verify(commentInfoDAO, times(1)).saveCommentInfo(commentInfoDO);
+        assertEquals(commentInfoDTO, resultCommentInfoDTO);
+    }
 
     /**
      * 创建一个含有部分数据的评论信息DTO对象
      * @return 评论信息DTO对象
-     * @throws Exception 抛出异常
      */
-    private CommentInfoDTO createPartialCommentInfoDTO() throws Exception {
+    private CommentInfoDTO createPartialCommentInfoDTO() {
         CommentInfoDTO commentInfoDTO = new CommentInfoDTO();
 
         commentInfoDTO.setCommentContent("测试评论");
         commentInfoDTO.setCustomerServiceScore(CommentInfoScore.FOUR);
+        commentInfoDTO.setGoodsScore(CommentInfoScore.FIVE);
         commentInfoDTO.setLogisticsScore(CommentInfoScore.THREE);
         commentInfoDTO.setGoodsId(1L);
         commentInfoDTO.setGoodsSkuId(1L);
@@ -109,18 +120,18 @@ public class CommentInfoServiceTest {
         return commentInfoDTO;
     }
 
-
     /**
      * 创建一个完整的评论信息DTO对象
      * @param partialCommentInfoDTO 评论信息DTO对象
      * @return 评论信息DTO对象
-     * @throws Exception 抛出异常
      */
-    private CommentInfoDTO createFullCommentInfoDTO(CommentInfoDTO partialCommentInfoDTO) throws Exception {
+    private CommentInfoDTO createFullCommentInfoDTO(
+            CommentInfoDTO partialCommentInfoDTO) throws Exception {
         CommentInfoDTO commentInfoDTO = new CommentInfoDTO();
 
         commentInfoDTO.setCommentContent(partialCommentInfoDTO.getCommentContent());
         commentInfoDTO.setCustomerServiceScore(partialCommentInfoDTO.getCustomerServiceScore());
+        commentInfoDTO.setGoodsScore(partialCommentInfoDTO.getGoodsScore());
         commentInfoDTO.setLogisticsScore(partialCommentInfoDTO.getLogisticsScore());
         commentInfoDTO.setGoodsId(partialCommentInfoDTO.getGoodsId());
         commentInfoDTO.setGoodsSkuId(partialCommentInfoDTO.getGoodsSkuId());
@@ -138,9 +149,7 @@ public class CommentInfoServiceTest {
         commentInfoDTO.setGmtCreate(dateProvider.getCurrentTime());
         commentInfoDTO.setGmtModified(dateProvider.getCurrentTime());
 
-
         return commentInfoDTO;
-
     }
 
     /**
@@ -148,11 +157,12 @@ public class CommentInfoServiceTest {
      * @param commentInfoDTO 评论信息DTO对象
      * @return 评论信息DO对象
      */
-    private CommentInfoDO convertCommentInfoDTO2DO(CommentInfoDTO commentInfoDTO) throws Exception {
+    private CommentInfoDO convertCommentInfoDTO2DO(CommentInfoDTO commentInfoDTO) {
         CommentInfoDO commentInfoDO = new CommentInfoDO();
 
         commentInfoDO.setCommentContent(commentInfoDTO.getCommentContent());
         commentInfoDO.setCustomerServiceScore(commentInfoDTO.getCustomerServiceScore());
+        commentInfoDO.setGoodsScore(commentInfoDTO.getGoodsScore());
         commentInfoDO.setLogisticsScore(commentInfoDTO.getLogisticsScore());
         commentInfoDO.setGoodsId(commentInfoDTO.getGoodsId());
         commentInfoDO.setGoodsSkuId(commentInfoDTO.getGoodsSkuId());
@@ -170,7 +180,6 @@ public class CommentInfoServiceTest {
         commentInfoDO.setGmtCreate(commentInfoDTO.getGmtCreate());
         commentInfoDO.setGmtModified(commentInfoDTO.getGmtModified());
 
-
         return commentInfoDO;
     }
 
@@ -179,12 +188,11 @@ public class CommentInfoServiceTest {
      * @return 订单信息DTO对象
      * @throws Exception 抛出异常
      */
-    private OrderInfoDTO createOrderInfoDTO() throws Exception{
+    private OrderInfoDTO createOrderInfoDTO() throws Exception {
         OrderInfoDTO orderInfoDTO = new OrderInfoDTO();
         orderInfoDTO.setId(1L);
         orderInfoDTO.setUserAccountId(1L);
         orderInfoDTO.setUsername("test");
-
         return orderInfoDTO;
     }
 
@@ -197,9 +205,42 @@ public class CommentInfoServiceTest {
         OrderItemDTO orderItemDTO = new OrderItemDTO();
         orderItemDTO.setId(1L);
         orderItemDTO.setGoodsId(1L);
+        orderItemDTO.setGoodsSkuId(1L);
         orderItemDTO.setSaleProperties("测试销售属性");
-
         return orderItemDTO;
+    }
+
+    /**
+     * 创建一个自动发表的评论DTO
+     * @param orderInfoDTO 订单信息DTO对象
+     * @param orderItemDTO 订单条目DTO对象
+     * @return 评论信息DTO对象
+     * @throws Exception 抛出异常
+     */
+    private CommentInfoDTO createAutoPublishedCommentInfoDTO(
+            OrderInfoDTO orderInfoDTO, OrderItemDTO orderItemDTO) throws Exception {
+        CommentInfoDTO commentInfoDTO = new CommentInfoDTO();
+
+        commentInfoDTO.setUserAccountId(orderInfoDTO.getUserAccountId());
+        commentInfoDTO.setUsername(orderInfoDTO.getUsername());
+        commentInfoDTO.setOrderInfoId(orderInfoDTO.getId());
+        commentInfoDTO.setOrderItemId(orderItemDTO.getId());
+        commentInfoDTO.setGoodsId(orderItemDTO.getGoodsId());
+        commentInfoDTO.setGoodsSkuId(orderItemDTO.getGoodsSkuId());
+        commentInfoDTO.setGoodsSkuSaleProperties(orderItemDTO.getSaleProperties());
+        commentInfoDTO.setTotalScore(CommentInfoScore.FIVE);
+        commentInfoDTO.setGoodsScore(CommentInfoScore.FIVE);
+        commentInfoDTO.setCustomerServiceScore(CommentInfoScore.FIVE);
+        commentInfoDTO.setLogisticsScore(CommentInfoScore.FIVE);
+        commentInfoDTO.setCommentContent(CommentContent.DEFAULT);
+        commentInfoDTO.setShowPictures(ShowPictures.NO);
+        commentInfoDTO.setDefaultComment(DefaultComment.YES);
+        commentInfoDTO.setCommentStatus(CommentStatus.APPROVED);
+        commentInfoDTO.setCommentType(CommentType.GOOD_COMMENT);
+        commentInfoDTO.setGmtCreate(dateProvider.getCurrentTime());
+        commentInfoDTO.setGmtModified(dateProvider.getCurrentTime());
+
+        return commentInfoDTO;
     }
 
 }

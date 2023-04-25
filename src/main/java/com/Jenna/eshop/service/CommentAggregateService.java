@@ -14,5 +14,5 @@ public interface CommentAggregateService {
      * @param commentInfoDTO 评论信息
      * @return 处理结果
      */
-    Boolean updateCommentAggregate(CommentInfoDTO commentInfoDTO);
+    Boolean refreshCommentAggregate(CommentInfoDTO commentInfoDTO);
 }
