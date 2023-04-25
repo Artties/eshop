@@ -22,7 +22,7 @@ import java.text.DecimalFormat;
  * @date 2023/04/24 09:40
  */
 @Service
-@Transactional(rollbackFor = Exception.class)
+@Transactional(rollbackOn = Exception.class)//rollbackOn是JDK提供 rollbackFor是spring提供
 public class CommentAggregateServiceImpl implements CommentAggregateService {
 
     private static final Logger logger = LoggerFactory.getLogger(CommentAggregateServiceImpl.class);

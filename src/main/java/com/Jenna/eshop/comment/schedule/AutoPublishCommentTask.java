@@ -15,10 +15,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class AutoPublishCommentTask {
     private static final Logger logger = LoggerFactory.getLogger(AutoPublishCommentTask.class);
     /**
@@ -46,13 +48,13 @@ public class AutoPublishCommentTask {
 
             if(orderInfoDTOs != null && orderInfoDTOs.size() > 0){
                 for (OrderInfoDTO orderInfoDTO: orderInfoDTOs) {
-                    if(OrderInfoDTO.getOrderItems() == null ||
-                            OrderInfoDTO.getOrderItems().size() == 0) {
+                    if(orderInfoDTO.getOrderItems() == null ||
+                            orderInfoDTO.getOrderItems().size() == 0) {
                      continue;
                     }
                     orderInfoIds.add(orderInfoDTO.getId());
                     //遍历订单中的订单项
-                    for (OrderItemDTO orderItemDTO: OrderInfoDTO.getOrderItems()){
+                    for (OrderItemDTO orderItemDTO: orderInfoDTO.getOrderItems()){
                         //先保存自动发表的评论信息
                         CommentInfoDTO commentInfoDTO = commentInfoService
                                 .saveAutoPublishedCommentInfo(orderInfoDTO,orderItemDTO);

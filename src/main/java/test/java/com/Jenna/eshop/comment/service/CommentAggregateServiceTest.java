@@ -71,7 +71,7 @@ public class CommentAggregateServiceTest {
         when(commentAggregateDAO.getCommentAggregateByGoodsId(goodsId)).thenReturn(null);
 
         CommentInfoDTO commentInfoDTO = createCommentInfoDTO(goodsId);
-        CommentAggregateDTO resultCommentAggregateDO = commentAggregateService
+        CommentAggregateDO resultCommentAggregateDO = commentAggregateService
                 .refreshCommentAggregate(commentInfoDTO);
 
         assertEquals(goodsId, resultCommentAggregateDO.getGoodsId());
@@ -96,7 +96,7 @@ public class CommentAggregateServiceTest {
         when(commentAggregateDAO.getCommentAggregateByGoodsId(goodsId)).thenReturn(commentAggregateDO);
 
         CommentInfoDTO commentInfoDTO = createCommentInfoDTO(goodsId);
-        CommentAggregateDTO resultCommentAggregateDO = commentAggregateService
+        CommentAggregateDO resultCommentAggregateDO = commentAggregateService
                 .refreshCommentAggregate(commentInfoDTO);
 
         Double expectedGoodCommentRate = Double.valueOf(new DecimalFormat("#.00").format(

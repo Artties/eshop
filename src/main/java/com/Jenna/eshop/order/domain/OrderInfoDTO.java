@@ -110,7 +110,7 @@ public class OrderInfoDTO {
     /**
      * 订单包含的订单条目
      */
-    private static List<OrderItemDTO> orderItems;
+    private List<OrderItemDTO> orderItems;
 
     public Long getId() {
         return id;
@@ -280,11 +280,11 @@ public class OrderInfoDTO {
         this.gmtModified = gmtModified;
     }
 
-    public static List<OrderItemDTO> getOrderItems() {
+    public List<OrderItemDTO> getOrderItems() {
         return orderItems;
     }
 
     public void setOrderItems(List<OrderItemDTO> orderItems) {
-        OrderInfoDTO.orderItems = orderItems;
+        this.orderItems = orderItems;
     }
 }
