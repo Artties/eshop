@@ -4,6 +4,7 @@ import java.util.Date;
 
 /**
  * 退货入库单DTO
+ * @author Jenna C He
  */
 public class ReturnGoodsInputOrderDTO {
     /**
@@ -18,7 +19,7 @@ public class ReturnGoodsInputOrderDTO {
     /**
      * 订单ID
      */
-    private long orderId;
+    private Long orderId;
     /**
      * 订单编号
      */

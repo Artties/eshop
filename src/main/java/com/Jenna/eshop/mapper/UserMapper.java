@@ -13,10 +13,11 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+
 /**
  * 用户管理模块的Mapper组件
- * @author zhonghuashishan
- *
+ * @author Jenna C He
+ * @date 2023/1/6 13:54
  */
 @Mapper
 public interface UserMapper {

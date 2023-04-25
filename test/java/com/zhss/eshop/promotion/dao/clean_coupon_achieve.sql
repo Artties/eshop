@@ -1,1 +1,0 @@
-DELETE FROM promotion_coupon_achieve

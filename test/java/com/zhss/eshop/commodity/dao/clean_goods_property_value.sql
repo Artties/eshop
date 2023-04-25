@@ -1,1 +1,0 @@
-DELETE FROM commodity_goods_property_value

@@ -1,1 +1,0 @@
-DELETE FROM auth_account_role_relationship
