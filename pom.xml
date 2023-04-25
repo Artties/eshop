@@ -19,6 +19,8 @@
 
 
 <!--		<profile>-->
+
+
 <!--		<id>jdk-13</id>-->
 <!--		<activation>-->
 <!--			<activeByDefault>true</activeByDefault>-->
@@ -31,7 +33,6 @@
 <!--			<maven.compiler.compilerVersion>13</maven.compiler.compilerVersion>-->
 <!--		</properties>-->
 <!--	</profile>-->
-
 
 	<!-- 继承spring boot的parent工程 -->
 	<parent>
