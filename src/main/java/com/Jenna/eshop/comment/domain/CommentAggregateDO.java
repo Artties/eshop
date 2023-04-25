@@ -1,6 +1,7 @@
 package com.Jenna.eshop.comment.domain;
 
 import com.Jenna.eshop.common.util.BeanCopierUtils;
+import com.Jenna.eshop.common.util.AbstractObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
