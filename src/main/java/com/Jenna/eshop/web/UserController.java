@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 /**
  * 用户管理模块的控制器组件
  * 
@@ -25,8 +26,9 @@ import org.springframework.web.bind.annotation.RestController;
  * 就是说他认为系统里的各种东西都是资源，暴露出去的接口，都是对资源的一种操作
  * 所以在请求URL里面，按照一种风格标志出来你要操作的是哪个资源
  * 然后通过HTTP method来定义你要对这个资源执行什么样的操作呢？
- * 
- * @author zhonghuashishan
+ *
+ * @author Jenna C He
+ * @date 2023/1/6 13:59
  *
  */
 @RestController

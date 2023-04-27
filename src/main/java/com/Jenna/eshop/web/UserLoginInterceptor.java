@@ -6,6 +6,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * @author Jenna C He
+ * @date 2023/1/6 13:59
+ */
 public class UserLoginInterceptor implements HandlerInterceptor {
     
     public boolean preHandle(HttpServletRequest request, 

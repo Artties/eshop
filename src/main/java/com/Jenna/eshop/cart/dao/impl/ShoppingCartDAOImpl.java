@@ -35,6 +35,17 @@ public class ShoppingCartDAOImpl implements ShoppingCartDAO {
     }
 
     /**
+     * 根据商品id查询购物车
+     *
+     * @param userAccountId 商品id
+     * @return 购物车
+     */
+    @Override
+    public ShoppingCartDO getShoppingCartItemByGoodsSkuId(Long userAccountId) {
+        return shoppingCartMapper.getShoppingCartByUserAccountId(userAccountId);
+    }
+
+    /**
      * 新增购物车
      * @param shoppingCartDO 购物车DO对象
      */
