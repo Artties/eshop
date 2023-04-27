@@ -18,6 +18,7 @@
 
 
 
+
 <!--		<profile>-->
 
 
@@ -62,6 +63,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.22</version>
+		</dependency>
+
 		<!-- spring boot提供的辅助开发工具 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -182,6 +190,12 @@
 			<groupId>cglib</groupId>
 			<artifactId>cglib-nodep</artifactId>
 			<version>2.2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.dangdang</groupId>
+			<artifactId>config-toolkit</artifactId>
+			<version>3.3.0-RELEASE</version>
 		</dependency>
 
 		<dependency>

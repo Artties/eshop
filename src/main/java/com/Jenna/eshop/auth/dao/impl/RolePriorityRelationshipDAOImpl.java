@@ -5,10 +5,12 @@ import com.Jenna.eshop.auth.dao.RolePriorityRelationshipDAO;
 import com.Jenna.eshop.auth.domain.AccountPriorityRelationshipDO;
 import com.Jenna.eshop.auth.domain.RolePriorityRelationshipDO;
 import com.Jenna.eshop.auth.mapper.RolePriorityRelationshipMapper;
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
+
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

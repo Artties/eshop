@@ -1,5 +1,6 @@
 package com.Jenna.eshop.commondity.service.impl;
 
+import com.Jenna.eshop.common.util.DateProvider;
 import com.Jenna.eshop.commondity.dao.PropertyDAO;
 import com.Jenna.eshop.commondity.domain.PropertyDO;
 import com.Jenna.eshop.commondity.domain.PropertyDTO;
@@ -27,6 +28,11 @@ public class PropertyServiceImpl implements PropertyService {
      */
     @Autowired
     private PropertyDAO propertyDAO;
+    /**
+     * 日期辅助组件
+     */
+    @Autowired
+    private DateProvider dateProvider;
 
     /**
      * 分页查询商品属性
@@ -55,6 +61,8 @@ public class PropertyServiceImpl implements PropertyService {
      */
     public Boolean saveProperty(PropertyDTO propertyDTO) {
         try {
+            propertyDTO.setGmtCreate(dateProvider.getCurrentTime());
+            propertyDTO.setGmtModified(dateProvider.getCurrentTime());
             PropertyDO propertyDO = propertyDTO.clone(PropertyDO.class);
             propertyDAO.saveProperty(propertyDO);
         }catch (Exception e) {
@@ -87,6 +95,8 @@ public class PropertyServiceImpl implements PropertyService {
      */
     public Boolean updateProperty(PropertyDTO propertyDTO) {
         try {
+            propertyDTO.setGmtCreate(dateProvider.getCurrentTime());
+            propertyDTO.setGmtModified(dateProvider.getCurrentTime());
             PropertyDO propertyDO = propertyDTO.clone(PropertyDO.class);
             propertyDAO.saveProperty(propertyDO);
         } catch (Exception e) {

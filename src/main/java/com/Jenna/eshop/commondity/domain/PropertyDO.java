@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * 商品属性DO类
@@ -114,5 +115,22 @@ public class PropertyDO {
             return null;
         }
         return target;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof PropertyDO)) {
+            return false;
+        }
+        PropertyDO that = (PropertyDO) o;
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getPropertyName(), that.getPropertyName()) && Objects.equals(getPropertyDesc(), that.getPropertyDesc()) && Objects.equals(getInputType(), that.getInputType()) && Objects.equals(getInputValues(), that.getInputValues()) && Objects.equals(getGmtCreate(), that.getGmtCreate()) && Objects.equals(getGmtModified(), that.getGmtModified());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getPropertyName(), getPropertyDesc(), getInputType(), getInputValues(), getGmtCreate(), getGmtModified());
     }
 }
