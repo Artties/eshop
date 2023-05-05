@@ -1,6 +1,7 @@
 package com.Jenna.eshop.promotion.service;
 import com.Jenna.eshop.promotion.domain.PromotionActivityDTO;
 
+import java.text.ParseException;
 import java.util.List;
 
 
@@ -15,5 +16,5 @@ public interface PromotionFacadeService {
      * @param goodsId 商品id
      * @return 促销活动
      */
-    List<PromotionActivityDTO>listPromotionActivitiesByGoodsId(Long goodsId);
+    List<PromotionActivityDTO>listPromotionActivitiesByGoodsId(Long goodsId) throws ParseException;
 }
