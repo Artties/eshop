@@ -21,6 +21,10 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * @author Jenna C He
+ * @date 2023/1/6 13:58
+ */
 @Configuration
 public class MvcConfigurer implements WebMvcConfigurer {
     

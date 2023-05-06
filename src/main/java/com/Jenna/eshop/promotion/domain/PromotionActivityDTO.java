@@ -1,9 +1,11 @@
 package com.Jenna.eshop.promotion.domain;
 
-import javax.xml.crypto.Data;
+import java.util.Date;
 
 /**
  * 促销活动DTO
+ * @author Jenna C He
+ * @date 2023/1/6 13:56
  */
 public class PromotionActivityDTO {
     /**
@@ -18,12 +20,12 @@ public class PromotionActivityDTO {
     /**
      * 促销活动开始时间
      */
-    private Data promotionActivityStartTime;
+    private Date promotionActivityStartTime;
 
     /**
      * 促销活动结束时间
      */
-    private Data promotionActivityEndTime;
+    private Date promotionActivityEndTime;
 
     /**
      * 促销活动备注
@@ -43,12 +45,12 @@ public class PromotionActivityDTO {
     /**
      * 促销活动创建时间
      */
-    private Data gmtCreate;
+    private Date gmtCreate;
 
     /**
      * 促销活动修改时间
      */
-    private Data gmtModified;
+    private Date gmtModified;
 
     public Long getId() {
         return id;
@@ -66,19 +68,19 @@ public class PromotionActivityDTO {
         this.promotionActivityName = promotionActivityName;
     }
 
-    public Data getPromotionActivityStartTime() {
+    public Date getPromotionActivityStartTime() {
         return promotionActivityStartTime;
     }
 
-    public void setPromotionActivityStartTime(Data promotionActivityStartTime) {
+    public void setPromotionActivityStartTime(Date promotionActivityStartTime) {
         this.promotionActivityStartTime = promotionActivityStartTime;
     }
 
-    public Data getPromotionActivityEndTime() {
+    public Date getPromotionActivityEndTime() {
         return promotionActivityEndTime;
     }
 
-    public void setPromotionActivityEndTime(Data promotionActivityEndTime) {
+    public void setPromotionActivityEndTime(Date promotionActivityEndTime) {
         this.promotionActivityEndTime = promotionActivityEndTime;
     }
 
@@ -106,19 +108,19 @@ public class PromotionActivityDTO {
         this.promotionActivityRule = promotionActivityRule;
     }
 
-    public Data getGmtCreate() {
+    public Date getGmtCreate() {
         return gmtCreate;
     }
 
-    public void setGmtCreate(Data gmtCreate) {
+    public void setGmtCreate(Date gmtCreate) {
         this.gmtCreate = gmtCreate;
     }
 
-    public Data getGmtModified() {
+    public Date getGmtModified() {
         return gmtModified;
     }
 
-    public void setGmtModified(Data gmtModified) {
+    public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }
 }

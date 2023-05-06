@@ -1,5 +1,6 @@
 package com.Jenna.eshop.Inventory.service.impl;
 
+
 import com.Jenna.eshop.Inventory.command.GoodsStockUpdateCommand;
 import com.Jenna.eshop.Inventory.command.PurchaseInputStockUpdateCommandFactory;
 import com.Jenna.eshop.Inventory.command.ReturnGoodsInputStockUpdateCommandFactory;
@@ -11,6 +12,13 @@ import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+/**
+ * 库存中心对外接口service组件
+ * @author Jenna C He
+ * @date 2023/05/05 10:03
+ */
+public class InventoryFacadeServiceImpl implements InventoryFacadeService {
 
 /**
  * 库存中心对外提供接口的service组件
@@ -34,7 +42,6 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
     @Autowired
     private ReturnGoodsInputStockUpdateCommandFactory<ReturnGoodsInputOrderDTO>
             returnGoodsInputStockUpdateCommandFactory;
-
 
     /**
      * 通知库存中心，"采购入库完成"事件发生了
@@ -64,7 +71,7 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
      */
     @Override
     public Boolean informSubmitOrderEvent(OrderInfoDTO orderInfoDTO) {
-        return false;
+        return true;
     }
 
     /**
@@ -75,7 +82,7 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
      */
     @Override
     public Boolean informPayOrderEvent(OrderInfoDTO orderInfoDTO) {
-        return false;
+        return true;
     }
 
     /**
@@ -86,7 +93,7 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
      */
     @Override
     public Boolean informCancelOrderEvent(OrderInfoDTO orderInfoDTO) {
-        return false;
+        return true;
     }
 
     /**
@@ -117,6 +124,6 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
      */
     @Override
     public Long getSaleStockQuantity(Long goodsSkuId) {
-        return 0L;
+        return 1159L;
     }
 }

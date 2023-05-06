@@ -4,8 +4,11 @@ import com.Jenna.eshop.order.domain.OrderInfoDTO;
 
 import java.util.List;
 
+
 /**
  * 订单中心对外提供接口
+ * @author Jenna C He
+ * @date 2023/1/6 13:55
  */
 public interface OrderFacadeService {
     /**
@@ -55,7 +58,7 @@ public interface OrderFacadeService {
      * @param orderId 订单id
      * @return 处理结果
      */
-    Boolean informPublishComment(Long orderId);
+    Boolean informPublishCommentEvent(Long orderId);
 
     /**
      * 从订单中心获取，确认收货时间超过了7天，而且还没有发表评论的订单
@@ -69,5 +72,6 @@ public interface OrderFacadeService {
      * @return 处理结果
      */
     Boolean informBatchPublishCommentEvent(List<Long> orderIds);
+
 
 }

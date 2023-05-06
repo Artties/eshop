@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * 退货入库单DTO
+ * @author Jenna C He
  */
 public class ReturnGoodsInputOrderDTO {
     /**
