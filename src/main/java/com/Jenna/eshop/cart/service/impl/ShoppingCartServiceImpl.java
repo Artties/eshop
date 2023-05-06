@@ -1,18 +1,27 @@
 package com.Jenna.eshop.cart.service.impl;
 
+import com.Jenna.eshop.Inventory.service.InventoryFacadeService;
 import com.Jenna.eshop.cart.dao.ShoppingCartDAO;
 
 import com.Jenna.eshop.cart.dao.ShoppingCartItemDAO;
 import com.Jenna.eshop.cart.domain.ShoppingCartDO;
+import com.Jenna.eshop.cart.domain.ShoppingCartDTO;
 import com.Jenna.eshop.cart.domain.ShoppingCartItemDO;
+import com.Jenna.eshop.cart.domain.ShoppingCartItemDTO;
 import com.Jenna.eshop.cart.service.ShoppingCartService;
 import com.Jenna.eshop.common.util.DateProvider;
+import com.Jenna.eshop.commondity.service.CommodityFacadeService;
+import com.Jenna.eshop.goods.domain.GoodsSkuDTO;
+import com.Jenna.eshop.promotion.domain.PromotionActivityDTO;
+import com.Jenna.eshop.promotion.service.PromotionFacadeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 购物车管理模块的service组件
@@ -37,8 +46,21 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
      */
     @Autowired
     private DateProvider dateProvider;
-
-
+    /**
+     * 商品中心对外service组件
+     */
+    @Autowired
+    private CommodityFacadeService commodityFacadeService;
+    /**
+     * 库存中心对外接口service组件
+     */
+    @Autowired
+    private InventoryFacadeService inventoryFacadeService;
+    /**
+     * 促销中心对外接口service组件
+     */
+    @Autowired
+    private PromotionFacadeService promotionFacadeService;
     /**
      * 添加购物车商品条目
      *
@@ -96,5 +118,70 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         }
 
         return true;
+    }
+
+    /**
+     * 查看用户的购物车中的数据
+     *
+     * @param userAccountId 用户账号id
+     * @return 购物车DTO对象
+     */
+    @Override
+    public ShoppingCartDTO getShoppingCartDTOByUserAccountId(Long userAccountId) {
+        try{
+            //根据用户账号id
+            ShoppingCartDO shoppingCartDO = shoppingCartDAO
+                    .getShoppingCartByUserAccountId(userAccountId);
+            if (shoppingCartDO == null){
+                return new ShoppingCartDTO();
+            }
+
+            ShoppingCartDTO shoppingCartDTO = shoppingCartDO.clone(ShoppingCartDTO.class);
+
+            //查询购物车中的条目数据
+            List<ShoppingCartItemDO> shoppingCartItemDOs = shoppingCartItemDAO
+                    .listShoppingCartItemByCartId(shoppingCartDTO.getId());
+
+            if (shoppingCartItemDOs == null || shoppingCartItemDOs.size() == 0) {
+                return shoppingCartDTO;
+            }
+
+            List<ShoppingCartItemDTO> shoppingCartItemDTOs = new ArrayList<ShoppingCartItemDTO>();
+            shoppingCartDTO.setShoppingCartItemDTOs(shoppingCartItemDTOs);
+
+            for (ShoppingCartItemDO shoppingCartItemDO : shoppingCartItemDOs) {
+                ShoppingCartItemDTO shoppingCartItemDTO = shoppingCartItemDO.clone(
+                        ShoppingCartItemDTO.class);
+                //给每个购物车条目填充数据
+                GoodsSkuDTO goodsSkuDTO = commodityFacadeService.getGoodsSkuById(
+                        shoppingCartItemDTO.getGoodsSkuId());
+                shoppingCartItemDTO.setGoodsId(goodsSkuDTO.getGoodsId());
+                shoppingCartItemDTO.setGoodsHeight(goodsSkuDTO.getGoodsHeight());
+                shoppingCartItemDTO.setGoodsLength(goodsSkuDTO.getGoodsLength());
+                shoppingCartItemDTO.setGoodsName(goodsSkuDTO.getGoodsName());
+                shoppingCartItemDTO.setGoodsSkuCode(goodsSkuDTO.getGoodsSkuCode());
+                shoppingCartItemDTO.setGoodsWidth(goodsSkuDTO.getGoodsWidth());
+                shoppingCartItemDTO.setGrossWeight(goodsSkuDTO.getGrossWeight());
+                shoppingCartItemDTO.setSalePrice(goodsSkuDTO.getSalePrice());
+                shoppingCartItemDTO.setSaleProperties(goodsSkuDTO.getSaleProperties());
+
+                //给购物车条目填充库存数据
+                Long saleStockQuantity = inventoryFacadeService.getSaleStockQuantity(
+                        shoppingCartItemDTO.getGoodsSkuId());
+                shoppingCartItemDTO.setSaleStockQuantity(saleStockQuantity);
+
+                //给购物车条目填充促销数据
+                List<PromotionActivityDTO> promotionActivityDTOs = promotionFacadeService
+                        .listPromotionActivitiesByGoodsId(shoppingCartItemDTO.getGoodsId());
+                shoppingCartItemDTO.setPromotionActivityDTOs(promotionActivityDTOs);
+
+                //添加购物车条目DTO对象到集合中
+                shoppingCartItemDTOs.add(shoppingCartItemDTO);
+            }
+            return shoppingCartDTO;
+        }catch (Exception e) {
+            logger.error("error",e);
+            return new ShoppingCartDTO();
+        }
     }
 }

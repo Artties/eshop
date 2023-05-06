@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -77,13 +78,21 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
         return true;
     }
 
+
     /**
+     * 查询购物车中的所有条目
      * @param shoppingCartId 购物车id
      * @return
      * @throws Exception
      */
     @Override
     public List<ShoppingCartItemDO> listShoppingCartItemByCartId(Long shoppingCartId) throws Exception {
+        try{
+            return shoppingItemMapper.listShoppingCartItemByCartId(shoppingCartId);
+        }catch (Exception e) {
+            logger.error("error",e);
+
+        }
         return null;
     }
 

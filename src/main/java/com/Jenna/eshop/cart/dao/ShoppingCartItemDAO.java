@@ -36,7 +36,8 @@ public interface ShoppingCartItemDAO {
      * @return 商品条目
      * @throws Exception
      */
-    List<ShoppingCartItemDO> listShoppingCartItemByCartId(Long shoppingCartId) throws Exception;
+    List<ShoppingCartItemDO> listShoppingCartItemByCartId(
+            Long shoppingCartId) throws Exception;
 
     /**
      * 删除购物车条目
@@ -44,4 +45,5 @@ public interface ShoppingCartItemDAO {
      * @throws Exception
      */
     void remove(Long id) throws Exception;
+
 }

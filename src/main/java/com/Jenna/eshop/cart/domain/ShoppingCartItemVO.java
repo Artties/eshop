@@ -5,15 +5,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /**
- * 购物车条目DO类
+ * 购物车条目VO类
  * @author Jenna C He
  * @date 2023/3/14 11:17
  */
-public class ShoppingCartItemDO {
-    private static final Logger logger = LoggerFactory.getLogger(ShoppingCartItemDO.class);
+public class ShoppingCartItemVO {
+    private static final Logger logger = LoggerFactory.getLogger(ShoppingCartItemVO.class);
     /**
      * id
      */
@@ -26,20 +27,9 @@ public class ShoppingCartItemDO {
      * 购物车id
      */
     private Long shoppingCartId;
-
-    public Long getUserAccountId() {
-        return userAccountId;
-    }
-
-    public void setUserAccountId(Long userAccountId) {
-        this.userAccountId = userAccountId;
-    }
-
     /**
      * 商品sku id
      */
-
-
     private Long goodsSkuId;
     /**
      * 购买数量
@@ -53,6 +43,10 @@ public class ShoppingCartItemDO {
      * 购物车条目的修改时间
      */
     private Date gmtModified;
+    /**
+     * 购物车条目集合
+     */
+    private List<ShoppingCartItemVO> shoppingCartItemVOs;
 
     public Long getId() {
         return id;
@@ -61,7 +55,13 @@ public class ShoppingCartItemDO {
     public void setId(Long id) {
         this.id = id;
     }
+    public Long getUserAccountId() {
+        return userAccountId;
+    }
 
+    public void setUserAccountId(Long userAccountId) {
+        this.userAccountId = userAccountId;
+    }
     public Long getShoppingCartId() {
         return shoppingCartId;
     }
@@ -102,15 +102,23 @@ public class ShoppingCartItemDO {
         this.gmtModified = gmtModified;
     }
 
+    public List<ShoppingCartItemVO> getShoppingCartItemVOs() {
+        return shoppingCartItemVOs;
+    }
+
+    public void setShoppingCartItemVOs(List<ShoppingCartItemVO> shoppingCartItemVOs) {
+        this.shoppingCartItemVOs = shoppingCartItemVOs;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof ShoppingCartItemDO)) {
+        if (!(o instanceof ShoppingCartItemVO)) {
             return false;
         }
-        ShoppingCartItemDO that = (ShoppingCartItemDO) o;
+        ShoppingCartItemVO that = (ShoppingCartItemVO) o;
         return Objects.equals(getId(), that.getId()) && Objects.equals(getUserAccountId(), that.getUserAccountId()) && Objects.equals(getShoppingCartId(), that.getShoppingCartId()) && Objects.equals(getGoodsSkuId(), that.getGoodsSkuId()) && Objects.equals(getPurchaseQuantity(), that.getPurchaseQuantity()) && Objects.equals(getGmtCreate(), that.getGmtCreate()) && Objects.equals(getGmtModified(), that.getGmtModified());
     }
 

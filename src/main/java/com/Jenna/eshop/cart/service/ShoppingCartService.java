@@ -1,5 +1,6 @@
 package com.Jenna.eshop.cart.service;
 
+import com.Jenna.eshop.cart.domain.ShoppingCartDTO;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,4 +17,11 @@ public interface ShoppingCartService {
      * @return 处理结果
      */
     Boolean addShoppingCartItem(Long userAccountId, Long goodsSkuId);
+
+    /**
+     * 查看用户的购物车中的数据
+     * @param userAccountId 用户账号id
+     * @return 购物车DTO对象
+     */
+    ShoppingCartDTO getShoppingCartDTOByUserAccountId(Long userAccountId);
 }

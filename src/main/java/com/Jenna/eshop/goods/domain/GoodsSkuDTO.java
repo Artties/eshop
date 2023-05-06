@@ -31,7 +31,7 @@ public class GoodsSkuDTO {
     /**
      * 商品宽度
      */
-    private Double goodsWeight;
+    private Double goodsWidth;
     /**
      * 商品高度
      */
@@ -161,12 +161,12 @@ public class GoodsSkuDTO {
         this.goodsLength = goodsLength;
     }
 
-    public Double getGoodsWeight() {
-        return goodsWeight;
+    public Double getGoodsWidth() {
+        return goodsWidth;
     }
 
-    public void setGoodsWeight(Double goodsWeight) {
-        this.goodsWeight = goodsWeight;
+    public void setGoodsWidth(Double goodsWidth) {
+        this.goodsWidth = goodsWidth;
     }
 
     public Double getGoodsHeight() {

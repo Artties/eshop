@@ -1,5 +1,9 @@
 package com.Jenna.eshop.cart.domain;
 
+import com.Jenna.eshop.common.util.BeanCopierUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -9,6 +13,7 @@ import java.util.Objects;
  * @date 2023/3/14 11:14
  */
 public class ShoppingCartDO {
+    private static final Logger logger = LoggerFactory.getLogger(ShoppingCartDO.class);
     /**
      * id
      */
@@ -85,7 +90,17 @@ public class ShoppingCartDO {
                 '}';
     }
 
-
+    public <T> T clone(Class<T> clazz) {
+        T target = null;
+        try{
+            target = clazz.newInstance();
+            BeanCopierUtils.copyProperties(this, target);
+        }catch (Exception e) {
+            logger.error("error",e);
+            return null;
+        }
+        return target;
+    }
 
 //
 //    @Override
