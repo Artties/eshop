@@ -93,7 +93,7 @@ public class ReturnGoodsInputOrderItemDTO {
         this.returnGoodsInputOrderId = returnGoodsInputOrderId;
     }
 
-    public Long getGoodsSkuId() {
+    public static Long getGoodsSkuId() {
         return goodsSkuId;
     }
 

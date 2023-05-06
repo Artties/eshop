@@ -1,6 +1,7 @@
 package com.Jenna.eshop.wms.domain;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 退货入库单DTO
@@ -12,12 +13,15 @@ public class ReturnGoodsInputOrderDTO {
      */
     private Long id;
     /**
-     *用户账号ID
+     * 退货工单id
+     */
+    private Long returnGoodsWorksheetId;
+    /**
+     * 用户账号ID
      */
     private Long userAccountId;
-
     /**
-     * 订单ID
+     * 订单id
      */
     private Long orderId;
     /**
@@ -27,33 +31,27 @@ public class ReturnGoodsInputOrderDTO {
     /**
      * 退货入库单的状态
      */
-    private Integer returnGoodsInputOrderStatus;
-
+    private Integer status;
     /**
      * 收货人
      */
     private String consignee;
-
     /**
      * 收货地址
      */
     private String deliveryAddress;
-
     /**
      * 收货人手机号码
      */
     private String consigneeCellPhoneNumber;
-
     /**
      * 运费
      */
     private Double freight;
-
     /**
      * 支付方式
      */
     private Integer payType;
-
     /**
      * 订单总金额
      */
@@ -66,52 +64,46 @@ public class ReturnGoodsInputOrderDTO {
      * 优惠券抵扣金额
      */
     private Double couponAmount;
-
     /**
      * 应付金额
      */
     private Double payableAmount;
-
     /**
      * 发票抬头
      */
     private String invoiceTitle;
-
     /**
      * 纳税人识别号
      */
-    private String taxPayerId;
-
+    private String taxpayerId;
     /**
      * 订单备注
      */
     private String orderComment;
-
     /**
      * 退货原因
      */
-    private String returnGoodsReason;
+    private Integer returnGoodsReason;
     /**
      * 退货备注
      */
-    private String returnGoodsComment;
-
+    private String returnGoodsRemark;
     /**
-     * 退货实际到货时间
+     * 退货的实际到货时间
      */
     private Date arrivalTime;
-
     /**
-     * 退货出库单的创建时间
+     * 销售出库单的创建时间
      */
     private Date gmtCreate;
-
     /**
-     * 退货出库单的修改时间
+     * 销售出库单的修改时间
      */
     private Date gmtModified;
-
-
+    /**
+     * 退货入库单条目DTO集合
+     */
+    private List<ReturnGoodsInputOrderItemDTO> items;
 
     public Long getId() {
         return id;
@@ -119,6 +111,14 @@ public class ReturnGoodsInputOrderDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getReturnGoodsWorksheetId() {
+        return returnGoodsWorksheetId;
+    }
+
+    public void setReturnGoodsWorksheetId(Long returnGoodsWorksheetId) {
+        this.returnGoodsWorksheetId = returnGoodsWorksheetId;
     }
 
     public Long getUserAccountId() {
@@ -129,11 +129,11 @@ public class ReturnGoodsInputOrderDTO {
         this.userAccountId = userAccountId;
     }
 
-    public long getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(long orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
 
@@ -145,12 +145,12 @@ public class ReturnGoodsInputOrderDTO {
         this.orderNo = orderNo;
     }
 
-    public Integer getReturnGoodsInputOrderStatus() {
-        return returnGoodsInputOrderStatus;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setReturnGoodsInputOrderStatus(Integer returnGoodsInputOrderStatus) {
-        this.returnGoodsInputOrderStatus = returnGoodsInputOrderStatus;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public String getConsignee() {
@@ -233,12 +233,12 @@ public class ReturnGoodsInputOrderDTO {
         this.invoiceTitle = invoiceTitle;
     }
 
-    public String getTaxPayerId() {
-        return taxPayerId;
+    public String getTaxpayerId() {
+        return taxpayerId;
     }
 
-    public void setTaxPayerId(String taxPayerId) {
-        this.taxPayerId = taxPayerId;
+    public void setTaxpayerId(String taxpayerId) {
+        this.taxpayerId = taxpayerId;
     }
 
     public String getOrderComment() {
@@ -249,20 +249,20 @@ public class ReturnGoodsInputOrderDTO {
         this.orderComment = orderComment;
     }
 
-    public String getReturnGoodsReason() {
+    public Integer getReturnGoodsReason() {
         return returnGoodsReason;
     }
 
-    public void setReturnGoodsReason(String returnGoodsReason) {
+    public void setReturnGoodsReason(Integer returnGoodsReason) {
         this.returnGoodsReason = returnGoodsReason;
     }
 
-    public String getReturnGoodsComment() {
-        return returnGoodsComment;
+    public String getReturnGoodsRemark() {
+        return returnGoodsRemark;
     }
 
-    public void setReturnGoodsComment(String returnGoodsComment) {
-        this.returnGoodsComment = returnGoodsComment;
+    public void setReturnGoodsRemark(String returnGoodsRemark) {
+        this.returnGoodsRemark = returnGoodsRemark;
     }
 
     public Date getArrivalTime() {
@@ -288,4 +288,26 @@ public class ReturnGoodsInputOrderDTO {
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }
+
+    public List<ReturnGoodsInputOrderItemDTO> getReturnGoodsInputOrderItemDTOs() {
+        return items;
+    }
+
+    public void setItems(List<ReturnGoodsInputOrderItemDTO> items) {
+        this.items = items;
+    }
+
+    @Override
+    public String toString() {
+        return "ReturnGoodsInputOrderDTO [id=" + id + ", userAccountId=" + userAccountId + ", orderId=" + orderId
+                + ", orderNo=" + orderNo + ", status=" + status + ", consignee=" + consignee + ", deliveryAddress="
+                + deliveryAddress + ", consigneeCellPhoneNumber=" + consigneeCellPhoneNumber + ", freight=" + freight
+                + ", payType=" + payType + ", totalAmount=" + totalAmount + ", discountAmount=" + discountAmount
+                + ", couponAmount=" + couponAmount + ", payableAmount=" + payableAmount + ", invoiceTitle="
+                + invoiceTitle + ", taxpayerId=" + taxpayerId + ", orderComment=" + orderComment
+                + ", returnGoodsReason=" + returnGoodsReason + ", returnGoodsRemark=" + returnGoodsRemark
+                + ", arrivalTime=" + arrivalTime + ", gmtCreate=" + gmtCreate + ", gmtModified=" + gmtModified
+                + ", items=" + items + "]";
+    }
+
 }
