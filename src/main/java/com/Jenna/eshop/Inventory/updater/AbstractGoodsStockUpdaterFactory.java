@@ -52,9 +52,9 @@ public abstract class AbstractGoodsStockUpdaterFactory<T>
      */
     public GoodsStockUpdater create(OrderInfoDTO parameter) {
         try {
-            List<Long> goodsSkuIds = getGoodsSkuIds(parameter);
+            List<Long> goodsSkuIds = getGoodsSkuIds((T) parameter);
             List<GoodsStockDO> goodsStockDOs = createGoodsStockDOs(goodsSkuIds);
-            return create(goodsStockDOs,parameter);
+            return create(goodsStockDOs, (T) parameter);
         }catch (Exception e) {
             logger.error("error",e);
 
@@ -69,15 +69,6 @@ public abstract class AbstractGoodsStockUpdaterFactory<T>
      * @throws Exception 抛出异常
      */
     protected abstract List<Long> getGoodsSkuIds(T parameter) throws Exception;
-
-    /**
-     * 创建库存更新命令
-     * @param goodsStockDOs 商品库存DO对象集合
-     * @return 库存更新命令
-     * @throws Exception 抛出异常
-     */
-    protected abstract GoodsStockUpdater create(
-            List<GoodsStockDO> goodsStockDOs, T parameter) throws Exception;
 
     /**
      * 创建商品库存DO对象集合
