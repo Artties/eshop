@@ -1,24 +1,23 @@
-package com.Jenna.eshop.Inventory.command;
+package com.Jenna.eshop.Inventory.updater;
 
 import com.Jenna.eshop.Inventory.dao.GoodsStockDAO;
 import com.Jenna.eshop.Inventory.domain.GoodsStockDO;
 import com.Jenna.eshop.common.util.DateProvider;
-import com.Jenna.eshop.wms.domain.PurchaseInputOrderItemDTO;
+import com.Jenna.eshop.order.domain.OrderItemDTO;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * 采购入库库存更新命令
+ * 提交订单库存更新组件
  * @author Jenna C He
- * @date 2023/04/10 16:28
+ * @date 2023/05/06 11:27
  */
-public class PurchaseInputStockUpdateCommand extends AbstractGoodsStockUpdateCommand{
-
+public class SubmitOrderStockUpdater extends AbstractGoodsStockUpdater{
     /**
-     * 采购入库单条目DTO集合
+     * 订单条目DTO对象集合
      */
-    private Map<Long, PurchaseInputOrderItemDTO> purchaseInputOrderItemDTOMap;
+    private Map<Long, OrderItemDTO> orderItemDTOMap;
 
     /**
      * 构造函数
@@ -27,13 +26,13 @@ public class PurchaseInputStockUpdateCommand extends AbstractGoodsStockUpdateCom
      * @param goodsStockDAO 商品库存管理模块的DAO组件
      * @param dateProvider  日期辅助组件
      */
-    public PurchaseInputStockUpdateCommand(
+    public SubmitOrderStockUpdater(
             List<GoodsStockDO> goodsStockDOs,
             GoodsStockDAO goodsStockDAO,
             DateProvider dateProvider,
-            Map<Long, PurchaseInputOrderItemDTO> purchaseInputOrderItemDTO) {
+            Map<Long, OrderItemDTO> orderItemDTOMap) {
         super(goodsStockDOs, goodsStockDAO, dateProvider);
-        this.purchaseInputOrderItemDTOMap = purchaseInputOrderItemDTOMap;
+        this.orderItemDTOMap = orderItemDTOMap;
     }
 
     /**
@@ -41,11 +40,10 @@ public class PurchaseInputStockUpdateCommand extends AbstractGoodsStockUpdateCom
      */
     @Override
     protected void updateSaleStockQuantity() throws Exception {
-        for(GoodsStockDO goodsStockDO:goodsStockDOs){
-            PurchaseInputOrderItemDTO purchaseInputOrderItemDTO =
-                    purchaseInputOrderItemDTOMap.get(goodsStockDO.getId());
-            goodsStockDO.setSaledStockQuantity(goodsStockDO.getSaleStockQuantity()
-                    + purchaseInputOrderItemDTO.getArrivalCount());
+        for (GoodsStockDO goodsStockDO : goodsStockDOs) {
+            OrderItemDTO orderItemDTO = orderItemDTOMap.get(goodsStockDO.getId());
+            goodsStockDO.setSaledStockQuantity(goodsStockDO.getSaledStockQuantity()
+                    - orderItemDTO.getPurchaseQuantity());
         }
     }
 
@@ -54,7 +52,11 @@ public class PurchaseInputStockUpdateCommand extends AbstractGoodsStockUpdateCom
      */
     @Override
     protected void updateLockedStockQuantity() throws Exception {
-
+        for (GoodsStockDO goodsStockDO : goodsStockDOs) {
+            OrderItemDTO orderItemDTO = orderItemDTOMap.get(goodsStockDO.getId());
+            goodsStockDO.setLockedStockQuantity(goodsStockDO.getLockedStockQuantity()
+                    + orderItemDTO.getPurchaseQuantity());
+        }
     }
 
     /**
@@ -64,5 +66,4 @@ public class PurchaseInputStockUpdateCommand extends AbstractGoodsStockUpdateCom
     protected void updateSaledStockQuantity() throws Exception {
 
     }
-
 }

@@ -1,4 +1,4 @@
-package com.Jenna.eshop.Inventory.command;
+package com.Jenna.eshop.Inventory.updater;
 
 import com.Jenna.eshop.Inventory.constant.StockStatus;
 import com.Jenna.eshop.Inventory.dao.GoodsStockDAO;
@@ -14,9 +14,9 @@ import java.util.List;
  * @author Jenna C He
  * @date 2023/04/10 15:44
  */
-public abstract class AbstractGoodsStockUpdateCommand implements GoodsStockUpdateCommand {
+public abstract class AbstractGoodsStockUpdater implements GoodsStockUpdater {
     private static final Logger logger = LoggerFactory.getLogger(
-            AbstractGoodsStockUpdateCommand.class);
+            AbstractGoodsStockUpdater.class);
     /**
      * 商品库存DO对象
      */
@@ -36,7 +36,7 @@ public abstract class AbstractGoodsStockUpdateCommand implements GoodsStockUpdat
      * @param goodsStockDAO 商品库存管理模块的DAO组件
      * @param dateProvider 日期辅助组件
      */
-    public AbstractGoodsStockUpdateCommand(
+    public AbstractGoodsStockUpdater(
             List<GoodsStockDO> goodsStockDOs,
             GoodsStockDAO goodsStockDAO,
             DateProvider dateProvider) {
@@ -86,7 +86,7 @@ public abstract class AbstractGoodsStockUpdateCommand implements GoodsStockUpdat
      */
     public void updateStockStatus() throws Exception{
         for(GoodsStockDO goodsStockDO:goodsStockDOs){
-            if (goodsStockDO.getSaledStockQuantity(0L) > 0L) {
+            if (goodsStockDO.getSaledStockQuantity() > 0L) {
                 goodsStockDO.setStockStatus(StockStatus.IN_STOCK);
             }else{
                 goodsStockDO.setStockStatus(StockStatus.NOT_IN_STOCK);

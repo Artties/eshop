@@ -73,7 +73,7 @@ public class GoodsStockDO {
         this.lockedStockQuantity = lockedStockQuantity;
     }
 
-    public Long getSaledStockQuantity(long l) {
+    public Long getSaledStockQuantity() {
         return saledStockQuantity;
     }
 

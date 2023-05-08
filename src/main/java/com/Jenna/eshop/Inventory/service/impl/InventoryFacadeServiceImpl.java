@@ -1,9 +1,9 @@
 package com.Jenna.eshop.Inventory.service.impl;
 
 
-import com.Jenna.eshop.Inventory.command.GoodsStockUpdateCommand;
-import com.Jenna.eshop.Inventory.command.PurchaseInputStockUpdateCommandFactory;
-import com.Jenna.eshop.Inventory.command.ReturnGoodsInputStockUpdateCommandFactory;
+import com.Jenna.eshop.Inventory.dao.GoodsStockDAO;
+import com.Jenna.eshop.Inventory.domain.GoodsStockDO;
+import com.Jenna.eshop.Inventory.updater.*;
 import com.Jenna.eshop.Inventory.service.InventoryFacadeService;
 import com.Jenna.eshop.order.domain.OrderInfoDTO;
 import com.Jenna.eshop.wms.domain.PurchaseInputOrderDTO;
@@ -25,7 +25,7 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
      * 采购入库库存更新命令工厂
      */
     @Autowired
-    private PurchaseInputStockUpdateCommandFactory<PurchaseInputOrderDTO>
+    private PurchaseInputStockUpdaterFactory<PurchaseInputOrderDTO>
             purchaseInputStockUpdateCommandFactory;
 
 
@@ -33,8 +33,35 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
      * 退货入库库存更新命令工厂
      */
     @Autowired
-    private ReturnGoodsInputStockUpdateCommandFactory<ReturnGoodsInputOrderDTO>
+    private ReturnGoodsInputStockUpdaterFactory<ReturnGoodsInputOrderDTO>
             returnGoodsInputStockUpdateCommandFactory;
+
+    /**
+     * 提交订单库存更新组件工厂
+     */
+    @Autowired
+    private SubmitOrderStockUpdaterFactory<ReturnGoodsInputOrderDTO>
+            submitOrderStockUpdaterFactory;
+
+    /**
+     * 支付订单库存更新组件工厂
+     */
+    @Autowired
+    private PayOrderStockUpdaterFactory<ReturnGoodsInputOrderDTO>
+            payOrderStockUpdaterFactory;
+
+    /**
+     * 取消订单库存更新组件工厂
+     */
+    @Autowired
+    private CancelOrderStockUpdaterFactory<ReturnGoodsInputOrderDTO>
+            cancelOrderStockUpdaterFactory;
+
+    /**
+     * 商品库存管理模块的DAO最简
+     */
+    @Autowired
+    private GoodsStockDAO goodsStockDAO;
 
     /**
      * 通知库存中心，"采购入库完成"事件发生了
@@ -46,9 +73,9 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
     public Boolean informPurchaseInputFinished(
             PurchaseInputOrderDTO purchaseInputOrderDTO) {
         try {
-            GoodsStockUpdateCommand goodsStockUpdateCommand =
+            GoodsStockUpdater goodsStockUpdater =
                     purchaseInputStockUpdateCommandFactory.create(purchaseInputOrderDTO);
-            goodsStockUpdateCommand.updateGoodsStock();
+            goodsStockUpdater.updateGoodsStock();
         }catch (Exception e) {
             logger.error("error",e);
             return false;
@@ -64,6 +91,14 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
      */
     @Override
     public Boolean informSubmitOrderEvent(OrderInfoDTO orderInfoDTO) {
+        try {
+            GoodsStockUpdater goodsStockUpdater =
+                    submitOrderStockUpdaterFactory.create(orderInfoDTO);
+            goodsStockUpdater.updateGoodsStock();
+        }catch (Exception e) {
+            logger.error("error",e);
+            return false;
+        }
         return true;
     }
 
@@ -75,6 +110,14 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
      */
     @Override
     public Boolean informPayOrderEvent(OrderInfoDTO orderInfoDTO) {
+        try {
+            GoodsStockUpdater goodsStockUpdater =
+                    payOrderStockUpdaterFactory.create(orderInfoDTO);
+            goodsStockUpdater.updateGoodsStock();
+        }catch (Exception e) {
+            logger.error("error",e);
+            return false;
+        }
         return true;
     }
 
@@ -86,6 +129,14 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
      */
     @Override
     public Boolean informCancelOrderEvent(OrderInfoDTO orderInfoDTO) {
+        try {
+            GoodsStockUpdater goodsStockUpdater =
+                    cancelOrderStockUpdaterFactory.create(orderInfoDTO);
+            goodsStockUpdater.updateGoodsStock();
+        }catch (Exception e) {
+            logger.error("error",e);
+            return false;
+        }
         return true;
     }
 
@@ -99,9 +150,9 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
     public Boolean informReturnGoodsInputFinished(
             ReturnGoodsInputOrderDTO returnGoodsInputOrderDTO) {
         try {
-            GoodsStockUpdateCommand goodsStockUpdateCommand =
+            GoodsStockUpdater goodsStockUpdater =
                     returnGoodsInputStockUpdateCommandFactory.create(returnGoodsInputOrderDTO);
-            goodsStockUpdateCommand.updateGoodsStock();
+            goodsStockUpdater.updateGoodsStock();
         }catch (Exception e) {
             logger.error("error",e);
             return false;
@@ -117,6 +168,17 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
      */
     @Override
     public Long getSaleStockQuantity(Long goodsSkuId) {
-        return 1159L;
+        try {
+
+            GoodsStockDO goodsStockDO = goodsStockDAO
+                    .getGoodsStockBySkuId(goodsSkuId);
+            if (goodsStockDO == null){
+                return 0L;
+            }
+            return goodsStockDO.getSaleStockQuantity();
+        } catch (Exception e) {
+            logger.error("error",e);
+        }
+        return 0L;
     }
 }

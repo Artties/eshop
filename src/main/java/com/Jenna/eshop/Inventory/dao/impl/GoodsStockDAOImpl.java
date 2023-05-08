@@ -1,5 +1,6 @@
 package com.Jenna.eshop.Inventory.dao.impl;
 
+import com.Jenna.eshop.Inventory.dao.GoodsStockDAO;
 import com.Jenna.eshop.Inventory.domain.GoodsStockDO;
 
 
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Repository;
  * @date 2023/04/10 15:18
  */
 @Repository
-public class GoodsStockDAOImpl {
+public class GoodsStockDAOImpl implements GoodsStockDAO {
     private static final Logger logger = LoggerFactory.getLogger(GoodsStockDAOImpl.class);
     /**
      * 商品库存管理模块的mapper组件

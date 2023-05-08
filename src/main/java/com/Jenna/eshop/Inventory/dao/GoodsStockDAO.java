@@ -1,7 +1,7 @@
 package com.Jenna.eshop.Inventory.dao;
 
 import com.Jenna.eshop.Inventory.domain.GoodsStockDO;
-import org.apache.ibatis.annotations.Param;
+
 
 /**
  * 商品管理模块的DAO组件接口

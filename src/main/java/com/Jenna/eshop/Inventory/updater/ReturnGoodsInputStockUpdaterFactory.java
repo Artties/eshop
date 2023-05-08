@@ -1,4 +1,4 @@
-package com.Jenna.eshop.Inventory.command;
+package com.Jenna.eshop.Inventory.updater;
 
 import com.Jenna.eshop.Inventory.dao.GoodsStockDAO;
 import com.Jenna.eshop.Inventory.domain.GoodsStockDO;
@@ -19,8 +19,8 @@ import java.util.Map;
  * @date 2023/04/11 11:53
  */
 @Component
-public class ReturnGoodsInputStockUpdateCommandFactory<T>
-        extends AbstractGoodsStockUpdateCommandFactory <T>{
+public class ReturnGoodsInputStockUpdaterFactory<T>
+        extends AbstractGoodsStockUpdaterFactory<T> {
 
     /**
      * 构造函数
@@ -29,7 +29,7 @@ public class ReturnGoodsInputStockUpdateCommandFactory<T>
      * @param dateProvider  日期辅助组件
      */
     @Autowired
-    public ReturnGoodsInputStockUpdateCommandFactory(
+    public ReturnGoodsInputStockUpdaterFactory(
             GoodsStockDAO goodsStockDAO,
             DateProvider dateProvider) {
         super(goodsStockDAO, dateProvider);
@@ -71,7 +71,7 @@ public class ReturnGoodsInputStockUpdateCommandFactory<T>
      * @throws Exception 抛出异常
      */
     @Override
-    protected GoodsStockUpdateCommand create(
+    protected GoodsStockUpdater create(
             List<GoodsStockDO> goodsStockDOs,
             T parameter) throws Exception {
         //解析采购入库单，获取一个采购入库单条目Map
@@ -90,7 +90,7 @@ public class ReturnGoodsInputStockUpdateCommandFactory<T>
 
         }
         //创建库存更新命令
-        return new ReturnGoodsInputStockUpdateCommand(goodsStockDOs,goodsStockDAO,
+        return new ReturnGoodsInputStockUpdater(goodsStockDOs,goodsStockDAO,
                 dateProvider,returnGoodsInputOrderItemMap);
     }
 

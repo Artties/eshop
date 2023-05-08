@@ -1,10 +1,8 @@
-package com.Jenna.eshop.Inventory.command;
+package com.Jenna.eshop.Inventory.updater;
 
-import com.Jenna.eshop.Inventory.constant.StockStatus;
 import com.Jenna.eshop.Inventory.dao.GoodsStockDAO;
 import com.Jenna.eshop.Inventory.domain.GoodsStockDO;
 import com.Jenna.eshop.common.util.DateProvider;
-import com.Jenna.eshop.wms.domain.PurchaseInputOrderItemDTO;
 import com.Jenna.eshop.wms.domain.ReturnGoodsInputOrderItemDTO;
 
 import java.util.List;
@@ -15,7 +13,7 @@ import java.util.Map;
  * @author Jenna C He
  * @date 2023/04/10 17:59
  */
-public class ReturnGoodsInputStockUpdateCommand extends AbstractGoodsStockUpdateCommand{
+public class ReturnGoodsInputStockUpdater extends AbstractGoodsStockUpdater {
     /**
      * 退货入库单条目DTO集合
      */
@@ -29,7 +27,7 @@ public class ReturnGoodsInputStockUpdateCommand extends AbstractGoodsStockUpdate
      * @param dateProvider  日期辅助组件
      * @param returnGoodsInputOrderItemDTOMap 退货入库单条目DTO集合
      */
-    public ReturnGoodsInputStockUpdateCommand(
+    public ReturnGoodsInputStockUpdater(
             List<GoodsStockDO> goodsStockDOs,
             GoodsStockDAO goodsStockDAO,
             DateProvider dateProvider,
