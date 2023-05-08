@@ -21,7 +21,6 @@ import java.util.Map;
 @Component
 public abstract class PurchaseInputStockUpdaterFactory<T>
         extends AbstractGoodsStockUpdaterFactory<T> {
-
     /**
      * 构造函数
      *
@@ -54,7 +53,6 @@ public abstract class PurchaseInputStockUpdaterFactory<T>
 
         for (PurchaseInputOrderItemDTO purchaseInputOrderItemDTO : purchaseInputOrderItemDTOs) {
             goodsSkuIds.add(purchaseInputOrderItemDTO.getGoodsSkuId());
-
 }
 
         return goodsSkuIds;

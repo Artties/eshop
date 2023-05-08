@@ -1,6 +1,7 @@
 package com.Jenna.eshop.Inventory.service.impl;
 
 
+import com.Jenna.eshop.Inventory.async.GoodsStockUpdateManager;
 import com.Jenna.eshop.Inventory.async.GoodsStockUpdateMessage;
 import com.Jenna.eshop.Inventory.async.GoodsStockUpdateQueue;
 import com.Jenna.eshop.Inventory.constant.GoodsStockUpdateOperation;
@@ -11,10 +12,12 @@ import com.Jenna.eshop.Inventory.service.InventoryFacadeService;
 import com.Jenna.eshop.order.domain.OrderInfoDTO;
 import com.Jenna.eshop.wms.domain.PurchaseInputOrderDTO;
 import com.Jenna.eshop.wms.domain.ReturnGoodsInputOrderDTO;
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 /**
  * 库存中心对外提供接口的service组件
@@ -42,21 +45,21 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
      * 提交订单库存更新组件工厂
      */
     @Autowired
-    private SubmitOrderStockUpdaterFactory<ReturnGoodsInputOrderDTO>
+    private SubmitOrderStockUpdaterFactory<OrderInfoDTO>
             submitOrderStockUpdaterFactory;
 
     /**
      * 支付订单库存更新组件工厂
      */
     @Autowired
-    private PayOrderStockUpdaterFactory<ReturnGoodsInputOrderDTO>
+    private PayOrderStockUpdaterFactory<OrderInfoDTO>
             payOrderStockUpdaterFactory;
 
     /**
      * 取消订单库存更新组件工厂
      */
     @Autowired
-    private CancelOrderStockUpdaterFactory<ReturnGoodsInputOrderDTO>
+    private CancelOrderStockUpdaterFactory<OrderInfoDTO>
             cancelOrderStockUpdaterFactory;
 
     /**
@@ -70,6 +73,12 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
      */
     @Autowired
     private GoodsStockUpdateQueue goodsStockUpdateQueue;
+
+    /**
+     * 商品库存更新管理组件
+     */
+    @Autowired
+    private GoodsStockUpdateManager goodsStockUpdateManager;
 
     /**
      * 通知库存中心，"采购入库完成"事件发生了
@@ -100,14 +109,22 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
     @Override
     public Boolean informSubmitOrderEvent(OrderInfoDTO orderInfoDTO) {
         try {
+            //更新本地库存
             GoodsStockUpdater goodsStockUpdater =
                     submitOrderStockUpdaterFactory.create(orderInfoDTO);
             goodsStockUpdater.updateGoodsStock();
 
+            //发送异步消息到内存队列
             GoodsStockUpdateMessage message = new GoodsStockUpdateMessage();
+            message.setId(UUID.randomUUID().toString().replace("-",""));
             message.setOperation(GoodsStockUpdateOperation.SUBMIT_ORDER);
             message.setParameter(orderInfoDTO);
+
             goodsStockUpdateQueue.put(message);
+
+            //监听异步处理结果
+            goodsStockUpdateManager.observe(message.getId());
+
         }catch (Exception e) {
             logger.error("error",e);
             return false;
@@ -124,14 +141,21 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
     @Override
     public Boolean informPayOrderEvent(OrderInfoDTO orderInfoDTO) {
         try {
+            //更新本地库存
             GoodsStockUpdater goodsStockUpdater =
                     payOrderStockUpdaterFactory.create(orderInfoDTO);
             goodsStockUpdater.updateGoodsStock();
 
+            //发送异步消息到内存队列
             GoodsStockUpdateMessage message = new GoodsStockUpdateMessage();
+            message.setId(UUID.randomUUID().toString().replace("-",""));
             message.setOperation(GoodsStockUpdateOperation.PAY_ORDER);
             message.setParameter(orderInfoDTO);
+
             goodsStockUpdateQueue.put(message);
+
+            //监听异步处理结果
+            goodsStockUpdateManager.observe(message.getId());
         }catch (Exception e) {
             logger.error("error",e);
             return false;
@@ -148,14 +172,20 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
     @Override
     public Boolean informCancelOrderEvent(OrderInfoDTO orderInfoDTO) {
         try {
+            //更新本地库存
             GoodsStockUpdater goodsStockUpdater =
                     cancelOrderStockUpdaterFactory.create(orderInfoDTO);
             goodsStockUpdater.updateGoodsStock();
 
+            //发送异步消息到内存队列
             GoodsStockUpdateMessage message = new GoodsStockUpdateMessage();
+            message.setId(UUID.randomUUID().toString().replace("-",""));
             message.setOperation(GoodsStockUpdateOperation.CANCEL_ORDER);
             message.setParameter(orderInfoDTO);
             goodsStockUpdateQueue.put(message);
+
+            //监听异步处理结果
+            goodsStockUpdateManager.observe(message.getId());
 
         }catch (Exception e) {
             logger.error("error",e);
