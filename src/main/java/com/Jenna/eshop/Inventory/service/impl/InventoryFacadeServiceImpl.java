@@ -1,6 +1,9 @@
 package com.Jenna.eshop.Inventory.service.impl;
 
 
+import com.Jenna.eshop.Inventory.async.GoodsStockUpdateMessage;
+import com.Jenna.eshop.Inventory.async.GoodsStockUpdateQueue;
+import com.Jenna.eshop.Inventory.constant.GoodsStockUpdateOperation;
 import com.Jenna.eshop.Inventory.dao.GoodsStockDAO;
 import com.Jenna.eshop.Inventory.domain.GoodsStockDO;
 import com.Jenna.eshop.Inventory.updater.*;
@@ -27,7 +30,6 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
     @Autowired
     private PurchaseInputStockUpdaterFactory<PurchaseInputOrderDTO>
             purchaseInputStockUpdateCommandFactory;
-
 
     /**
      * 退货入库库存更新命令工厂
@@ -58,10 +60,16 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
             cancelOrderStockUpdaterFactory;
 
     /**
-     * 商品库存管理模块的DAO最简
+     * 商品库存管理模块的DAO组件
      */
     @Autowired
     private GoodsStockDAO goodsStockDAO;
+
+    /**
+     * 商品库存更新队列
+     */
+    @Autowired
+    private GoodsStockUpdateQueue goodsStockUpdateQueue;
 
     /**
      * 通知库存中心，"采购入库完成"事件发生了
@@ -95,6 +103,11 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
             GoodsStockUpdater goodsStockUpdater =
                     submitOrderStockUpdaterFactory.create(orderInfoDTO);
             goodsStockUpdater.updateGoodsStock();
+
+            GoodsStockUpdateMessage message = new GoodsStockUpdateMessage();
+            message.setOperation(GoodsStockUpdateOperation.SUBMIT_ORDER);
+            message.setParameter(orderInfoDTO);
+            goodsStockUpdateQueue.put(message);
         }catch (Exception e) {
             logger.error("error",e);
             return false;
@@ -114,6 +127,11 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
             GoodsStockUpdater goodsStockUpdater =
                     payOrderStockUpdaterFactory.create(orderInfoDTO);
             goodsStockUpdater.updateGoodsStock();
+
+            GoodsStockUpdateMessage message = new GoodsStockUpdateMessage();
+            message.setOperation(GoodsStockUpdateOperation.PAY_ORDER);
+            message.setParameter(orderInfoDTO);
+            goodsStockUpdateQueue.put(message);
         }catch (Exception e) {
             logger.error("error",e);
             return false;
@@ -133,6 +151,12 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
             GoodsStockUpdater goodsStockUpdater =
                     cancelOrderStockUpdaterFactory.create(orderInfoDTO);
             goodsStockUpdater.updateGoodsStock();
+
+            GoodsStockUpdateMessage message = new GoodsStockUpdateMessage();
+            message.setOperation(GoodsStockUpdateOperation.CANCEL_ORDER);
+            message.setParameter(orderInfoDTO);
+            goodsStockUpdateQueue.put(message);
+
         }catch (Exception e) {
             logger.error("error",e);
             return false;

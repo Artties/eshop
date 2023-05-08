@@ -98,4 +98,7 @@ public abstract class AbstractGoodsStockUpdaterFactory<T>
         return goodsStockDOs;
     }
 
+    protected abstract GoodsStockUpdater create(
+            List<GoodsStockDO> goodsStockDOs,
+            T parameter) throws Exception;
 }
