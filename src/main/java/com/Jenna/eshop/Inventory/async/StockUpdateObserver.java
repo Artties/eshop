@@ -13,9 +13,9 @@ import java.util.Observer;
  * @date 2023/05/08 17:47
  */
 @Component
-public class GoodsStockUpdateObserver implements Observer {
+public class StockUpdateObserver implements Observer {
     private static final Logger logger = LoggerFactory.getLogger(
-            GoodsStockUpdateObserver.class);
+            StockUpdateObserver.class);
 
     /**
      * 通知异步处理结果
@@ -25,9 +25,9 @@ public class GoodsStockUpdateObserver implements Observer {
      */
     @Override
     public void update(Observable o, Object arg) {
-        GoodsStockUpdateResult goodsStockUpdateResult = (GoodsStockUpdateResult) arg;
+        StockUpdateResult stockUpdateResult = (StockUpdateResult) arg;
 
-        logger.info("商品库存更新消息[messageId=" + goodsStockUpdateResult.getMessageId() +"]" +
-                "的异步处理结果为：" + goodsStockUpdateResult.getResult());
+        logger.info("商品库存更新消息[messageId=" + stockUpdateResult.getMessageId() +"]" +
+                "的异步处理结果为：" + stockUpdateResult.getResult());
     }
 }

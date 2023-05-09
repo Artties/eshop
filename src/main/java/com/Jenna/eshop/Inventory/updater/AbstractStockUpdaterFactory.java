@@ -17,10 +17,10 @@ import java.util.List;
  * @author Jenna C He
  * @date 2023/04/11 11:20
  */
-public abstract class AbstractGoodsStockUpdaterFactory<T>
-        implements GoodsStockUpdaterFactory<T> {
+public abstract class AbstractStockUpdaterFactory<T>
+        implements StockUpdaterFactory<T> {
 
-    private static final Logger logger =  LoggerFactory.getLogger(AbstractGoodsStockUpdaterFactory.class);
+    private static final Logger logger =  LoggerFactory.getLogger(AbstractStockUpdaterFactory.class);
 
     /**
      * 商品库存管理模块的DAO组件
@@ -36,7 +36,7 @@ public abstract class AbstractGoodsStockUpdaterFactory<T>
      * @param goodsStockDAO 商品库存管理模块的DAO组件
      * @param dateProvider 日期辅助组件
      */
-    public AbstractGoodsStockUpdaterFactory(
+    public AbstractStockUpdaterFactory(
             GoodsStockDAO goodsStockDAO,
             DateProvider dateProvider
             ) {
@@ -50,7 +50,7 @@ public abstract class AbstractGoodsStockUpdaterFactory<T>
      * @param parameter 参数对象
      * @return 库存更新命令
      */
-    public GoodsStockUpdater create(OrderInfoDTO parameter) {
+    public StockUpdater create(OrderInfoDTO parameter) {
         try {
             List<Long> goodsSkuIds = getGoodsSkuIds((T) parameter);
             List<GoodsStockDO> goodsStockDOs = createGoodsStockDOs(goodsSkuIds);
@@ -98,7 +98,12 @@ public abstract class AbstractGoodsStockUpdaterFactory<T>
         return goodsStockDOs;
     }
 
-    protected abstract GoodsStockUpdater create(
+    protected abstract StockUpdater create(
             List<GoodsStockDO> goodsStockDOs,
             T parameter) throws Exception;
+
+    protected abstract List<Long> getGoodsSkuIds(OrderInfoDTO parameter) throws Exception;
+
+    protected abstract StockUpdater create(List<GoodsStockDO> goodsStockDOs,
+                                           OrderInfoDTO parameter) throws Exception;
 }

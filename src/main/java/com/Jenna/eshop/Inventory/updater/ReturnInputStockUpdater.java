@@ -13,7 +13,7 @@ import java.util.Map;
  * @author Jenna C He
  * @date 2023/04/10 17:59
  */
-public class ReturnGoodsInputStockUpdater extends AbstractGoodsStockUpdater {
+public class ReturnInputStockUpdater extends AbstractStockUpdater {
     /**
      * 退货入库单条目DTO集合
      */
@@ -27,7 +27,7 @@ public class ReturnGoodsInputStockUpdater extends AbstractGoodsStockUpdater {
      * @param dateProvider  日期辅助组件
      * @param returnGoodsInputOrderItemDTOMap 退货入库单条目DTO集合
      */
-    public ReturnGoodsInputStockUpdater(
+    public ReturnInputStockUpdater(
             List<GoodsStockDO> goodsStockDOs,
             GoodsStockDAO goodsStockDAO,
             DateProvider dateProvider,

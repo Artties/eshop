@@ -1,9 +1,9 @@
 package com.Jenna.eshop.Inventory.service.impl;
 
 
-import com.Jenna.eshop.Inventory.async.GoodsStockUpdateManager;
-import com.Jenna.eshop.Inventory.async.GoodsStockUpdateMessage;
-import com.Jenna.eshop.Inventory.async.GoodsStockUpdateQueue;
+import com.Jenna.eshop.Inventory.async.StockUpdateResultManager;
+import com.Jenna.eshop.Inventory.async.StockUpdateMessage;
+import com.Jenna.eshop.Inventory.async.StockUpdateQueue;
 import com.Jenna.eshop.Inventory.constant.GoodsStockUpdateOperation;
 import com.Jenna.eshop.Inventory.dao.GoodsStockDAO;
 import com.Jenna.eshop.Inventory.domain.GoodsStockDO;
@@ -38,7 +38,7 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
      * 退货入库库存更新命令工厂
      */
     @Autowired
-    private ReturnGoodsInputStockUpdaterFactory<ReturnGoodsInputOrderDTO>
+    private ReturnInputStockUpdaterFactory<ReturnGoodsInputOrderDTO>
             returnGoodsInputStockUpdateCommandFactory;
 
     /**
@@ -72,13 +72,13 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
      * 商品库存更新队列
      */
     @Autowired
-    private GoodsStockUpdateQueue goodsStockUpdateQueue;
+    private StockUpdateQueue stockUpdateQueue;
 
     /**
      * 商品库存更新管理组件
      */
     @Autowired
-    private GoodsStockUpdateManager goodsStockUpdateManager;
+    private StockUpdateResultManager stockUpdateResultManager;
 
     /**
      * 通知库存中心，"采购入库完成"事件发生了
@@ -90,9 +90,9 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
     public Boolean informPurchaseInputFinished(
             PurchaseInputOrderDTO purchaseInputOrderDTO) {
         try {
-            GoodsStockUpdater goodsStockUpdater =
+            StockUpdater stockUpdater =
                     purchaseInputStockUpdateCommandFactory.create(purchaseInputOrderDTO);
-            goodsStockUpdater.updateGoodsStock();
+            stockUpdater.updateGoodsStock();
         }catch (Exception e) {
             logger.error("error",e);
             return false;
@@ -110,20 +110,20 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
     public Boolean informSubmitOrderEvent(OrderInfoDTO orderInfoDTO) {
         try {
             //更新本地库存
-            GoodsStockUpdater goodsStockUpdater =
+            StockUpdater stockUpdater =
                     submitOrderStockUpdaterFactory.create(orderInfoDTO);
-            goodsStockUpdater.updateGoodsStock();
+            stockUpdater.updateGoodsStock();
 
             //发送异步消息到内存队列
-            GoodsStockUpdateMessage message = new GoodsStockUpdateMessage();
+            StockUpdateMessage message = new StockUpdateMessage();
             message.setId(UUID.randomUUID().toString().replace("-",""));
             message.setOperation(GoodsStockUpdateOperation.SUBMIT_ORDER);
             message.setParameter(orderInfoDTO);
 
-            goodsStockUpdateQueue.put(message);
+            stockUpdateQueue.put(message);
 
             //监听异步处理结果
-            goodsStockUpdateManager.observe(message.getId());
+            stockUpdateResultManager.observe(message.getId());
 
         }catch (Exception e) {
             logger.error("error",e);
@@ -142,20 +142,20 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
     public Boolean informPayOrderEvent(OrderInfoDTO orderInfoDTO) {
         try {
             //更新本地库存
-            GoodsStockUpdater goodsStockUpdater =
+            StockUpdater stockUpdater =
                     payOrderStockUpdaterFactory.create(orderInfoDTO);
-            goodsStockUpdater.updateGoodsStock();
+            stockUpdater.updateGoodsStock();
 
             //发送异步消息到内存队列
-            GoodsStockUpdateMessage message = new GoodsStockUpdateMessage();
+            StockUpdateMessage message = new StockUpdateMessage();
             message.setId(UUID.randomUUID().toString().replace("-",""));
             message.setOperation(GoodsStockUpdateOperation.PAY_ORDER);
             message.setParameter(orderInfoDTO);
 
-            goodsStockUpdateQueue.put(message);
+            stockUpdateQueue.put(message);
 
             //监听异步处理结果
-            goodsStockUpdateManager.observe(message.getId());
+            stockUpdateResultManager.observe(message.getId());
         }catch (Exception e) {
             logger.error("error",e);
             return false;
@@ -173,19 +173,19 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
     public Boolean informCancelOrderEvent(OrderInfoDTO orderInfoDTO) {
         try {
             //更新本地库存
-            GoodsStockUpdater goodsStockUpdater =
+            StockUpdater stockUpdater =
                     cancelOrderStockUpdaterFactory.create(orderInfoDTO);
-            goodsStockUpdater.updateGoodsStock();
+            stockUpdater.updateGoodsStock();
 
             //发送异步消息到内存队列
-            GoodsStockUpdateMessage message = new GoodsStockUpdateMessage();
+            StockUpdateMessage message = new StockUpdateMessage();
             message.setId(UUID.randomUUID().toString().replace("-",""));
             message.setOperation(GoodsStockUpdateOperation.CANCEL_ORDER);
             message.setParameter(orderInfoDTO);
-            goodsStockUpdateQueue.put(message);
+            stockUpdateQueue.put(message);
 
             //监听异步处理结果
-            goodsStockUpdateManager.observe(message.getId());
+            stockUpdateResultManager.observe(message.getId());
 
         }catch (Exception e) {
             logger.error("error",e);
@@ -204,9 +204,9 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
     public Boolean informReturnGoodsInputFinished(
             ReturnGoodsInputOrderDTO returnGoodsInputOrderDTO) {
         try {
-            GoodsStockUpdater goodsStockUpdater =
+            StockUpdater stockUpdater =
                     returnGoodsInputStockUpdateCommandFactory.create(returnGoodsInputOrderDTO);
-            goodsStockUpdater.updateGoodsStock();
+            stockUpdater.updateGoodsStock();
         }catch (Exception e) {
             logger.error("error",e);
             return false;

@@ -5,7 +5,7 @@ package com.Jenna.eshop.Inventory.async;
  * @author Jenna C He
  * @date 2023/05/08 18:12
  */
-public class GoodsStockUpdateResult {
+public class StockUpdateResult {
     /**
      * 消息id
      */

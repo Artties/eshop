@@ -20,7 +20,7 @@ import java.util.Map;
  */
 @Component
 public abstract class CancelOrderStockUpdaterFactory<T>
-        extends AbstractGoodsStockUpdaterFactory<T> {
+        extends AbstractStockUpdaterFactory<T> {
     /**
      * 构造函数
      *
@@ -63,8 +63,8 @@ public abstract class CancelOrderStockUpdaterFactory<T>
      * @throws Exception 抛出异常
      */
     @Override
-    protected GoodsStockUpdater create(List<GoodsStockDO> goodsStockDOs,
-                                       T parameter) throws Exception {
+    protected StockUpdater create(List<GoodsStockDO> goodsStockDOs,
+                                  T parameter) throws Exception {
         OrderInfoDTO orderInfoDTO = (OrderInfoDTO) parameter;
 
         Map<Long,OrderItemDTO> orderItemDTOMap = new HashMap<>();

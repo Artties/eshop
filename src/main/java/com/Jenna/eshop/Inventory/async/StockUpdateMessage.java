@@ -5,7 +5,7 @@ package com.Jenna.eshop.Inventory.async;
  * @author Jenna C He
  * @date 2023/05/08 15:19
  */
-public class GoodsStockUpdateMessage {
+public class StockUpdateMessage {
     /**
      * id
      */

@@ -20,7 +20,7 @@ import java.util.Map;
  */
 @Component
 public class SubmitOrderStockUpdaterFactory<T>
-        extends AbstractGoodsStockUpdaterFactory<T> {
+        extends AbstractStockUpdaterFactory<T> {
     /**
      * 构造函数
      *
@@ -64,8 +64,8 @@ public class SubmitOrderStockUpdaterFactory<T>
      * @throws Exception 抛出异常
      */
     @Override
-    protected GoodsStockUpdater create(List<GoodsStockDO> goodsStockDOs,
-                                       T parameter) throws Exception {
+    protected StockUpdater create(List<GoodsStockDO> goodsStockDOs,
+                                  T parameter) throws Exception {
         OrderInfoDTO orderInfoDTO = (OrderInfoDTO) parameter;
         Map<Long, OrderItemDTO> orderItemDTOMap = new HashMap<Long, OrderItemDTO>();
         for(OrderItemDTO orderItemDTO : OrderInfoDTO.getOrderItems()) {
@@ -104,8 +104,8 @@ public class SubmitOrderStockUpdaterFactory<T>
      * @throws Exception 抛出异常
      */
     @Override
-    protected GoodsStockUpdater create(List<GoodsStockDO> goodsStockDOs,
-                                       OrderInfoDTO parameter) throws Exception {
+    protected StockUpdater create(List<GoodsStockDO> goodsStockDOs,
+                                  OrderInfoDTO parameter) throws Exception {
         Map<Long,OrderItemDTO> orderItemDTOMap = new HashMap<>();
 
         for (OrderItemDTO orderItemDTO : OrderInfoDTO.getOrderItems()) {

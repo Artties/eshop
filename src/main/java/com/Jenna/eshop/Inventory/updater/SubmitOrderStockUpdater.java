@@ -13,7 +13,7 @@ import java.util.Map;
  * @author Jenna C He
  * @date 2023/05/06 11:27
  */
-public class SubmitOrderStockUpdater extends AbstractGoodsStockUpdater{
+public class SubmitOrderStockUpdater extends AbstractStockUpdater {
     /**
      * 订单条目DTO对象集合
      */

@@ -10,19 +10,26 @@ import java.util.concurrent.ArrayBlockingQueue;
  * @date 2023/05/08 15:16
  */
 @Component
-public class GoodsStockUpdateQueueImpl implements GoodsStockUpdateQueue {
+public class StockUpdateQueueImpl implements StockUpdateQueue {
+    private static final Integer QUEUE_MAX_SIZE = 1000;
+
     /**
      * 商品库存更新队列
      */
-    private ArrayBlockingQueue<GoodsStockUpdateMessage> queue =
-            new ArrayBlockingQueue<GoodsStockUpdateMessage>(1000);
+    private ArrayBlockingQueue<StockUpdateMessage> queue =
+            new ArrayBlockingQueue<StockUpdateMessage>(1000);
 
     /**
      * 将一个消息放入队列
      * @param message 消息
      * @throws Exception 抛出异常
      */
-    public void put(GoodsStockUpdateMessage message) throws Exception {
+    public void put(StockUpdateMessage message) throws Exception {
+        //如果内存队列已经满了，此时触发离线存储
+        if (QUEUE_MAX_SIZE.equals(queue.size())){
+
+            return;
+        }
         queue.put(message);
     }
 
@@ -31,7 +38,7 @@ public class GoodsStockUpdateQueueImpl implements GoodsStockUpdateQueue {
      * @return
      * @throws Exception
      */
-    public GoodsStockUpdateMessage get() throws Exception{
+    public StockUpdateMessage get() throws Exception{
         return queue.take();
     }
 }

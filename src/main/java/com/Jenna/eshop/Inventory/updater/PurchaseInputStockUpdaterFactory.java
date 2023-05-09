@@ -20,7 +20,7 @@ import java.util.Map;
  */
 @Component
 public abstract class PurchaseInputStockUpdaterFactory<T>
-        extends AbstractGoodsStockUpdaterFactory<T> {
+        extends AbstractStockUpdaterFactory<T> {
     /**
      * 构造函数
      *
@@ -67,7 +67,7 @@ public abstract class PurchaseInputStockUpdaterFactory<T>
      * @throws Exception 抛出异常
      */
     @Override
-    protected GoodsStockUpdater create(
+    protected StockUpdater create(
             List<GoodsStockDO> goodsStockDOs,
             T parameter) throws Exception {
         //解析采购入库单，获取一个采购入库单条目Map

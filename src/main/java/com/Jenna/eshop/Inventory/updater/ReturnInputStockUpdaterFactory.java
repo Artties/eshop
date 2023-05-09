@@ -19,8 +19,8 @@ import java.util.Map;
  * @date 2023/04/11 11:53
  */
 @Component
-public class ReturnGoodsInputStockUpdaterFactory<T>
-        extends AbstractGoodsStockUpdaterFactory<T> {
+public class ReturnInputStockUpdaterFactory<T>
+        extends AbstractStockUpdaterFactory<T> {
 
     /**
      * 构造函数
@@ -29,7 +29,7 @@ public class ReturnGoodsInputStockUpdaterFactory<T>
      * @param dateProvider  日期辅助组件
      */
     @Autowired
-    public ReturnGoodsInputStockUpdaterFactory(
+    public ReturnInputStockUpdaterFactory(
             GoodsStockDAO goodsStockDAO,
             DateProvider dateProvider) {
         super(goodsStockDAO, dateProvider);
@@ -71,7 +71,7 @@ public class ReturnGoodsInputStockUpdaterFactory<T>
      * @throws Exception 抛出异常
      */
     @Override
-    protected GoodsStockUpdater create(
+    protected StockUpdater create(
             List<GoodsStockDO> goodsStockDOs,
             T parameter) throws Exception {
         //解析采购入库单，获取一个采购入库单条目Map
@@ -90,7 +90,7 @@ public class ReturnGoodsInputStockUpdaterFactory<T>
 
         }
         //创建库存更新命令
-        return new ReturnGoodsInputStockUpdater(goodsStockDOs,goodsStockDAO,
+        return new ReturnInputStockUpdater(goodsStockDOs,goodsStockDAO,
                 dateProvider,returnGoodsInputOrderItemMap);
     }
 

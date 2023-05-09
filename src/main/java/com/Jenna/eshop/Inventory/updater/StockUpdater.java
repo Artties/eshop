@@ -5,7 +5,7 @@ package com.Jenna.eshop.Inventory.updater;
  * @author Jenna C He
  * @date 2023/04/10 15:41
  */
-public interface GoodsStockUpdater {
+public interface StockUpdater {
     /**
      * 更新商品库存
      * @return 处理结果

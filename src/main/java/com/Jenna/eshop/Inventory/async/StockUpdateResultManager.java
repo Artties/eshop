@@ -5,7 +5,7 @@ package com.Jenna.eshop.Inventory.async;
  * @author Jenna C He
  * @date 2023/05/08 16:31
  */
-public interface GoodsStockUpdateManager {
+public interface StockUpdateResultManager {
 
     /**
      * 设置对商品库存更新结果的观察

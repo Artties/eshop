@@ -7,7 +7,7 @@ import java.util.Observable;
  * @author Jenna C He
  * @date 2023/05/08 16:49
  */
-public class GoodsStockUpdateObservable extends Observable{
+public class StockUpdateObservable extends Observable{
     /**
      * 消息id
      */
@@ -18,7 +18,7 @@ public class GoodsStockUpdateObservable extends Observable{
      * @param messageId 消息id
      */
 
-    public GoodsStockUpdateObservable(String messageId){
+    public StockUpdateObservable(String messageId){
         this.messageId = messageId;
     }
 
@@ -27,13 +27,13 @@ public class GoodsStockUpdateObservable extends Observable{
      * @param result 商品库存更新结果
      */
     public void setResult(Boolean result){
-        GoodsStockUpdateResult goodsStockUpdateResult = new GoodsStockUpdateResult();
-        goodsStockUpdateResult.setMessageId(messageId);
-        goodsStockUpdateResult.setMessageId(messageId);
+        StockUpdateResult stockUpdateResult = new StockUpdateResult();
+        stockUpdateResult.setMessageId(messageId);
+        stockUpdateResult.setMessageId(messageId);
 
 
         this.setChanged();
-        this.notifyObservers(goodsStockUpdateResult);
+        this.notifyObservers(stockUpdateResult);
     }
 
     public String getMessageId() {
