@@ -20,4 +20,11 @@ public interface StockUpdateQueue {
      * @throws Exception
      */
      public StockUpdateMessage get() throws Exception;
+
+    /**
+     * 直接将消息放入队列
+     * @param message
+     * @throws Exception
+     */
+     public void putDirect(StockUpdateMessage message) throws Exception;
 }

@@ -4,7 +4,7 @@ import com.Jenna.eshop.auth.domain.PriorityDO;
 import com.Jenna.eshop.auth.domain.PriorityDTO;
 import com.Jenna.eshop.auth.domain.PriorityVO;
 import com.Jenna.eshop.auth.service.impl.PriorityService;
-import org.apache.ibatis.annotations.Update;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
