@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 基础POJO类
  * @author Jenna C He
- * @date 2023/04/25 11:39
+ * @date 2023/05/10 17:57
  */
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class AbstractObject {
