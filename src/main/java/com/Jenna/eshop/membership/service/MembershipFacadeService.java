@@ -2,8 +2,9 @@ package com.Jenna.eshop.membership.service;
 
 /**
  * 会员中心对外提供接口
+ * @author Jenna C He
+ * @date 2023/1/6 13:55
  */
-
 public interface MembershipFacadeService {
     /**
      * 通知会员中心，"用户今日第一次登录"事件发生了

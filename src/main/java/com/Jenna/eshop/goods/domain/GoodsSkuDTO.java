@@ -1,28 +1,53 @@
 package com.Jenna.eshop.goods.domain;
 
 import java.util.*;
+
 /**
  * 商品sku DTO
+ * @author Jenna C He
+ * @date 2023/1/6 13:53
  */
 public class GoodsSkuDTO {
     /**
      * id
      */
-    private long id;
+    private Long id;
     /**
      * 商品id
      */
-    private long goodsId;
-
+    private Long goodsId;
+    /**
+     * 商品名称
+     */
+    private String goodsName;
+    /**
+     * 商品毛重
+     */
+    private Double grossWeight;
+    /**
+     * 商品长度
+     */
+    private Double goodsLength;
+    /**
+     * 商品宽度
+     */
+    private Double goodsWeight;
+    /**
+     * 商品高度
+     */
+    private Double goodsHeight;
     /**
      *商品sku编号
      */
     private String goodsSkuCode;
     /**
+     * 销售属性
+     */
+    private String saleProperties;
+    /**
      * 采购价格
      */
     private Double purchasePrice;
-
     /**
      * 销售价格
      */
@@ -102,5 +127,61 @@ public class GoodsSkuDTO {
 
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setGoodsId(Long goodsId) {
+        this.goodsId = goodsId;
+    }
+
+    public String getGoodsName() {
+        return goodsName;
+    }
+
+    public void setGoodsName(String goodsName) {
+        this.goodsName = goodsName;
+    }
+
+    public Double getGrossWeight() {
+        return grossWeight;
+    }
+
+    public void setGrossWeight(Double grossWeight) {
+        this.grossWeight = grossWeight;
+    }
+
+    public Double getGoodsLength() {
+        return goodsLength;
+    }
+
+    public void setGoodsLength(Double goodsLength) {
+        this.goodsLength = goodsLength;
+    }
+
+    public Double getGoodsWeight() {
+        return goodsWeight;
+    }
+
+    public void setGoodsWeight(Double goodsWeight) {
+        this.goodsWeight = goodsWeight;
+    }
+
+    public Double getGoodsHeight() {
+        return goodsHeight;
+    }
+
+    public void setGoodsHeight(Double goodsHeight) {
+        this.goodsHeight = goodsHeight;
+    }
+
+    public String getSaleProperties() {
+        return saleProperties;
+    }
+
+    public void setSaleProperties(String saleProperties) {
+        this.saleProperties = saleProperties;
     }
 }

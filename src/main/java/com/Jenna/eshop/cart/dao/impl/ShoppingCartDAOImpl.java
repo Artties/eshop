@@ -17,28 +17,21 @@ import org.springframework.stereotype.Service;
 @Repository
 @Service
 public class ShoppingCartDAOImpl implements ShoppingCartDAO {
-    private static final Logger logger = LoggerFactory.getLogger(ShoppingCartDAOImpl.class);
+
     /**
-     * 购物车管理模块的Mapper组件
+     * 购物车管理模块的mapper组件
      */
     @Autowired
     private ShoppingCartMapper shoppingCartMapper;
 
     /**
      * 根据用户账号id查询购物车
-     *
      * @param userAccountId 用户账号id
      * @return 购物车
      */
     @Override
     public ShoppingCartDO getShoppingCartByUserAccountId(Long userAccountId) {
-
-        try {
-            return shoppingCartMapper.getShoppingCartByUserAccountId(userAccountId);
-        } catch (Exception e) {
-            logger.error("error",e);
-        }
-        return null;
+        return shoppingCartMapper.getShoppingCartByUserAccountId(userAccountId);
     }
 
     /**
@@ -55,17 +48,12 @@ public class ShoppingCartDAOImpl implements ShoppingCartDAO {
     /**
      * 新增购物车
      * @param shoppingCartDO 购物车DO对象
-     * @return 返回id
      */
     @Override
     public Long saveShoppingCart(ShoppingCartDO shoppingCartDO) {
-
-        try {
-            shoppingCartMapper.saveShoppingCart(shoppingCartDO);
-        } catch (Exception e) {
-            logger.error("error",e);
-            return null;
-        }
+        shoppingCartMapper.saveShoppingCart(shoppingCartDO);
         return shoppingCartDO.getId();
     }
+
 }
+

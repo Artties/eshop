@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * 销售出库单DTO
+ * @author Jenna C He
  */
 public class SaleDeliveryOrderDTO {
     /**
