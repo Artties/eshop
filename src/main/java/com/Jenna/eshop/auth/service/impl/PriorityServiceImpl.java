@@ -47,6 +47,7 @@ public class PriorityServiceImpl implements PriorityService {
     /**
      * 时间辅助组件
      */
+
     @Autowired
     private DateProvider dateProvider;
     /**
@@ -80,8 +81,7 @@ public class PriorityServiceImpl implements PriorityService {
             List<PriorityDO> priorityDOs = priorityDAO.listRootPriorities();
             if (priorityDOs == null){
                 return null;
-            }
-
+            } 
             List<PriorityDTO> priorityDTOs = new ArrayList<PriorityDTO>(priorityDOs.size());
             for(PriorityDO priorityDO:priorityDOs){
                 priorityDTOs.add(priorityDO.clone(PriorityDTO.class));
