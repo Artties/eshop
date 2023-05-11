@@ -40,7 +40,7 @@ public class RoleServiceImpl implements RoleService {
 
             List<RoleDO> roles = roleDAO.listByPage(query);
             for (RoleDO role : roles) {
-
+//                resultRoles.add(role.)
             }
             return null;
         } catch (Exception e) {
