@@ -1,16 +1,16 @@
 package com.Jenna.eshop.auth.service.impl;
 
+import com.Jenna.eshop.auth.dao.AccountRoleRelationshipDAO;
 import com.Jenna.eshop.auth.dao.RoleDAO;
-import com.Jenna.eshop.auth.domain.RoleDO;
-import com.Jenna.eshop.auth.domain.RoleDTO;
-import com.Jenna.eshop.auth.domain.RoleQuery;
+import com.Jenna.eshop.auth.dao.RolePriorityRelationshipDAO;
+import com.Jenna.eshop.auth.domain.*;
 import com.Jenna.eshop.auth.service.RoleService;
+import com.Jenna.eshop.common.util.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +28,16 @@ public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleDAO roleDAO;
     /**
+     * 角色权限关系管理模块的DAO组件
+     */
+    @Autowired
+    private RolePriorityRelationshipDAO rolePriorityRelationshipDAO;
+    /**
+     * 账号角色关系管理模块DAO组件
+     */
+    @Autowired
+    private AccountRoleRelationshipDAO accountRelationshipDAO;
+    /**
      * 分页查询角色
      *
      * @param query 查询的条件
@@ -36,13 +46,8 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public List<RoleDTO> listByPage(RoleQuery query) {
         try {
-            List<RoleDTO> resultRoles = new ArrayList<RoleDTO>();
-
             List<RoleDO> roles = roleDAO.listByPage(query);
-            for (RoleDO role : roles) {
-//                resultRoles.add(role.)
-            }
-            return null;
+            return ObjectUtils.convertList(roles, RoleDTO.class);
         } catch (Exception e) {
             logger.error("error", e);
             return null;
@@ -57,7 +62,23 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public RoleDTO getById(Long id) {
-        return null;
+        try {
+            RoleDO role = roleDAO.getById(id);
+            if (role == null) {
+                return null;
+            }
+            RoleDTO resultRole = role.clone(RoleDTO.class);
+
+            List<RolePriorityRelationshipDO> relations =
+                    rolePriorityRelationshipDAO.listByRoleId(id);
+
+            resultRole.setRolePriorityRelations(ObjectUtils.convertList(
+                    relations, RolePriorityRelationshipDTO.class));
+            return resultRole;
+        } catch (Exception e) {
+            logger.error("error", e);
+            return null;
+        }
     }
 
     /**
@@ -67,7 +88,14 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public Boolean save(RoleDTO role) {
-        return true;
+        try {
+            roleDAO.save(role.clone(RoleDO.class));
+            return true;
+        } catch (Exception e) {
+            logger.error("error", e);
+            return false;
+        }
+
     }
 
     /**
@@ -77,7 +105,13 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public Boolean update(RoleDTO role) {
-        return true;
+        try {
+            roleDAO.update(role.clone(RoleDO.class));
+            return true;
+        } catch (Exception e) {
+            logger.error("error", e);
+            return false;
+        }
     }
 
     /**
@@ -87,6 +121,17 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public Boolean remove(Long id) {
-        return true;
+        try {
+            Long count = accountRelationshipDAO.countByRoleId(id);
+
+            if (count > 0L) {
+                return false;
+            }
+            roleDAO.remove(id);
+            return true;
+        } catch (Exception e) {
+            logger.error("error", e);
+            return false;
+        }
     }
 }

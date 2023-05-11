@@ -1,5 +1,7 @@
 package com.Jenna.eshop.auth.domain;
 
+import com.Jenna.eshop.common.util.AbstractObject;
+
 import java.util.Date;
 
 /**
@@ -7,7 +9,7 @@ import java.util.Date;
  * @author Jenna C He
  * @date 2023/04/14 16:08
  */
-public class RolePriorityRelationshipDTO {
+public class RolePriorityRelationshipDTO extends AbstractObject {
     /**
      * id
      */

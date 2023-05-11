@@ -2,14 +2,14 @@ package com.Jenna.eshop.auth.dao.impl;
 
 
 import com.Jenna.eshop.auth.dao.RolePriorityRelationshipDAO;
-import com.Jenna.eshop.auth.domain.AccountPriorityRelationshipDO;
 import com.Jenna.eshop.auth.domain.RolePriorityRelationshipDO;
 import com.Jenna.eshop.auth.mapper.RolePriorityRelationshipMapper;
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  * 角色和权限关系管理模块的DAO组件
@@ -52,6 +52,22 @@ public class RolePriorityRelationshipDAOImpl implements RolePriorityRelationship
             logger.error("error",e);
         }
         return 0L;
+    }
+
+    /**
+     * 根据角色id查询角色和权限的关系
+     *
+     * @param roleId 角色id
+     * @return 角色权限关系DO对象集合
+     */
+    @Override
+    public List<RolePriorityRelationshipDO> listByRoleId(Long roleId) {
+        try {
+            return rolePriorityRelationshipMapper.listByRoleId(roleId);
+        } catch (Exception e) {
+            logger.error("error", e);
+            return null;
+        }
     }
 
 }

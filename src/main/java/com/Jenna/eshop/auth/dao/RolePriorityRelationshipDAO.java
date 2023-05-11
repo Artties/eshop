@@ -2,7 +2,11 @@ package com.Jenna.eshop.auth.dao;
 
 import com.Jenna.eshop.auth.domain.AccountPriorityRelationshipDO;
 import com.Jenna.eshop.auth.domain.RolePriorityRelationshipDO;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 角色和权限关系管理模块的DAO组件接口
@@ -23,4 +27,11 @@ public interface RolePriorityRelationshipDAO {
      * @return 记录数
      */
     Long countByPriorityId(Long priorityId);
+
+    /**
+     * 根据角色id查询角色和权限的关系
+     * @param roleId 角色id
+     * @return 角色权限关系DO对象集合
+     */
+    List<RolePriorityRelationshipDO> listByRoleId(Long roleId);
 }

@@ -1,18 +1,16 @@
 package com.Jenna.eshop.auth.domain;
 
 import com.Jenna.eshop.common.util.AbstractObject;
-import com.Jenna.eshop.common.util.BeanCopierUtils;
 
 import java.util.Date;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.List;
+
 /**
- * 角色DO类
+ * 角色VO类
  * @author Jenna C He
- * @date 2023/05/10 10:35
+ * @date 2023/05/11 17:34
  */
-public class RoleDO extends AbstractObject {
-    private static final Logger logger = LoggerFactory.getLogger(RoleDO.class);
+public class RoleVO extends AbstractObject {
     /**
      * id
      */
@@ -37,6 +35,10 @@ public class RoleDO extends AbstractObject {
      * 角色的修改时间
      */
     private Date gmt_modified;
+    /**
+     * 角色权限关系集合
+     */
+    private List<RolePriorityRelationshipVO> rolePriorityRelations;
 
     public Long getId() {
         return id;
@@ -84,5 +86,25 @@ public class RoleDO extends AbstractObject {
 
     public void setGmt_modified(Date gmt_modified) {
         this.gmt_modified = gmt_modified;
+    }
+
+    public List<RolePriorityRelationshipVO> getRolePriorityRelations() {
+        return rolePriorityRelations;
+    }
+    public void setRolePriorityRelations(List<RolePriorityRelationshipVO> rolePriorityRelations) {
+        this.rolePriorityRelations = rolePriorityRelations;
+    }
+
+    @Override
+    public String toString() {
+        return "RoleVO{" +
+                "id=" + id +
+                ", code=" + code +
+                ", name='" + name + '\'' +
+                ", remark='" + remark + '\'' +
+                ", gmt_created=" + gmt_created +
+                ", gmt_modified=" + gmt_modified +
+                ", rolePriorityRelations=" + rolePriorityRelations +
+                '}';
     }
 }

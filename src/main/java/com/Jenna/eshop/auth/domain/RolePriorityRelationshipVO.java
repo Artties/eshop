@@ -5,11 +5,11 @@ import com.Jenna.eshop.common.util.AbstractObject;
 import java.util.Date;
 
 /**
- * 角色和权限的关联关系DO类
+ * 角色和权限的关联关系DTO类
  * @author Jenna C He
  * @date 2023/04/14 16:08
  */
-public class RolePriorityRelationshipDO extends AbstractObject {
+public class RolePriorityRelationshipVO extends AbstractObject {
     /**
      * id
      */
