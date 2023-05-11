@@ -8,16 +8,11 @@ import com.Jenna.eshop.auth.domain.PriorityDTO;
 import com.Jenna.eshop.auth.domain.PriorityDO;
 import com.Jenna.eshop.auth.visitor.PriorityNodeRelateCheckVisitor;
 import com.Jenna.eshop.auth.visitor.PriorityNodeRemoveVisitor;
-import com.Jenna.eshop.auth.visitor.PriorityNodeVisitor;
 import com.Jenna.eshop.common.util.DateProvider;
-import org.apache.ibatis.annotations.Mapper;
-import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +45,7 @@ public class PriorityServiceImpl implements PriorityService {
     /**
      * 时间辅助组件
      */
+
     @Autowired
     private DateProvider dateProvider;
     /**
@@ -83,8 +79,7 @@ public class PriorityServiceImpl implements PriorityService {
             List<PriorityDO> priorityDOs = priorityDAO.listRootPriorities();
             if (priorityDOs == null){
                 return null;
-            }
-
+            } 
             List<PriorityDTO> priorityDTOs = new ArrayList<PriorityDTO>(priorityDOs.size());
             for(PriorityDO priorityDO:priorityDOs){
                 priorityDTOs.add(priorityDO.clone(PriorityDTO.class));

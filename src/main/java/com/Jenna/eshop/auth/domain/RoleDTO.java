@@ -1,5 +1,7 @@
 package com.Jenna.eshop.auth.domain;
 
+import com.Jenna.eshop.common.util.AbstractObject;
+
 import java.util.Date;
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
  * @author Jenna C He
  * @date 2023/05/10 10:35
  */
-public class RoleDTO {
+public class RoleDTO extends AbstractObject {
     /**
      * id
      */
