@@ -14,4 +14,8 @@ public class StockStatus {
      * 无库存
      */
     public static final Integer NOT_IN_STOCK = 0;
+
+    private StockStatus(){
+
+    }
 }

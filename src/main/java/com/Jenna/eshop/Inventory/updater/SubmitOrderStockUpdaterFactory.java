@@ -59,7 +59,7 @@ public class SubmitOrderStockUpdaterFactory<T>
      * 创建库存更新命令
      *
      * @param goodsStockDOs 商品库存DO对象集合
-     * @param parameter
+     * @param parameter 泛型变量
      * @return 库存更新命令
      * @throws Exception 抛出异常
      */

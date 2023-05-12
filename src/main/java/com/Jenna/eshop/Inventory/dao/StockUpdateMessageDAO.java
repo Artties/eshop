@@ -1,10 +1,7 @@
 package com.Jenna.eshop.Inventory.dao;
 
 import com.Jenna.eshop.Inventory.domain.StockUpdateMessageDO;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+
 
 import java.util.List;
 
