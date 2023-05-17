@@ -3,6 +3,7 @@ package com.Jenna.eshop.auth.dao.impl;
 import com.Jenna.eshop.auth.dao.RoleDAO;
 import com.Jenna.eshop.auth.domain.RoleDO;
 
+import com.Jenna.eshop.auth.domain.RoleDTO;
 import com.Jenna.eshop.auth.domain.RoleQuery;
 import com.Jenna.eshop.auth.mapper.RoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -56,4 +56,11 @@ public interface RolePriorityRelationshipMapper {
             + "WHERE role_id = #{roleId}")
     List<RolePriorityRelationshipDO> listByRoleId(
             @Param("roleId") Long roleId);
+
+    /**
+     * 根据角色id删除角色权限关联关系
+     * @param roleId 角色id
+     */
+    @Delete("DELETE FROM auth_role_priority_relationship WHERE role_id = #{roleId}")
+    void removeByRoleId(@Param("role") Long roleId);
 }

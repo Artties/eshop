@@ -1,9 +1,7 @@
 package com.Jenna.eshop.auth.dao;
 
-import com.Jenna.eshop.auth.domain.AccountPriorityRelationshipDO;
 import com.Jenna.eshop.auth.domain.RolePriorityRelationshipDO;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,4 +32,10 @@ public interface RolePriorityRelationshipDAO {
      * @return 角色权限关系DO对象集合
      */
     List<RolePriorityRelationshipDO> listByRoleId(Long roleId);
+
+    /**
+     * 根据角色id删除角色权限关联关系
+     * @param roleId 角色id
+     */
+    Boolean removeByRoleId(Long roleId);
 }

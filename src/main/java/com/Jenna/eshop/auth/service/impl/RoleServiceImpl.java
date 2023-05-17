@@ -90,6 +90,10 @@ public class RoleServiceImpl implements RoleService {
     public Boolean save(RoleDTO role) {
         try {
             roleDAO.save(role.clone(RoleDO.class));
+
+            for (RolePriorityRelationshipDTO relation:role.getRolePriorityRelations()){
+                rolePriorityRelationshipDAO.save(relation.clone(RolePriorityRelationshipDO.class));
+            }
             return true;
         } catch (Exception e) {
             logger.error("error", e);
@@ -107,6 +111,13 @@ public class RoleServiceImpl implements RoleService {
     public Boolean update(RoleDTO role) {
         try {
             roleDAO.update(role.clone(RoleDO.class));
+
+            rolePriorityRelationshipDAO.removeByRoleId(role.getId());
+
+            for (RolePriorityRelationshipDTO relation:role.getRolePriorityRelations()){
+                rolePriorityRelationshipDAO.save(relation.clone(RolePriorityRelationshipDO.class));
+            }
+
             return true;
         } catch (Exception e) {
             logger.error("error", e);
@@ -128,6 +139,8 @@ public class RoleServiceImpl implements RoleService {
                 return false;
             }
             roleDAO.remove(id);
+            rolePriorityRelationshipDAO.removeByRoleId(id);
+
             return true;
         } catch (Exception e) {
             logger.error("error", e);

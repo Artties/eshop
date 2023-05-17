@@ -4,12 +4,11 @@ import com.Jenna.eshop.auth.domain.*;
 import com.Jenna.eshop.auth.service.RoleService;
 import com.Jenna.eshop.common.util.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,31 +39,94 @@ public class RoleController {
     public List<RoleVO> listByPage(RoleQuery query) {
         try {
             List<RoleDTO> roles = roleService.listByPage(query);
-            Map<Long,RoleDTO> roleMap = convertList2Map(roles);
             List<RoleVO> resultRoles = ObjectUtils.convertList(roles,RoleVO.class);
-            for (RoleVO resultRole : resultRoles) {
-                List<RolePriorityRelationshipDTO> relations =
-                        roleMap.get(resultRole.getId()).getRolePriorityRelations();
-                resultRole.setRolePriorityRelations(
-                        ObjectUtils.convertList(relations, RolePriorityRelationshipVO.class));
-            }
+            return resultRoles;
+
         } catch (Exception e) {
             logger.error("error", e);
-            return null;
+            return new ArrayList<RoleVO>();
         }
     }
 
     /**
-     * 将角色list转换为map
-     * @param roles 角色list
-     * @return 角色map
+     * 根据id查询角色
+     * @param id 角色id
+     * @return 角色
      */
-    private Map<Long,RoleDTO> convertList2Map(List<RoleDTO> roles){
-        Map<Long,RoleDTO> rolesMap = new HashMap<Long,RoleDTO>();
-        for(RoleDTO role : roles){
-            rolesMap.put(role.getId(), role);
+    @GetMapping("/{id}")
+    public RoleVO getById(@PathVariable("id") Long id) {
+        try {
+            RoleDTO role = roleService.getById(id);
+            RoleVO resultRole = role.clone(RoleVO.class);
+            List<RolePriorityRelationshipDTO> relations = role.getRolePriorityRelations();
+            List<RolePriorityRelationshipVO> resultRelations = ObjectUtils.convertList(
+                    relations, RolePriorityRelationshipVO.class);
+
+
+            resultRole.setRolePriorityRelations(ObjectUtils.convertList(
+                    relations,RolePriorityRelationshipVO.class));
+
+            resultRole.setRolePriorityRelations(resultRelations);
+
+            return resultRole;
+
+        } catch (Exception e) {
+            logger.error("error", e);
+            return new RoleVO();
         }
-        return rolesMap;
     }
 
+    /**
+     * 新增角色
+     * @param role 角色
+     * @return 处理结果
+     */
+    @PostMapping("/")
+    public Boolean save(@RequestBody RoleVO role){
+        try {
+            RoleDTO targetRole = role.clone(RoleDTO.class);
+            List<RolePriorityRelationshipDTO> targetRelations = ObjectUtils.convertList(
+                    role.getRolePriorityRelations(), RolePriorityRelationshipDTO.class);
+            targetRole.setRolePriorityRelations(targetRelations);
+            return roleService.save(targetRole);
+        } catch (Exception e) {
+            logger.error("error", e);
+            return false;
+        }
+    }
+
+    /**
+     * 更新角色
+     * @param role 角色
+     * @return 处理结果
+     */
+    @PutMapping("/{id}")
+    public Boolean update(@RequestBody RoleVO role){
+        try {
+            RoleDTO targetRole = role.clone(RoleDTO.class);
+            List<RolePriorityRelationshipDTO> targetRelations = ObjectUtils.convertList(
+                    role.getRolePriorityRelations(), RolePriorityRelationshipDTO.class);
+            targetRole.setRolePriorityRelations(targetRelations);
+            return roleService.update(targetRole);
+
+        } catch (Exception e) {
+            logger.error("error", e);
+            return false;
+        }
+    }
+
+    /**
+     * 删除角色
+     * @param id 角色id
+     * @return 角色
+     */
+    @GetMapping("/{id}")
+    public Boolean remove(@PathVariable("id") Long id) {
+        try {
+            return roleService.remove(id);
+        } catch (Exception e) {
+            logger.error("error", e);
+          return false;
+        }
+    }
 }

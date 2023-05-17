@@ -70,4 +70,20 @@ public class RolePriorityRelationshipDAOImpl implements RolePriorityRelationship
         }
     }
 
+    /**
+     * 根据角色id删除角色权限关联关系
+     *
+     * @param roleId 角色id
+     */
+    @Override
+    public Boolean removeByRoleId(Long roleId) {
+        try {
+            rolePriorityRelationshipMapper.removeByRoleId(roleId);
+            return true;
+        } catch (Exception e) {
+            logger.error("error", e);
+            return false;
+        }
+    }
+
 }
