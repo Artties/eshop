@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-import org.hibernate.annotations.Parent;
 
 /**
  * 权限管理模块的mapper组件
