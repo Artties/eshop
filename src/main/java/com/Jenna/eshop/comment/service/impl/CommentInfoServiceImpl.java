@@ -4,8 +4,10 @@ import com.Jenna.eshop.comment.constant.*;
 import com.Jenna.eshop.comment.dao.CommentInfoDAO;
 import com.Jenna.eshop.comment.domain.CommentInfoDTO;
 import com.Jenna.eshop.comment.domain.CommentInfoDO;
+import com.Jenna.eshop.comment.domain.CommentInfoQuery;
 import com.Jenna.eshop.comment.service.CommentInfoService;
 import com.Jenna.eshop.common.util.DateProvider;
+import com.Jenna.eshop.common.util.ObjectUtils;
 import com.Jenna.eshop.order.domain.OrderInfoDTO;
 import com.Jenna.eshop.order.domain.OrderItemDTO;
 import org.slf4j.Logger;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -146,6 +149,22 @@ public class CommentInfoServiceImpl implements CommentInfoService {
         return commentInfoDTO;
     }
 
+    /**
+     * 分页查询评论信息
+     * @param query 评论查询条件
+     * @return 评论信息
+     */
+    public List<CommentInfoDTO> listByPage(CommentInfoQuery query){
+        try {
+            List<CommentInfoDO> comments = commentInfoDAO.listByPage(query);
+            List<CommentInfoDTO> resultComments = ObjectUtils.convertList(
+                    comments, CommentInfoDTO.class);
+            return resultComments;
+        } catch (Exception e) {
+            logger.error("error", e);
+            return null;
+        }
+    }
 }
 
 

@@ -1,8 +1,12 @@
 package com.Jenna.eshop.comment.service;
 
+import com.Jenna.eshop.comment.domain.CommentInfoDO;
 import com.Jenna.eshop.comment.domain.CommentInfoDTO;
+import com.Jenna.eshop.comment.domain.CommentInfoQuery;
 import com.Jenna.eshop.order.domain.OrderInfoDTO;
 import com.Jenna.eshop.order.domain.OrderItemDTO;
+
+import java.util.List;
 
 /**
  * 评论信息管理模块service组件接口
@@ -26,4 +30,11 @@ public interface CommentInfoService {
      */
 
     CommentInfoDTO saveAutoPublishedCommentInfo(OrderInfoDTO orderInfoDTO, OrderItemDTO orderItemDTO);
+
+    /**
+     *
+     * @param query
+     * @return
+     */
+    List<CommentInfoDTO> listByPage(CommentInfoQuery query);
 }

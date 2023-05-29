@@ -2,6 +2,7 @@ package com.Jenna.eshop.comment.dao;
 
 import com.Jenna.eshop.comment.domain.CommentInfoDO;
 
+
 /**
  * 评论信息管理模块的DAO组件接口
  * @author Jenna C He
@@ -14,4 +15,11 @@ public interface CommentInfoDAO {
      * @return 是否保存评论信息
      */
     Long saveCommentInfo(CommentInfoDO commentInfoDO);
+
+    /**
+     * 根据id查询评论信息
+     * @param id 评论信息id
+     * @return 评论信息
+     */
+    CommentInfoDO getById(Long id);
 }

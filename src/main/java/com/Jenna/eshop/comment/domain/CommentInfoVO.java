@@ -4,7 +4,9 @@ import com.Jenna.eshop.common.util.BeanCopierUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 评论信息
@@ -89,6 +91,8 @@ public class CommentInfoVO {
      * 修改时间
      */
     private Date gmtModified;
+
+    private List<CommentPictureVO> comments = new ArrayList<CommentPictureVO>();
 
     public Long getId() {
         return id;

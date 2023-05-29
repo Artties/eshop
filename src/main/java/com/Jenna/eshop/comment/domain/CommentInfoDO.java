@@ -1,5 +1,7 @@
 package com.Jenna.eshop.comment.domain;
 
+import com.Jenna.eshop.common.util.AbstractObject;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -8,7 +10,7 @@ import java.util.Objects;
  * @author Jenna C He
  * @date 2023/1/6 11:24
  */
-public class CommentInfoDO {
+public class CommentInfoDO extends AbstractObject {
     /**
      * id
      */

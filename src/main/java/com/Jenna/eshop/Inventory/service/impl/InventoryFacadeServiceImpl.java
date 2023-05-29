@@ -14,13 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * 库存中心对外接口service组件
- * @author Jenna C He
- * @date 2023/05/05 10:03
- */
-public class InventoryFacadeServiceImpl implements InventoryFacadeService {
-
-/**
  * 库存中心对外提供接口的service组件
  * @author Jenna C He
  * @date 2023/04/13 15:49
@@ -56,8 +49,8 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
             GoodsStockUpdateCommand goodsStockUpdateCommand =
                     purchaseInputStockUpdateCommandFactory.create(purchaseInputOrderDTO);
             goodsStockUpdateCommand.updateGoodsStock();
-        }catch (Exception e) {
-            logger.error("error",e);
+        } catch (Exception e) {
+            logger.error("error", e);
             return false;
         }
         return true;
@@ -109,8 +102,8 @@ public class InventoryFacadeServiceImpl implements InventoryFacadeService {
             GoodsStockUpdateCommand goodsStockUpdateCommand =
                     returnGoodsInputStockUpdateCommandFactory.create(returnGoodsInputOrderDTO);
             goodsStockUpdateCommand.updateGoodsStock();
-        }catch (Exception e) {
-            logger.error("error",e);
+        } catch (Exception e) {
+            logger.error("error", e);
             return false;
         }
         return true;

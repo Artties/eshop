@@ -37,4 +37,20 @@ public class CommentInfoDAOImpl implements CommentInfoDAO {
         }
         return commentInfoDO.getId();
     }
+
+    /**
+     * 根据id查询评论信息
+     *
+     * @param id 评论信息id
+     * @return 评论信息
+     */
+    @Override
+    public CommentInfoDO getById(Long id) {
+        try {
+            return commentInfoMapper.getById(id);
+        } catch (Exception e) {
+            logger.error("error", e);
+            return null;
+        }
+    }
 }

@@ -2,9 +2,11 @@ package com.Jenna.eshop.comment.controller;
 
 import com.Jenna.eshop.comment.constant.ShowPictures;
 import com.Jenna.eshop.comment.domain.CommentInfoDTO;
+import com.Jenna.eshop.comment.domain.CommentInfoQuery;
 import com.Jenna.eshop.comment.domain.CommentInfoVO;
 import com.Jenna.eshop.comment.service.CommentInfoService;
 import com.Jenna.eshop.comment.service.CommentPictureService;
+import com.Jenna.eshop.common.util.ObjectUtils;
 import com.Jenna.eshop.membership.service.MembershipFacadeService;
 import com.Jenna.eshop.order.service.OrderFacadeService;
 import com.Jenna.eshop.service.CommentAggregateService;
@@ -18,8 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
-import static org.slf4j.LoggerFactory.*;
 
 /**
  * 评论管理模块的controller组件
@@ -101,4 +104,19 @@ public class CommentController {
         return true;
     }
 
+    /**
+     * 分页查询评论信息
+     * @param query 查询条件
+     * @return 评论信息
+     */
+    public List<CommentInfoVO> listByPage(CommentInfoQuery query){
+        try {
+            List<CommentInfoDTO> comments = commentInfoService.listByPage(query);
+            List<CommentInfoVO> resultComments = ObjectUtils.convertList(comments,CommentInfoVO.class);
+            return resultComments;
+        } catch (Exception e) {
+            logger.error("error", e);
+            return new ArrayList<CommentInfoVO>();
+        }
+    }
 }
