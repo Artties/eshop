@@ -8,8 +8,8 @@ import com.Jenna.eshop.Inventory.service.InventoryFacadeService;
 import com.Jenna.eshop.order.domain.OrderInfoDTO;
 import com.Jenna.eshop.wms.domain.PurchaseInputOrderDTO;
 import com.Jenna.eshop.wms.domain.ReturnGoodsInputOrderDTO;
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

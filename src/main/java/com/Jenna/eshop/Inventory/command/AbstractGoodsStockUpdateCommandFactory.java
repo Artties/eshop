@@ -4,8 +4,8 @@ import com.Jenna.eshop.Inventory.constant.StockStatus;
 import com.Jenna.eshop.Inventory.dao.GoodsStockDAO;
 import com.Jenna.eshop.Inventory.domain.GoodsStockDO;
 import com.Jenna.eshop.common.util.DateProvider;
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import java.util.ArrayList;

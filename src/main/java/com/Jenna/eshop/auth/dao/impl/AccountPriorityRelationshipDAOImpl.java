@@ -4,8 +4,8 @@ package com.Jenna.eshop.auth.dao.impl;
 import com.Jenna.eshop.auth.dao.AccountPriorityRelationshipDAO;
 import com.Jenna.eshop.auth.domain.AccountPriorityRelationshipDO;
 import com.Jenna.eshop.auth.mapper.AccountPriorityRelationshipMapper;
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
