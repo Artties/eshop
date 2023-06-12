@@ -32,9 +32,16 @@ public interface CommentInfoService {
     CommentInfoDTO saveAutoPublishedCommentInfo(OrderInfoDTO orderInfoDTO, OrderItemDTO orderItemDTO);
 
     /**
-     *
-     * @param query
-     * @return
+     * 分页查询评论信息
+     * @param query 评论查询条件
+     * @return 评论信息
      */
     List<CommentInfoDTO> listByPage(CommentInfoQuery query);
+
+    /**
+     * 根据id查询评论信息
+     * @param id 评论信息id
+     * @return 评论信息
+     */
+    CommentInfoDTO getById(Long id);
 }

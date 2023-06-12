@@ -1,10 +1,7 @@
 package com.Jenna.eshop.comment.domain;
 
-import com.Jenna.eshop.common.util.BeanCopierUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.Jenna.eshop.common.util.AbstractObject;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,8 +10,7 @@ import java.util.List;
  * @author Jenna C He
  * @date 2023/1/6 13:49
  */
-public class CommentInfoVO {
-    private static final Logger logger = LoggerFactory.getLogger(CommentInfoVO.class);
+public class CommentInfoVO extends AbstractObject {
     /**
      * id
      */
@@ -91,8 +87,10 @@ public class CommentInfoVO {
      * 修改时间
      */
     private Date gmtModified;
-
-    private List<CommentPictureVO> comments = new ArrayList<CommentPictureVO>();
+    /**
+     * 评论图片集合
+     */
+    private List<CommentPictureVO> pictures;
 
     public Long getId() {
         return id;
@@ -245,23 +243,12 @@ public class CommentInfoVO {
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }
+    
+    public List<CommentPictureVO> getPictures() {
+        return pictures;
+    }
 
-    /**
-     * 将自己的数据克隆到指定类型的对象中
-     * @param clazz 指定类型
-     * @return 指定类型的对象
-     * @param <T> 泛型
-     */
-    public <T> T clone(Class<T> clazz){
-        T target = null;
-        try {
-            target = clazz.getConstructor().newInstance();
-            BeanCopierUtils.copyProperties(this,target);
-
-        }catch (Exception e) {
-            logger.error("error",e);
-            return null;
-        }
-        return target;
+    public void setPictures(List<CommentPictureVO> pictures) {
+        this.pictures = pictures;
     }
 }

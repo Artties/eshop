@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -156,10 +155,27 @@ public class CommentInfoServiceImpl implements CommentInfoService {
      */
     public List<CommentInfoDTO> listByPage(CommentInfoQuery query){
         try {
-            List<CommentInfoDO> comments = commentInfoDAO.listByPage(query);
+            List<CommentInfoDTO> comments = commentInfoDAO.listByPage(query);
             List<CommentInfoDTO> resultComments = ObjectUtils.convertList(
                     comments, CommentInfoDTO.class);
             return resultComments;
+        } catch (Exception e) {
+            logger.error("error", e);
+            return null;
+        }
+    }
+
+    /**
+     * 根据id查询评论信息
+     * @param id 评论信息id
+     * @return 评论信息
+     */
+    @Override
+    public CommentInfoDTO getById(Long id) {
+        try {
+            CommentInfoDO comment = commentInfoDAO.getById(id);
+            CommentInfoDTO resultComment = comment.clone(CommentInfoDTO.class);
+            return resultComment;
         } catch (Exception e) {
             logger.error("error", e);
             return null;

@@ -1,6 +1,10 @@
 package com.Jenna.eshop.comment.dao;
 
 import com.Jenna.eshop.comment.domain.CommentInfoDO;
+import com.Jenna.eshop.comment.domain.CommentInfoDTO;
+import com.Jenna.eshop.comment.domain.CommentInfoQuery;
+
+import java.util.List;
 
 
 /**
@@ -22,4 +26,12 @@ public interface CommentInfoDAO {
      * @return 评论信息
      */
     CommentInfoDO getById(Long id);
+
+    /**
+     * 分页查询评论信息
+     * @param query 评论查询条件
+     * @return 评论信息
+     */
+    List<CommentInfoDTO> listByPage(CommentInfoQuery query);
+
 }

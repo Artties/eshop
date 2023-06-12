@@ -1,6 +1,7 @@
 package com.Jenna.eshop.comment.controller;
 
 import com.Jenna.eshop.comment.constant.ShowPictures;
+import com.Jenna.eshop.comment.domain.CommentInfoDO;
 import com.Jenna.eshop.comment.domain.CommentInfoDTO;
 import com.Jenna.eshop.comment.domain.CommentInfoQuery;
 import com.Jenna.eshop.comment.domain.CommentInfoVO;
@@ -14,9 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -109,6 +108,7 @@ public class CommentController {
      * @param query 查询条件
      * @return 评论信息
      */
+    @GetMapping("/")
     public List<CommentInfoVO> listByPage(CommentInfoQuery query){
         try {
             List<CommentInfoDTO> comments = commentInfoService.listByPage(query);
@@ -119,4 +119,20 @@ public class CommentController {
             return new ArrayList<CommentInfoVO>();
         }
     }
+
+    /**
+     * 根据id查询评论信息
+     * @param id 评论id
+     * @return 评论信息
+     */
+    public CommentInfoVO getById(@PathVariable("id") Long id) {
+        try {
+            CommentInfoDTO comment = commentInfoService.getById(id);
+        } catch (Exception e) {
+            logger.error("error", e);
+            return null;
+        }
+
+    }
+
 }

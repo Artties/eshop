@@ -2,12 +2,16 @@ package com.Jenna.eshop.comment.dao.impl;
 
 import com.Jenna.eshop.comment.dao.CommentInfoDAO;
 import com.Jenna.eshop.comment.domain.CommentInfoDO;
+import com.Jenna.eshop.comment.domain.CommentInfoDTO;
+import com.Jenna.eshop.comment.domain.CommentInfoQuery;
 import com.Jenna.eshop.comment.mapper.CommentInfoMapper;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 /**
@@ -52,5 +56,16 @@ public class CommentInfoDAOImpl implements CommentInfoDAO {
             logger.error("error", e);
             return null;
         }
+    }
+
+    /**
+     * 分页查询评论信息
+     *
+     * @param query 评论查询条件
+     * @return 评论信息
+     */
+    @Override
+    public List<CommentInfoDTO> listByPage(CommentInfoQuery query) {
+        return null;
     }
 }
