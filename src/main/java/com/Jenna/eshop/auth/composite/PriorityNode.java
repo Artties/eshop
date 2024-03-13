@@ -50,6 +50,7 @@ public class PriorityNode {
 
     /**
      * 接收一个权限树访问者
+     *
      * @param visitor 权限树访问者
      */
     public void accept(PriorityNodeVisitor visitor){
