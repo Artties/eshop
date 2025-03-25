@@ -51,3 +51,9 @@ hbase hbck -fixHdfsOverlaps <表名>
    2、停止华为云业务，更改中间件层配置，指向源端数据层数据库；
    3、通过更改DNS配置，逐步切换流量到源端，直到100%；
    4、稳定性观察。
+
+
+
+   https://mp.weixin.qq.com/s?__biz=MzkyMDMwMTMwMw==&mid=2247483754&idx=1&sn=1bf6120d1c7ca41960840d75b1aeae64&chksm=c0cd4e376ca2a6c007fc3a1f764c0242c4574fef92d31eddaa31106aabe8dc269c17081cb8a2#rd
+
+   https://support.huaweicloud.com/bestpractice-cdm/cdm_05_0014.html
