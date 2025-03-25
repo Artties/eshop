@@ -1,22 +1,42 @@
-# eshop
-This project is monitoring real situation e-commercial company back-end project.
-Please don't use the code on commercial purpose.
-You have my thanks.
-
-
-一、迁移前备份策略
-​全量备份
-使用HBase自带工具导出表数据至HDFS或本地存储：
+华为云CDM迁移Cloudera Data Platform HBase到华为云MRS HBase的迁移回退触发条件及详细过程
+​一、迁移回退触发条件
+​数据校验失败
+迁移完成后，通过文件数量、大小或哈希值比对发现源端和目标端数据不一致。
+HBase表元数据或Region信息校验异常（如hbck命令检测到不一致）。
+​业务中断超时
+业务切换时间超过预设阈值（如最后一次增量同步时间+切换时间超过业务容忍窗口）。
+​版本兼容性问题
+源端CDH HBase版本高于目标MRS HBase版本（需确保源端版本 ≤ 目标版本）。
+MRS集群版本为2.x及以上时，无法通过HBase修复命令重建表（需使用快照迁移）。
+​迁移过程异常
+网络中断、CDM任务失败或数据同步中断导致迁移未完成。
+迁移后业务功能异常（如查询超时、RegionServer负载过高）。
+​二、迁移回退详细过程
+​触发回退决策
+监控系统或人工验证发现上述触发条件后，立即启动回退流程。
+​反向迁移数据（CDM工具）​
+​步骤1：在华为云CDM控制台创建反向迁移任务，配置源端（MRS HBase）和目标端（CDH HBase）。
+​步骤2：选择需回退的HBase表或数据目录，启动反向同步。
+​步骤3：验证反向迁移的数据完整性（如文件数量、大小、哈希值）。
+​恢复源端HBase表
+​步骤1：若目标端为MRS 1.x版本，通过HBase命令修复表：
 bash
-hbase org.apache.hadoop.hbase.mapreduce.Export '表名' /备份路径
-备份文件需存储在安全位置（如华为云OBS或HDFS）。
-​华为云MRS补充：通过FusionInsight Manager创建全量备份任务，确保备份路径与目标集群兼容。
-​增量备份
-定期使用hbase backup create incremental创建增量备份，减少回退数据量。
-​华为云MRS补充：启用跨集群拷贝功能，实时同步增量数据至原集群备用。
-​元数据备份
-导出HBase配置文件（hbase-site.xml、.META.表结构）及集群拓扑信息。
-
-数据不一致或业务异常（如写入失败、查询错误）。
-迁移后性能未达预期或存在兼容性问题。
-完全回退需求（如需恢复至迁移前状态）
+hbase hbck -fixMeta <表名>
+hbase hbck -fixAssignments <表名>
+若存在Region重叠，需额外执行：
+bash
+hbase hbck -fixHdfsOverlaps <表名>
+（参考）
+​步骤2：若目标端为MRS 2.x及以上版本，需通过快照恢复：
+在源端CDH集群创建HDFS快照（hdfs dfs -createSnapshot）。
+使用CDM将快照数据反向迁回源端HBase目录。
+​切换业务流量
+​步骤1：修改DNS或负载均衡配置，将流量逐步切换回源端CDH集群（参考场景二）。
+​步骤2：验证业务功能恢复，监控系统负载和响应时间。
+​清理目标端资源
+删除MRS集群中已回退的HBase表及关联资源（如OBS存储桶、HDFS目录）。
+​三、关键注意事项
+​版本兼容性：迁移前需确认源端HBase版本 ≤ 目标MRS版本，避免反向迁移失败。
+​数据一致性：反向迁移后需通过hbck命令修复表，并处理可能的Region重叠问题。
+​网络稳定性：反向迁移过程中需保持专线或VPC通道畅通，避免中断导致数据不一致。
+通过上述流程，可快速实现从MRS HBase到CDH HBase的回退，最大限度降低业务影响。具体操作细节可参考华为云官方网页。
